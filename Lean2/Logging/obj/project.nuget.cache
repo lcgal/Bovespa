@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "VI2abRFSTnijaThSLCYKaN+00EMn1wQM22UGkDWB5c6OqhXv48Gg55rShAOU87cARU0uCvcN2/KJob7AdlkvOw==",
+  "success": true,
+  "projectFilePath": "C:\\Repositorios\\Bovespa\\Lean\\Logging\\QuantConnect.Logging.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Lucas\\.nuget\\packages\\mathnet.filtering\\0.4.0\\mathnet.filtering.0.4.0.nupkg.sha512",
+    "C:\\Users\\Lucas\\.nuget\\packages\\mathnet.numerics\\3.19.0\\mathnet.numerics.3.19.0.nupkg.sha512",
+    "C:\\Users\\Lucas\\.nuget\\packages\\microsoft.codeanalysis.netanalyzers\\5.0.3\\microsoft.codeanalysis.netanalyzers.5.0.3.nupkg.sha512",
+    "C:\\Users\\Lucas\\.nuget\\packages\\nlog\\4.4.13\\nlog.4.4.13.nupkg.sha512",
+    "C:\\Users\\Lucas\\.nuget\\packages\\nlog.config\\4.4.13\\nlog.config.4.4.13.nupkg.sha512",
+    "C:\\Users\\Lucas\\.nuget\\packages\\nlog.schema\\4.4.13\\nlog.schema.4.4.13.nupkg.sha512",
+    "C:\\Users\\Lucas\\.nuget\\packages\\system.componentmodel.composition\\5.0.0\\system.componentmodel.composition.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

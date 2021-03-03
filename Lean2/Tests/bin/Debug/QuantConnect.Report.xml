@@ -1,0 +1,1046 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QuantConnect.Report</name>
+    </assembly>
+    <members>
+        <member name="T:QuantConnect.Report.Crisis">
+            <summary>
+            Crisis events utility class
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Report.Crisis.Events">
+            <summary>
+            Crisis events and pre-defined values
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.Crisis.Start">
+            <summary>
+            Start of the crisis event
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.Crisis.End">
+            <summary>
+            End of the crisis event
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.Crisis.Name">
+            <summary>
+            Name of the crisis
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.Crisis.#ctor(System.String,System.DateTime,System.DateTime)">
+            <summary>
+            Creates a new crisis instance with the given name and start/end date.
+            </summary>
+            <param name="name">Name of the crisis</param>
+            <param name="start">Start date of the crisis</param>
+            <param name="end">End date of the crisis</param>
+        </member>
+        <member name="M:QuantConnect.Report.Crisis.FromCrisis(QuantConnect.Report.CrisisEvent)">
+            <summary>
+            Returns a pre-defined crisis event
+            </summary>
+            <param name="crisisEvent">Crisis Event</param>
+            <returns>Pre-defined crisis event</returns>
+        </member>
+        <member name="M:QuantConnect.Report.Crisis.ToString">
+            <summary>
+            Converts instance to string using the dates in the instance as start/end dates
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QuantConnect.Report.Crisis.ToString(System.DateTime,System.DateTime)">
+            <summary>
+            Converts instance to string using the provided dates
+            </summary>
+            <param name="start">Start date</param>
+            <param name="end">End date</param>
+            <returns></returns>
+        </member>
+        <member name="T:QuantConnect.Report.CrisisEvent">
+            <summary>
+            Crisis Events
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Report.CrisisEvent.DotCom">
+            <summary>
+            DotCom bubble - https://en.wikipedia.org/wiki/Dot-com_bubble
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Report.CrisisEvent.SeptemberEleventh">
+            <summary>
+            September 11, 2001 attacks - https://en.wikipedia.org/wiki/September_11_attacks
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Report.CrisisEvent.USHousingBubble2003">
+            <summary>
+            United States housing bubble - https://en.wikipedia.org/wiki/United_States_housing_bubble
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Report.CrisisEvent.GlobalFinancialCrisis">
+            <summary>
+            https://en.wikipedia.org/wiki/Financial_crisis_of_2007%E2%80%9308
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Report.CrisisEvent.FlashCrash">
+            <summary>
+            The flash crash of 2010 - https://en.wikipedia.org/wiki/2010_Flash_Crash
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Report.CrisisEvent.FukushimaMeltdown">
+            <summary>
+            Fukushima nuclear power plant meltdown - https://en.wikipedia.org/wiki/Fukushima_Daiichi_nuclear_disaster
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Report.CrisisEvent.USDowngradeEuropeanDebt">
+            <summary>
+            United States credit rating downgrade - https://en.wikipedia.org/wiki/United_States_federal_government_credit-rating_downgrades
+            European debt crisis - https://en.wikipedia.org/wiki/European_debt_crisis
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Report.CrisisEvent.EurozoneSeptember2012">
+            <summary>
+            European debt crisis - https://en.wikipedia.org/wiki/European_debt_crisis
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Report.CrisisEvent.EurozoneOctober2014">
+            <summary>
+            European debt crisis - https://en.wikipedia.org/wiki/European_debt_crisis
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Report.CrisisEvent.MarketSellOff2015">
+            <summary>
+            2015-2016 market sell off https://en.wikipedia.org/wiki/2015%E2%80%9316_stock_market_selloff
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Report.CrisisEvent.Recovery">
+            <summary>
+            Crisis recovery (2010 - 2012)
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Report.CrisisEvent.NewNormal">
+            <summary>
+            2014 - 2019 market performance
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Report.CrisisEvent.COVID19">
+            <summary>
+            COVID-19 pandemic market crash
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Report.DeedleUtil">
+            <summary>
+            Utility extension methods for Deedle series/frames
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.DeedleUtil.CumulativeSum(Deedle.Series{System.DateTime,System.Double})">
+            <summary>
+            Calculates the cumulative sum for the given series
+            </summary>
+            <param name="input">Series to calculate cumulative sum for</param>
+            <returns>Cumulative sum in series form</returns>
+        </member>
+        <member name="M:QuantConnect.Report.DeedleUtil.CumulativeProduct(Deedle.Series{System.DateTime,System.Double})">
+            <summary>
+            Calculates the cumulative product of the series. This is equal to the python pandas method: `df.cumprod()`
+            </summary>
+            <param name="input">Input series</param>
+            <returns>Cumulative product</returns>
+        </member>
+        <member name="M:QuantConnect.Report.DeedleUtil.CumulativeMax(Deedle.Series{System.DateTime,System.Double})">
+            <summary>
+            Calculates the cumulative max of the series. This is equal to the python pandas method: `df.cummax()`.
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QuantConnect.Report.DeedleUtil.PercentChange(Deedle.Series{System.DateTime,System.Double})">
+            <summary>
+            Calculates the percentage change from the previous value to the current
+            </summary>
+            <param name="input">Series to calculate percentage change for</param>
+            <returns>Percentage change in series form</returns>
+            <remarks>Equivalent to `df.pct_change()`</remarks>
+        </member>
+        <member name="M:QuantConnect.Report.DeedleUtil.CumulativeReturns(Deedle.Series{System.DateTime,System.Double})">
+            <summary>
+            Calculates the cumulative returns series of the given input equity curve
+            </summary>
+            <param name="input">Equity curve series</param>
+            <returns>Cumulative returns over time</returns>
+        </member>
+        <member name="M:QuantConnect.Report.DeedleUtil.TotalReturns(Deedle.Series{System.DateTime,System.Double})">
+            <summary>
+            Calculates the total returns over a period of time for the given input
+            </summary>
+            <param name="input">Equity curve series</param>
+            <returns>Total returns over time</returns>
+        </member>
+        <member name="M:QuantConnect.Report.DeedleUtil.DropSparseColumnsAll``2(Deedle.Frame{``0,``1})">
+            <summary>
+            Drops sparse columns only if every value is `missing` in the column
+            </summary>
+            <typeparam name="TRowKey">Frame row key</typeparam>
+            <typeparam name="TColumnKey">Frame column key</typeparam>
+            <param name="frame">Data Frame</param>
+            <returns>new Frame with sparse columns dropped</returns>
+            <remarks>Equivalent to `df.dropna(axis=1, how='all')`</remarks>
+        </member>
+        <member name="M:QuantConnect.Report.DeedleUtil.DropSparseRowsAll``2(Deedle.Frame{``0,``1})">
+            <summary>
+            Drops sparse rows if and only if every value is `missing` in the Frame
+            </summary>
+            <typeparam name="TRowKey">Frame row key</typeparam>
+            <typeparam name="TColumnKey">Frame column key</typeparam>
+            <param name="frame">Data Frame</param>
+            <returns>new Frame with sparse rows dropped</returns>
+            <remarks>Equivalent to `df.dropna(how='all')`</remarks>
+        </member>
+        <member name="T:QuantConnect.Report.DrawdownCollection">
+            <summary>
+            Collection of drawdowns for the given period marked by start and end date
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.DrawdownCollection.Start">
+            <summary>
+            Starting time of the drawdown collection
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.DrawdownCollection.End">
+            <summary>
+            Ending time of the drawdown collection
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.DrawdownCollection.Periods">
+            <summary>
+            Number of periods to take into consideration for the top N drawdown periods.
+            This will be the number of items contained in the <see cref="P:QuantConnect.Report.DrawdownCollection.Drawdowns"/> collection.
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.DrawdownCollection.Drawdowns">
+            <summary>
+            Worst drawdowns encountered
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.DrawdownCollection.#ctor(System.Int32)">
+            <summary>
+            Creates an instance with a default collection (no items) and the top N worst drawdowns
+            </summary>
+            <param name="periods"></param>
+        </member>
+        <member name="M:QuantConnect.Report.DrawdownCollection.#ctor(Deedle.Series{System.DateTime,System.Double},System.Int32)">
+            <summary>
+            Creates an instance from the given drawdowns and the top N worst drawdowns
+            </summary>
+            <param name="strategySeries">Equity curve with both live and backtesting merged</param>
+            <param name="periods">Periods this collection contains</param>
+        </member>
+        <member name="M:QuantConnect.Report.DrawdownCollection.FromResult(QuantConnect.Packets.BacktestResult,QuantConnect.Packets.LiveResult,System.Int32)">
+            <summary>
+            Generate a new instance of DrawdownCollection from backtest and live <see cref="T:QuantConnect.Result"/> derived instances
+            </summary>
+            <param name="backtestResult">Backtest result packet</param>
+            <param name="liveResult">Live result packet</param>
+            <param name="periods">Top N drawdown periods to get</param>
+            <returns>DrawdownCollection instance</returns>
+        </member>
+        <member name="M:QuantConnect.Report.DrawdownCollection.NormalizeResults(QuantConnect.Packets.BacktestResult,QuantConnect.Packets.LiveResult)">
+            <summary>
+            Normalizes the Series used to calculate the drawdown plots and charts
+            </summary>
+            <param name="backtestResult">Backtest result packet</param>
+            <param name="liveResult">Live result packet</param>
+            <returns></returns>
+        </member>
+        <member name="M:QuantConnect.Report.DrawdownCollection.GetUnderwater(Deedle.Series{System.DateTime,System.Double})">
+            <summary>
+            Gets the underwater plot for the provided curve.
+            Data is expected to be the concatenated output of <see cref="M:QuantConnect.Report.ResultsUtil.EquityPoints(QuantConnect.Result)"/>.
+            </summary>
+            <param name="curve">Equity curve</param>
+            <returns></returns>
+        </member>
+        <member name="M:QuantConnect.Report.DrawdownCollection.GetUnderwaterFrame(Deedle.Series{System.DateTime,System.Double})">
+            <summary>
+            Gets all the data associated with the underwater plot and everything used to generate it.
+            Note that you should instead use <see cref="M:QuantConnect.Report.DrawdownCollection.GetUnderwater(Deedle.Series{System.DateTime,System.Double})"/> if you
+            want to just generate an underwater plot. This is internally used to get the top N worst drawdown periods.
+            </summary>
+            <param name="curve">Equity curve</param>
+            <returns>Frame containing the following keys: "returns", "cumulativeMax", "drawdown"</returns>
+        </member>
+        <member name="M:QuantConnect.Report.DrawdownCollection.GetTopWorstDrawdowns(Deedle.Series{System.DateTime,System.Double},System.Int32)">
+            <summary>
+            Gets the top N worst drawdowns and associated statistics.
+            Returns a Frame with the following keys: "duration", "cumulativeMax", "drawdown"
+            </summary>
+            <param name="curve">Equity curve</param>
+            <param name="periods">Top N worst periods. If this is greater than the results, we retrieve all the items instead</param>
+            <returns>Frame with the following keys: "duration", "cumulativeMax", "drawdown"</returns>
+        </member>
+        <member name="M:QuantConnect.Report.DrawdownCollection.GetDrawdownPeriods(Deedle.Series{System.DateTime,System.Double},System.Int32)">
+            <summary>
+            Gets the given drawdown periods from the equity curve and the set periods
+            </summary>
+            <param name="curve">Equity curve</param>
+            <param name="periods">Top N drawdown periods to get</param>
+            <returns>Enumerable of DrawdownPeriod</returns>
+        </member>
+        <member name="T:QuantConnect.Report.DrawdownPeriod">
+            <summary>
+            Represents a period of time where the drawdown ranks amongst the top N drawdowns.
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.DrawdownPeriod.Start">
+            <summary>
+            Start of the drawdown period
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.DrawdownPeriod.End">
+            <summary>
+            End of the drawdown period
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.DrawdownPeriod.PeakToTrough">
+            <summary>
+            Loss in percent from peak to trough
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.DrawdownPeriod.Drawdown">
+            <summary>
+            Loss in percent from peak to trough - Alias for <see cref="P:QuantConnect.Report.DrawdownPeriod.PeakToTrough"/>
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.DrawdownPeriod.#ctor(System.DateTime,System.DateTime,System.Double)">
+            <summary>
+            Creates an instance with the given start, end, and drawdown
+            </summary>
+            <param name="start">Start of the drawdown period</param>
+            <param name="end">End of the drawdown period</param>
+            <param name="drawdown">Max drawdown of the period</param>
+        </member>
+        <member name="T:QuantConnect.Report.Metrics">
+            <summary>
+            Strategy metrics collection such as usage of funds and asset allocations
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.Metrics.LeverageUtilization(Deedle.Series{System.DateTime,System.Double},System.Collections.Generic.List{QuantConnect.Orders.Order})">
+            <summary>
+            Calculates the leverage used from trades. The series used to call this extension function should
+            be the equity curve with the associated <see cref="T:QuantConnect.Orders.Order"/> objects that go along with it.
+            </summary>
+            <param name="equityCurve">Equity curve series</param>
+            <param name="orders">Orders associated with the equity curve</param>
+            <returns>Leverage utilization over time</returns>
+        </member>
+        <member name="M:QuantConnect.Report.Metrics.LeverageUtilization(System.Collections.Generic.List{QuantConnect.Report.PointInTimePortfolio})">
+            <summary>
+            Gets the leverage utilization from a list of <see cref="T:QuantConnect.Report.PointInTimePortfolio"/>
+            </summary>
+            <param name="portfolios">Point in time portfolios</param>
+            <returns>Series of leverage utilization</returns>
+        </member>
+        <member name="M:QuantConnect.Report.Metrics.AssetAllocations(Deedle.Series{System.DateTime,System.Double},System.Collections.Generic.List{QuantConnect.Orders.Order})">
+            <summary>
+            Calculates the portfolio's asset allocation percentage over time. The series used to call this extension function should
+            be the equity curve with the associated <see cref="T:QuantConnect.Orders.Order"/> objects that go along with it.
+            </summary>
+            <param name="equityCurve">Equity curve series</param>
+            <param name="orders">Orders associated with the equity curve</param>
+            <returns></returns>
+        </member>
+        <member name="M:QuantConnect.Report.Metrics.AssetAllocations(System.Collections.Generic.List{QuantConnect.Report.PointInTimePortfolio})">
+            <summary>
+            Calculates the asset allocation percentage over time.
+            </summary>
+            <param name="portfolios">Point in time portfolios</param>
+            <returns>Series keyed by Symbol containing the percentage allocated to that asset over time</returns>
+        </member>
+        <member name="M:QuantConnect.Report.Metrics.Exposure(Deedle.Series{System.DateTime,System.Double},System.Collections.Generic.List{QuantConnect.Orders.Order},QuantConnect.Orders.OrderDirection)">
+            <summary>
+            Strategy long/short exposure by asset class
+            </summary>
+            <param name="equityCurve">Equity curve</param>
+            <param name="orders">Orders of the strategy</param>
+            <param name="direction">Long or short</param>
+            <returns>
+            Frame keyed by <see cref="T:QuantConnect.SecurityType"/> and <see cref="T:QuantConnect.Orders.OrderDirection"/>.
+            Returns a Frame of exposure per asset per direction over time
+            </returns>
+        </member>
+        <member name="M:QuantConnect.Report.Metrics.Exposure(System.Collections.Generic.List{QuantConnect.Report.PointInTimePortfolio},QuantConnect.Orders.OrderDirection)">
+            <summary>
+            Strategy long/short exposure by asset class
+            </summary>
+            <param name="portfolios">Point in time portfolios</param>
+            <param name="direction">Long or short</param>
+            <returns>
+            Frame keyed by <see cref="T:QuantConnect.SecurityType"/> and <see cref="T:QuantConnect.Orders.OrderDirection"/>.
+            Returns a Frame of exposure per asset per direction over time
+            </returns>
+        </member>
+        <member name="T:QuantConnect.Report.NullResultValueTypeJsonConverter`1">
+            <summary>
+            Removes null values in the <see cref="T:QuantConnect.Result"/> object's x,y values so that
+            deserialization can occur without exceptions.
+            </summary>
+            <typeparam name="T">Result type to deserialize into</typeparam>
+        </member>
+        <member name="T:QuantConnect.Report.OrderTypeNormalizingJsonConverter">
+            <summary>
+            Normalizes the "Type" field to a value that will allow for
+            successful deserialization in the <see cref="T:QuantConnect.Orders.OrderJsonConverter"/> class.
+            </summary>
+            <example>
+            All of these values should result in the same object:
+            <code>
+            [
+                { "Type": "marketOnOpen", ... },
+                { "Type": "MarketOnOpen", ... },
+                { "Type": 4, ... },
+            ]
+            </code>
+            </example>
+            <typeparam name="T">Result type to deserialize into</typeparam>
+        </member>
+        <member name="T:QuantConnect.Report.PointInTimePortfolio">
+            <summary>
+            Lightweight portfolio at a point in time
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.PointInTimePortfolio.Time">
+            <summary>
+            Time that this point in time portfolio is for
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.PointInTimePortfolio.TotalPortfolioValue">
+            <summary>
+            The total value of the portfolio. This is cash + absolute value of holdings
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.PointInTimePortfolio.Cash">
+            <summary>
+            The cash the portfolio has
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.PointInTimePortfolio.Order">
+            <summary>
+            The order we just processed
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.PointInTimePortfolio.Holdings">
+            <summary>
+            A list of holdings at the current moment in time
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.PointInTimePortfolio.Leverage">
+            <summary>
+            Portfolio leverage - provided for convenience
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.PointInTimePortfolio.#ctor(QuantConnect.Orders.Order,QuantConnect.Securities.SecurityPortfolioManager)">
+            <summary>
+            Creates an instance of the PointInTimePortfolio object
+            </summary>
+            <param name="order">Order applied to the portfolio</param>
+            <param name="portfolio">Algorithm portfolio at a point in time</param>
+        </member>
+        <member name="M:QuantConnect.Report.PointInTimePortfolio.#ctor(QuantConnect.Report.PointInTimePortfolio,System.DateTime)">
+            <summary>
+            Clones the provided portfolio
+            </summary>
+            <param name="portfolio">Portfolio</param>
+            <param name="time">Time</param>
+        </member>
+        <member name="M:QuantConnect.Report.PointInTimePortfolio.NoEmptyHoldings">
+            <summary>
+            Filters out any empty holdings from the current <see cref="P:QuantConnect.Report.PointInTimePortfolio.Holdings"/>
+            </summary>
+            <returns>Current object, but without empty holdings</returns>
+        </member>
+        <member name="T:QuantConnect.Report.PointInTimePortfolio.PointInTimeHolding">
+            <summary>
+            Holding of an asset at a point in time
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.PointInTimePortfolio.PointInTimeHolding.Symbol">
+            <summary>
+            Symbol of the holding
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.PointInTimePortfolio.PointInTimeHolding.HoldingsValue">
+            <summary>
+            Value of the holdings of the asset. Can be negative if shorting an asset
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.PointInTimePortfolio.PointInTimeHolding.Quantity">
+            <summary>
+            Quantity of the asset. Can be negative if shorting an asset
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.PointInTimePortfolio.PointInTimeHolding.AbsoluteHoldingsValue">
+            <summary>
+            Absolute value of the holdings.
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.PointInTimePortfolio.PointInTimeHolding.AbsoluteHoldingsQuantity">
+            <summary>
+            Absolute value of the quantity
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.PointInTimePortfolio.PointInTimeHolding.#ctor(QuantConnect.Symbol,System.Decimal,System.Decimal)">
+            <summary>
+            Creates an instance of PointInTimeHolding, representing a holding at a given point in time
+            </summary>
+            <param name="symbol">Symbol of the holding</param>
+            <param name="holdingsValue">Value of the holding</param>
+            <param name="holdingsQuantity">Quantity of the holding</param>
+        </member>
+        <member name="T:QuantConnect.Report.MockDataFeed">
+            <summary>
+            Fake IDataFeed
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Report.PortfolioLooper">
+            <summary>
+            Runs LEAN to calculate the portfolio at a given time from <see cref="T:QuantConnect.Orders.Order"/> objects.
+            Generates and returns <see cref="T:QuantConnect.Report.PointInTimePortfolio"/> objects that represents
+            the holdings and other miscellaneous metrics at a point in time by reprocessing the orders
+            as they were filled.
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Report.PortfolioLooper._resolution">
+            <summary>
+            Default resolution to read. This will affect the granularity of the results generated for FX and Crypto
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.PortfolioLooper.Algorithm">
+            <summary>
+            QCAlgorithm derived class that sets up internal data feeds for
+            use with crypto and forex data, as well as managing the <see cref="T:QuantConnect.Securities.SecurityPortfolioManager"/>
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.PortfolioLooper.#ctor(System.Double,System.Collections.Generic.List{QuantConnect.Orders.Order},QuantConnect.Resolution)">
+            <summary>
+            Creates an instance of the PortfolioLooper class
+            </summary>
+            <param name="startingCash">Equity curve</param>
+            <param name="orders">Order events</param>
+            <param name="resolution">Optional parameter to override default resolution (Hourly)</param>
+        </member>
+        <member name="M:QuantConnect.Report.PortfolioLooper.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.PortfolioLooper.GetHistory(QuantConnect.Interfaces.IAlgorithm,System.Collections.Generic.List{QuantConnect.Securities.Security},QuantConnect.Resolution)">
+            <summary>
+            Internal method to get the history for the given securities
+            </summary>
+            <param name="algorithm">Algorithm</param>
+            <param name="securities">Securities to get history for</param>
+            <param name="resolution">Resolution to retrieve data in</param>
+            <returns>History of the given securities</returns>
+            <remarks>Method is static because we want to use it from the constructor as well</remarks>
+        </member>
+        <member name="M:QuantConnect.Report.PortfolioLooper.GetHistory(System.Collections.Generic.List{QuantConnect.Symbol},System.DateTime,System.DateTime,QuantConnect.Resolution)">
+            <summary>
+            Gets the history for the given symbols from the <paramref name="start"/> to the <paramref name="end"/>
+            </summary>
+            <param name="symbols">Symbols to request history for</param>
+            <param name="start">Start date of history request</param>
+            <param name="end">End date of history request</param>
+            <param name="resolution">Resolution of history request</param>
+            <returns>Enumerable of slices</returns>
+        </member>
+        <member name="M:QuantConnect.Report.PortfolioLooper.FromOrders(Deedle.Series{System.DateTime,System.Double},System.Collections.Generic.IEnumerable{QuantConnect.Orders.Order},System.Boolean)">
+            <summary>
+            Gets the point in time portfolio over multiple deployments
+            </summary>
+            <param name="equityCurve">Equity curve series</param>
+            <param name="orders">Orders</param>
+            <param name="liveSeries">Equity curve series originates from LiveResult</param>
+            <returns>Enumerable of <see cref="T:QuantConnect.Report.PointInTimePortfolio"/></returns>
+        </member>
+        <member name="M:QuantConnect.Report.PortfolioLooper.ProcessOrders(System.Collections.Generic.IEnumerable{QuantConnect.Orders.Order})">
+            <summary>
+            Process the orders
+            </summary>
+            <param name="orders">orders</param>
+            <returns>PointInTimePortfolio</returns>
+        </member>
+        <member name="T:QuantConnect.Report.PortfolioLooperAlgorithm">
+            <summary>
+            Fake algorithm that initializes portfolio and algorithm securities. Never ran.
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Report.Program">
+            <summary>
+            Lean Report creates a PDF strategy summary from the backtest and live json objects.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.Report.#ctor(System.String,System.String,System.String,QuantConnect.Packets.BacktestResult,QuantConnect.Packets.LiveResult,System.String)">
+            <summary>
+            Create beautiful HTML and PDF Reports based on backtest and live data.
+            </summary>
+            <param name="name">Name of the strategy</param>
+            <param name="description">Description of the strategy</param>
+            <param name="version">Version number of the strategy</param>
+            <param name="backtest">Backtest result object</param>
+            <param name="live">Live result object</param>
+            <param name="pointInTimePortfolioDestination">Point in time portfolio json output base filename</param>
+        </member>
+        <member name="M:QuantConnect.Report.Report.Compile(System.String@,System.String@)">
+            <summary>
+            Compile the backtest data into a report
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.AnnualReturnsReportElement.#ctor(System.String,System.String,QuantConnect.Packets.BacktestResult,QuantConnect.Packets.LiveResult)">
+            <summary>
+            Create a new plot of annual returns
+            </summary>
+            <param name="name">Name of the widget</param>
+            <param name="key">Location of injection</param>
+            <param name="backtest">Backtest result object</param>
+            <param name="live">Live result object</param>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.AnnualReturnsReportElement.Render">
+            <summary>
+            Generate the annual returns plot using the python libraries.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.AssetAllocationReportElement.#ctor(System.String,System.String,QuantConnect.Packets.BacktestResult,QuantConnect.Packets.LiveResult,System.Collections.Generic.List{QuantConnect.Report.PointInTimePortfolio},System.Collections.Generic.List{QuantConnect.Report.PointInTimePortfolio})">
+            <summary>
+            Create a new plot of the asset allocation over time
+            </summary>
+            <param name="name">Name of the widget</param>
+            <param name="key">Location of injection</param>
+            <param name="backtest">Backtest result object</param>
+            <param name="live">Live result object</param>
+            <param name="backtestPortfolios">Backtest point in time portfolios</param>
+            <param name="livePortfolios">Live point in time portfolios</param>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.AssetAllocationReportElement.Render">
+            <summary>
+            Generate the asset allocation pie chart using the python libraries.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.CAGRReportElement.#ctor(System.String,System.String,QuantConnect.Packets.BacktestResult,QuantConnect.Packets.LiveResult)">
+            <summary>
+            Estimate the CAGR of the strategy.
+            </summary>
+            <param name="name">Name of the widget</param>
+            <param name="key">Location of injection</param>
+            <param name="backtest">Backtest result object</param>
+            <param name="live">Live result object</param>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.CAGRReportElement.Render">
+            <summary>
+            The generated output string to be injected
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.ChartReportElement.#ctor">
+            <summary>
+            Charting base class report element
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.CrisisReportElement.#ctor(System.String,System.String,QuantConnect.Packets.BacktestResult,QuantConnect.Packets.LiveResult)">
+            <summary>
+            Create a new array of crisis event plots
+            </summary>
+            <param name="name">Name of the widget</param>
+            <param name="key">Location of injection</param>
+            <param name="backtest">Backtest result object</param>
+            <param name="live">Live result object</param>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.CrisisReportElement.Render">
+            <summary>
+            The generated output string to be injected
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.CumulativeReturnsReportElement.#ctor(System.String,System.String,QuantConnect.Packets.BacktestResult,QuantConnect.Packets.LiveResult)">
+            <summary>
+            Create a new array of cumulative percentage return of strategy and benchmark
+            </summary>
+            <param name="name">Name of the widget</param>
+            <param name="key">Location of injection</param>
+            <param name="backtest">Backtest result object</param>
+            <param name="live">Live result object</param>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.CumulativeReturnsReportElement.Render">
+            <summary>
+            Generate the cumulative return of the backtest, benchmark, and live
+            strategy using the ReportCharts.py python library
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.DailyReturnsReportElement.#ctor(System.String,System.String,QuantConnect.Packets.BacktestResult,QuantConnect.Packets.LiveResult)">
+            <summary>
+            Create a new plot of the daily returns in bar chart format
+            </summary>
+            <param name="name">Name of the widget</param>
+            <param name="key">Location of injection</param>
+            <param name="backtest">Backtest result object</param>
+            <param name="live">Live result object</param>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.DailyReturnsReportElement.Render">
+            <summary>
+            Generate the daily returns plot using the python libraries.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.DaysLiveReportElement.#ctor(System.String,System.String,QuantConnect.Packets.LiveResult)">
+            <summary>
+            Create a new metric describing the number of days an algorithm has been live.
+            </summary>
+            <param name="name">Name of the widget</param>
+            <param name="key">Location of injection</param>
+            <param name="backtest">Backtest result object</param>
+            <param name="live">Live result object</param>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.DaysLiveReportElement.Render">
+            <summary>
+            The generated output string to be injected
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.DrawdownReportElement.#ctor(System.String,System.String,QuantConnect.Packets.BacktestResult,QuantConnect.Packets.LiveResult)">
+            <summary>
+            Create a new plot of the top N worst drawdown durations
+            </summary>
+            <param name="name">Name of the widget</param>
+            <param name="key">Location of injection</param>
+            <param name="backtest">Backtest result object</param>
+            <param name="live">Live result object</param>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.DrawdownReportElement.Render">
+            <summary>
+            Generate the top N drawdown plot using the python libraries.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.EstimatedCapacityReportElement.#ctor(System.String,System.String,QuantConnect.Packets.BacktestResult,QuantConnect.Packets.LiveResult)">
+            <summary>
+            Create a new capacity estimate
+            </summary>
+            <param name="name">Name of the widget</param>
+            <param name="key">Location of injection</param>
+            <param name="backtest">Backtest result object</param>
+            <param name="live">Live result object</param>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.EstimatedCapacityReportElement.Render">
+            <summary>
+            The generated output string to be injected
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.ExposureReportElement.#ctor(System.String,System.String,QuantConnect.Packets.BacktestResult,QuantConnect.Packets.LiveResult,System.Collections.Generic.List{QuantConnect.Report.PointInTimePortfolio},System.Collections.Generic.List{QuantConnect.Report.PointInTimePortfolio})">
+            <summary>
+            Create a new plot of the exposure
+            </summary>
+            <param name="name">Name of the widget</param>
+            <param name="key">Location of injection</param>
+            <param name="backtest">Backtest result object</param>
+            <param name="live">Live result object</param>
+            <param name="backtestPortfolios">Backtest point in time portfolios</param>
+            <param name="livePortfolios">Live point in time portfolios</param>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.ExposureReportElement.Render">
+            <summary>
+            Generate the exposure plot using the python libraries.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.InformationRatioReportElement.#ctor(System.String,System.String,QuantConnect.Packets.BacktestResult,QuantConnect.Packets.LiveResult)">
+            <summary>
+            Estimate the information ratio of the strategy.
+            </summary>
+            <param name="name">Name of the widget</param>
+            <param name="key">Location of injection</param>
+            <param name="backtest">Backtest result object</param>
+            <param name="live">Live result object</param>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.InformationRatioReportElement.Render">
+            <summary>
+            The generated output string to be injected
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Report.ReportElements.IReportElement">
+            <summary>
+            Common interface for template elements of the report
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.ReportElements.IReportElement.Name">
+            <summary>
+            Name of this report element
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.ReportElements.IReportElement.Key">
+            <summary>
+            Template key code.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.IReportElement.Render">
+            <summary>
+            The generated output string to be injected
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.KellyEstimateReportElement.#ctor(System.String,System.String,QuantConnect.Packets.BacktestResult,QuantConnect.Packets.LiveResult)">
+            <summary>
+            Estimate the kelly estimate of the strategy.
+            </summary>
+            <param name="name">Name of the widget</param>
+            <param name="key">Location of injection</param>
+            <param name="backtest">Backtest result object</param>
+            <param name="live">Live result object</param>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.KellyEstimateReportElement.Render">
+            <summary>
+            The generated output string to be injected
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.LeverageUtilizationReportElement.#ctor(System.String,System.String,QuantConnect.Packets.BacktestResult,QuantConnect.Packets.LiveResult,System.Collections.Generic.List{QuantConnect.Report.PointInTimePortfolio},System.Collections.Generic.List{QuantConnect.Report.PointInTimePortfolio})">
+            <summary>
+            Create a new plot of the leverage utilization
+            </summary>
+            <param name="name">Name of the widget</param>
+            <param name="key">Location of injection</param>
+            <param name="backtest">Backtest result object</param>
+            <param name="live">Live result object</param>
+            <param name="backtestPortfolios">Backtest point in time portfolios</param>
+            <param name="livePortfolios">Live point in time portfolios</param>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.LeverageUtilizationReportElement.Render">
+            <summary>
+            Generate the leverage utilization plot using the python libraries.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.MarketsReportElement.#ctor(System.String,System.String,QuantConnect.Packets.BacktestResult,QuantConnect.Packets.LiveResult)">
+            <summary>
+            Get the markets of the strategy.
+            </summary>
+            <param name="name">Name of the widget</param>
+            <param name="key">Location of injection</param>
+            <param name="backtest">Backtest result object</param>
+            <param name="live">Live result object</param>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.MarketsReportElement.Render">
+            <summary>
+            The generated output string to be injected
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.MaxDrawdownReportElement.#ctor(System.String,System.String,QuantConnect.Packets.BacktestResult,QuantConnect.Packets.LiveResult)">
+            <summary>
+            Estimate the max drawdown of the strategy.
+            </summary>
+            <param name="name">Name of the widget</param>
+            <param name="key">Location of injection</param>
+            <param name="backtest">Backtest result object</param>
+            <param name="live">Live result object</param>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.MaxDrawdownReportElement.Render">
+            <summary>
+            The generated output string to be injected
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.MonthlyReturnsReportElement.#ctor(System.String,System.String,QuantConnect.Packets.BacktestResult,QuantConnect.Packets.LiveResult)">
+            <summary>
+            Create a monthly returns plot
+            </summary>
+            <param name="name">Name of the widget</param>
+            <param name="key">Location of injection</param>
+            <param name="backtest">Backtest result object</param>
+            <param name="live">Live result object</param>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.MonthlyReturnsReportElement.Render">
+            <summary>
+            Generate the monthly returns plot using the python libraries.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.PSRReportElement.#ctor(System.String,System.String,QuantConnect.Packets.BacktestResult,QuantConnect.Packets.LiveResult)">
+            <summary>
+            Estimate the PSR of the strategy.
+            </summary>
+            <param name="name">Name of the widget</param>
+            <param name="key">Location of injection</param>
+            <param name="backtest">Backtest result object</param>
+            <param name="live">Live result object</param>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.PSRReportElement.Render">
+            <summary>
+            The generated output string to be injected
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Report.ReportElements.ReportElement">
+            <summary>
+            Common interface for template elements of the report
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.ReportElements.ReportElement.Name">
+            <summary>
+            Name of this report element
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.ReportElements.ReportElement.Key">
+            <summary>
+            Template key code.
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.ReportElements.ReportElement.JsonKey">
+            <summary>
+            Normalizes the key into a JSON-friendly key
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Report.ReportElements.ReportElement.Result">
+            <summary>
+            Result of the render as an object for serialization to JSON
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.ReportElement.Render">
+            <summary>
+            The generated output string to be injected
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.ReturnsPerTradeReportElement.#ctor(System.String,System.String,QuantConnect.Packets.BacktestResult,QuantConnect.Packets.LiveResult)">
+            <summary>
+            Create a new distribution plot of returns per trade
+            </summary>
+            <param name="name">Name of the widget</param>
+            <param name="key">Location of injection</param>
+            <param name="backtest">Backtest result object</param>
+            <param name="live">Live result object</param>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.ReturnsPerTradeReportElement.Render">
+            <summary>
+            Generate the returns per trade plot using the python libraries.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.RollingPortfolioBetaReportElement.#ctor(System.String,System.String,QuantConnect.Packets.BacktestResult,QuantConnect.Packets.LiveResult)">
+            <summary>
+            Create a new plot of the rolling portfolio beta to equities
+            </summary>
+            <param name="name">Name of the widget</param>
+            <param name="key">Location of injection</param>
+            <param name="backtest">Backtest result object</param>
+            <param name="live">Live result object</param>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.RollingPortfolioBetaReportElement.Render">
+            <summary>
+            Generate the rolling portfolio beta to equities plot using the python libraries.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.RollingSharpeReportElement.#ctor(System.String,System.String,QuantConnect.Packets.BacktestResult,QuantConnect.Packets.LiveResult)">
+            <summary>
+            Create a new plot of the rolling sharpe ratio
+            </summary>
+            <param name="name">Name of the widget</param>
+            <param name="key">Location of injection</param>
+            <param name="backtest">Backtest result object</param>
+            <param name="live">Live result object</param>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.RollingSharpeReportElement.Render">
+            <summary>
+            Generate the rolling sharpe using the python libraries.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.SharpeRatioReportElement.#ctor(System.String,System.String,QuantConnect.Packets.BacktestResult,QuantConnect.Packets.LiveResult)">
+            <summary>
+            Estimate the sharpe ratio of the strategy.
+            </summary>
+            <param name="name">Name of the widget</param>
+            <param name="key">Location of injection</param>
+            <param name="backtest">Backtest result object</param>
+            <param name="live">Live result object</param>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.SharpeRatioReportElement.Render">
+            <summary>
+            The generated output string to be injected
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.TextReportElement.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Text place holder report element
+            </summary>
+            <param name="name">Name of this text field</param>
+            <param name="key">Report injection point</param>
+            <param name="content">Content for injection</param>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.TextReportElement.Render">
+            <summary>
+            Render the element contents
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.TradesPerDayReportElement.#ctor(System.String,System.String,QuantConnect.Packets.BacktestResult,QuantConnect.Packets.LiveResult)">
+            <summary>
+            Estimate the trades per day of the strategy.
+            </summary>
+            <param name="name">Name of the widget</param>
+            <param name="key">Location of injection</param>
+            <param name="backtest">Backtest result object</param>
+            <param name="live">Live result object</param>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.TradesPerDayReportElement.Render">
+            <summary>
+            Generate trades per day
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.TurnoverReportElement.#ctor(System.String,System.String,QuantConnect.Packets.BacktestResult,QuantConnect.Packets.LiveResult)">
+            <summary>
+            Estimate the turnover of the strategy.
+            </summary>
+            <param name="name">Name of the widget</param>
+            <param name="key">Location of injection</param>
+            <param name="backtest">Backtest result object</param>
+            <param name="live">Live result object</param>
+        </member>
+        <member name="M:QuantConnect.Report.ReportElements.TurnoverReportElement.Render">
+            <summary>
+            The generated output string to be injected
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Report.ReportKey">
+            <summary>
+            Helper shortcuts for report injection points.
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Report.ResultsUtil">
+            <summary>
+            Utility methods for dealing with the <see cref="T:QuantConnect.Result"/> objects
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.ResultsUtil.EquityPoints(QuantConnect.Result)">
+            <summary>
+            Get the equity chart points
+            </summary>
+            <param name="result">Result object to extract the chart points</param>
+            <returns></returns>
+        </member>
+        <member name="M:QuantConnect.Report.ResultsUtil.BenchmarkPoints(QuantConnect.Result)">
+            <summary>
+            Gets the points of the benchmark
+            </summary>
+            <param name="result">Backtesting or live results</param>
+            <returns>Sorted list keyed by date and value</returns>
+        </member>
+        <member name="T:QuantConnect.Report.Rolling">
+            <summary>
+            Rolling window functions
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Report.Rolling.Beta(Deedle.Series{System.DateTime,System.Double},Deedle.Series{System.DateTime,System.Double},System.Int32)">
+            <summary>
+            Calculate the rolling beta with the given window size (in days)
+            </summary>
+            <param name="equityCurve">The equity curve you want to measure beta for</param>
+            <param name="benchmarkSeries">The benchmark/series you want to calculate beta with</param>
+            <param name="windowSize">Days/window to lookback</param>
+            <returns>Rolling beta</returns>
+        </member>
+        <member name="M:QuantConnect.Report.Rolling.Sharpe(Deedle.Series{System.DateTime,System.Double},System.Int32,System.Double)">
+            <summary>
+            Get the rolling sharpe of the given series with a lookback of <paramref name="months"/>. The risk free rate is adjustable
+            </summary>
+            <param name="equityCurve">Equity curve to calculate rolling sharpe for</param>
+            <param name="months">Number of months to calculate the rolling period for</param>
+            <param name="riskFreeRate">Risk free rate</param>
+            <returns>Rolling sharpe ratio</returns>
+        </member>
+    </members>
+</doc>

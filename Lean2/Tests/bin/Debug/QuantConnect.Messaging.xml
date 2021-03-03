@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QuantConnect.Messaging</name>
+    </assembly>
+    <members>
+        <member name="T:QuantConnect.Messaging.EventMessagingHandler">
+            <summary>
+            Desktop implementation of messaging system for Lean Engine
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Messaging.EventMessagingHandler.HasSubscribers">
+            <summary>
+            Gets or sets whether this messaging handler has any current subscribers.
+            When set to false, messages won't be sent.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Messaging.EventMessagingHandler.Initialize">
+            <summary>
+            Initialize the Messaging System Plugin. 
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Messaging.EventMessagingHandler.SetAuthentication(QuantConnect.Packets.AlgorithmNodePacket)">
+            <summary>
+            Set the user communication channel
+            </summary>
+            <param name="job"></param>
+        </member>
+        <member name="M:QuantConnect.Messaging.EventMessagingHandler.Send(QuantConnect.Packets.Packet)">
+            <summary>
+            Send any message with a base type of Packet.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Messaging.EventMessagingHandler.SendNotification(QuantConnect.Notifications.Notification)">
+            <summary>
+            Send any notification with a base type of Notification.
+            </summary>
+            <param name="notification">The notification to be sent.</param>
+        </member>
+        <member name="M:QuantConnect.Messaging.EventMessagingHandler.SendEnqueuedPackets">
+            <summary>
+            Send any message with a base type of Packet that has been enqueued.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Messaging.EventMessagingHandler.ProcessPacket(QuantConnect.Packets.Packet)">
+            <summary>
+            Packet processing implementation
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Messaging.EventMessagingHandler.OnDebugEvent(QuantConnect.Packets.DebugPacket)">
+            <summary>
+            Raise a debug event safely
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Messaging.EventMessagingHandler.OnSystemDebugEvent(QuantConnect.Packets.SystemDebugPacket)">
+            <summary>
+            Raise a system debug event safely
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Messaging.EventMessagingHandler.OnConsumerReadyEvent">
+            <summary>
+            Handler for consumer ready code.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Messaging.EventMessagingHandler.OnLogEvent(QuantConnect.Packets.LogPacket)">
+            <summary>
+            Raise a log event safely
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Messaging.EventMessagingHandler.OnHandledErrorEvent(QuantConnect.Packets.HandledErrorPacket)">
+            <summary>
+            Raise a handled error event safely
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Messaging.EventMessagingHandler.OnRuntimeErrorEvent(QuantConnect.Packets.RuntimeErrorPacket)">
+            <summary>
+            Raise runtime error safely
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Messaging.EventMessagingHandler.OnBacktestResultEvent(QuantConnect.Packets.BacktestResultPacket)">
+            <summary>
+            Raise a backtest result event safely.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Messaging.EventMessagingHandler.Dispose">
+            <summary>
+            Dispose of any resources
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Messaging.Messaging">
+            <summary>
+            Local/desktop implementation of messaging system for Lean Engine.
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Messaging.Messaging.HasSubscribers">
+            <summary>
+            This implementation ignores the <seealso cref="P:QuantConnect.Messaging.Messaging.HasSubscribers"/> flag and
+            instead will always write to the log.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Messaging.Messaging.Initialize">
+            <summary>
+            Initialize the messaging system
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Messaging.Messaging.SetAuthentication(QuantConnect.Packets.AlgorithmNodePacket)">
+            <summary>
+            Set the messaging channel
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Messaging.Messaging.Send(QuantConnect.Packets.Packet)">
+            <summary>
+            Send a generic base packet without processing
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Messaging.Messaging.SendNotification(QuantConnect.Notifications.Notification)">
+            <summary>
+            Send any notification with a base type of Notification.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Messaging.Messaging.Dispose">
+            <summary>
+            Dispose of any resources
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Messaging.StreamingMessageHandler">
+            <summary>
+            Message handler that sends messages over tcp using NetMQ.
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Messaging.StreamingMessageHandler.HasSubscribers">
+            <summary>
+            Gets or sets whether this messaging handler has any current subscribers.
+            This is not used in this message handler.  Messages are sent via tcp as they arrive
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Messaging.StreamingMessageHandler.Initialize">
+            <summary>
+            Initialize the messaging system
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Messaging.StreamingMessageHandler.SetAuthentication(QuantConnect.Packets.AlgorithmNodePacket)">
+            <summary>
+            Set the user communication channel
+            </summary>
+            <param name="job"></param>
+        </member>
+        <member name="M:QuantConnect.Messaging.StreamingMessageHandler.SendNotification(QuantConnect.Notifications.Notification)">
+            <summary>
+            Send any notification with a base type of Notification.
+            </summary>
+            <param name="notification">The notification to be sent.</param>
+        </member>
+        <member name="M:QuantConnect.Messaging.StreamingMessageHandler.Send(QuantConnect.Packets.Packet)">
+            <summary>
+            Send all types of packets
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Messaging.StreamingMessageHandler.Transmit(QuantConnect.Packets.Packet)">
+            <summary>
+            Send a message to the _server using ZeroMQ
+            </summary>
+            <param name="packet">Packet to transmit</param>
+        </member>
+        <member name="M:QuantConnect.Messaging.StreamingMessageHandler.CheckPort">
+            <summary>
+            Check if port to be used by the desktop application is available.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Messaging.StreamingMessageHandler.Dispose">
+            <summary>
+            Dispose any resources used before destruction
+            </summary>
+        </member>
+    </members>
+</doc>

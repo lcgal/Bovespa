@@ -1,0 +1,337 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Repositorios\\Bovespa\\Lean\\Queues\\QuantConnect.Queues.csproj": {}
+  },
+  "projects": {
+    "C:\\Repositorios\\Bovespa\\Lean\\Common\\QuantConnect.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Repositorios\\Bovespa\\Lean\\Common\\QuantConnect.csproj",
+        "projectName": "QuantConnect.Common",
+        "projectPath": "C:\\Repositorios\\Bovespa\\Lean\\Common\\QuantConnect.csproj",
+        "packagesPath": "C:\\Users\\Lucas\\.nuget\\packages\\",
+        "outputPath": "C:\\Repositorios\\Bovespa\\Lean\\Common\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net462"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/EDPBR-TI/_packaging/EDP-FSA/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "net462": {
+            "targetAlias": "net462",
+            "projectReferences": {
+              "C:\\Repositorios\\Bovespa\\Lean\\Configuration\\QuantConnect.Configuration.csproj": {
+                "projectPath": "C:\\Repositorios\\Bovespa\\Lean\\Configuration\\QuantConnect.Configuration.csproj"
+              },
+              "C:\\Repositorios\\Bovespa\\Lean\\Logging\\QuantConnect.Logging.csproj": {
+                "projectPath": "C:\\Repositorios\\Bovespa\\Lean\\Logging\\QuantConnect.Logging.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net462": {
+          "targetAlias": "net462",
+          "dependencies": {
+            "CloneExtensions": {
+              "target": "Package",
+              "version": "[1.3.0, )"
+            },
+            "DotNetZip": {
+              "target": "Package",
+              "version": "[1.13.3, )"
+            },
+            "MathNet.Numerics": {
+              "target": "Package",
+              "version": "[3.19.0, )"
+            },
+            "Microsoft.CodeAnalysis.NetAnalyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.3, )"
+            },
+            "Microsoft.IO.RecyclableMemoryStream": {
+              "target": "Package",
+              "version": "[1.3.5, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            },
+            "NodaTime": {
+              "target": "Package",
+              "version": "[3.0.5, )"
+            },
+            "QLNet": {
+              "target": "Package",
+              "version": "[1.11.3, )"
+            },
+            "QuantConnect.pythonnet": {
+              "target": "Package",
+              "version": "[1.0.5.30, )"
+            },
+            "SharpZipLib": {
+              "target": "Package",
+              "version": "[1.2.0, )"
+            },
+            "System.Buffers": {
+              "target": "Package",
+              "version": "[4.5.1, )"
+            },
+            "System.Collections.Immutable": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "System.ComponentModel.Composition": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "System.Memory": {
+              "target": "Package",
+              "version": "[4.5.4, )"
+            },
+            "System.Numerics.Vectors": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
+            "System.Reflection.Emit.Lightweight": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "System.Runtime.CompilerServices.Unsafe": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "System.ServiceModel.Primitives": {
+              "target": "Package",
+              "version": "[4.7.0, )"
+            },
+            "fasterflect": {
+              "target": "Package",
+              "version": "[2.1.3, )"
+            },
+            "protobuf-net": {
+              "target": "Package",
+              "version": "[3.0.29, )"
+            },
+            "protobuf-net.Core": {
+              "target": "Package",
+              "version": "[3.0.29, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Repositorios\\Bovespa\\Lean\\Configuration\\QuantConnect.Configuration.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Repositorios\\Bovespa\\Lean\\Configuration\\QuantConnect.Configuration.csproj",
+        "projectName": "QuantConnect.Configuration",
+        "projectPath": "C:\\Repositorios\\Bovespa\\Lean\\Configuration\\QuantConnect.Configuration.csproj",
+        "packagesPath": "C:\\Users\\Lucas\\.nuget\\packages\\",
+        "outputPath": "C:\\Repositorios\\Bovespa\\Lean\\Configuration\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net462"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/EDPBR-TI/_packaging/EDP-FSA/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "net462": {
+            "targetAlias": "net462",
+            "projectReferences": {
+              "C:\\Repositorios\\Bovespa\\Lean\\Logging\\QuantConnect.Logging.csproj": {
+                "projectPath": "C:\\Repositorios\\Bovespa\\Lean\\Logging\\QuantConnect.Logging.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net462": {
+          "targetAlias": "net462",
+          "dependencies": {
+            "McMaster.Extensions.CommandLineUtils": {
+              "target": "Package",
+              "version": "[2.6.0, )"
+            },
+            "Microsoft.CodeAnalysis.NetAnalyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.3, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Repositorios\\Bovespa\\Lean\\Logging\\QuantConnect.Logging.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Repositorios\\Bovespa\\Lean\\Logging\\QuantConnect.Logging.csproj",
+        "projectName": "QuantConnect.Logging",
+        "projectPath": "C:\\Repositorios\\Bovespa\\Lean\\Logging\\QuantConnect.Logging.csproj",
+        "packagesPath": "C:\\Users\\Lucas\\.nuget\\packages\\",
+        "outputPath": "C:\\Repositorios\\Bovespa\\Lean\\Logging\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net462"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/EDPBR-TI/_packaging/EDP-FSA/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "net462": {
+            "targetAlias": "net462",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net462": {
+          "targetAlias": "net462",
+          "dependencies": {
+            "MathNet.Filtering": {
+              "target": "Package",
+              "version": "[0.4.0, )"
+            },
+            "MathNet.Numerics": {
+              "target": "Package",
+              "version": "[3.19.0, )"
+            },
+            "Microsoft.CodeAnalysis.NetAnalyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.3, )"
+            },
+            "NLog": {
+              "target": "Package",
+              "version": "[4.4.13, )"
+            },
+            "NLog.Config": {
+              "target": "Package",
+              "version": "[4.4.13, )"
+            },
+            "NLog.Schema": {
+              "target": "Package",
+              "version": "[4.4.13, )"
+            },
+            "System.ComponentModel.Composition": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Repositorios\\Bovespa\\Lean\\Queues\\QuantConnect.Queues.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Repositorios\\Bovespa\\Lean\\Queues\\QuantConnect.Queues.csproj",
+        "projectName": "QuantConnect.Queues",
+        "projectPath": "C:\\Repositorios\\Bovespa\\Lean\\Queues\\QuantConnect.Queues.csproj",
+        "packagesPath": "C:\\Users\\Lucas\\.nuget\\packages\\",
+        "outputPath": "C:\\Repositorios\\Bovespa\\Lean\\Queues\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net462"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/EDPBR-TI/_packaging/EDP-FSA/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "net462": {
+            "targetAlias": "net462",
+            "projectReferences": {
+              "C:\\Repositorios\\Bovespa\\Lean\\Common\\QuantConnect.csproj": {
+                "projectPath": "C:\\Repositorios\\Bovespa\\Lean\\Common\\QuantConnect.csproj"
+              },
+              "C:\\Repositorios\\Bovespa\\Lean\\Configuration\\QuantConnect.Configuration.csproj": {
+                "projectPath": "C:\\Repositorios\\Bovespa\\Lean\\Configuration\\QuantConnect.Configuration.csproj"
+              },
+              "C:\\Repositorios\\Bovespa\\Lean\\Logging\\QuantConnect.Logging.csproj": {
+                "projectPath": "C:\\Repositorios\\Bovespa\\Lean\\Logging\\QuantConnect.Logging.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net462": {
+          "targetAlias": "net462",
+          "dependencies": {
+            "Microsoft.CodeAnalysis.NetAnalyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.3, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

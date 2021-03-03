@@ -1,0 +1,123 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <RootNamespace>QuantConnect.Research</RootNamespace>
+    <AssemblyName>QuantConnect.Research</AssemblyName>
+    <TargetFramework>net462</TargetFramework>
+    <LangVersion>6</LangVersion>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup>
+    <IsWindows>false</IsWindows>
+    <IsWindows Condition="'$(OS)' == 'Windows_NT'">true</IsWindows>
+    <IsOSX>false</IsOSX>
+    <IsOSX Condition="'$(IsWindows)' != 'true' AND '$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))' == 'true'">true</IsOSX>
+    <IsLinux>false</IsLinux>
+    <IsLinux Condition="'$(IsWindows)' != 'true' AND '$(IsOSX)' != 'true' AND '$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' == 'true'">true</IsLinux>
+  </PropertyGroup>
+  <Target Name="PrintRID" BeforeTargets="Build">
+    <Message Text="IsWindows $(IsWindows)" Importance="high" />
+    <Message Text="IsOSX $(IsOSX)" Importance="high" />
+    <Message Text="IsLinux $(IsLinux)" Importance="high" />
+    <Message Text="ForceLinuxBuild $(ForceLinuxBuild)" Importance="high" />
+  </Target>
+  <Choose>
+    <When Condition="$(IsWindows) AND '$(ForceLinuxBuild)' != 'true'">
+      <ItemGroup>
+        <Reference Include="Python.Runtime, Version=1.0.5.30, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>$(NuGetPackageRoot)\quantconnect.pythonnet\1.0.5.30\lib\win\Python.Runtime.dll</HintPath>
+        </Reference>
+        <Content Include="$(NuGetPackageRoot)\quantconnect.pythonnet\1.0.5.30\lib\win\clr.pyd">
+          <Link>clr.pyd</Link>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+      </ItemGroup>
+    </When>
+    <When Condition="$(IsLinux) OR '$(ForceLinuxBuild)' == 'true'">
+      <ItemGroup>
+        <Reference Include="Python.Runtime, Version=1.0.5.30, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>$(NuGetPackageRoot)\quantconnect.pythonnet\1.0.5.30\lib\linux\Python.Runtime.dll</HintPath>
+        </Reference>
+        <Content Include="$(NuGetPackageRoot)\quantconnect.pythonnet\1.0.5.30\lib\linux\jupyter\clr.cpython-36m-x86_64-linux-gnu.so">
+          <Link>jupyter\clr.cpython-36m-x86_64-linux-gnu.so</Link>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="$(NuGetPackageRoot)\quantconnect.pythonnet\1.0.5.30\lib\linux\jupyter\Python.Runtime.dll">
+          <Link>jupyter\Python.Runtime.dll</Link>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+      </ItemGroup>
+    </When>
+    <When Condition="$(IsOSX) AND '$(ForceLinuxBuild)' != 'true'">
+      <ItemGroup>
+        <Reference Include="Python.Runtime, Version=1.0.5.30, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>$(NuGetPackageRoot)\quantconnect.pythonnet\1.0.5.30\lib\osx\Python.Runtime.dll</HintPath>
+        </Reference>
+        <Content Include="$(NuGetPackageRoot)\quantconnect.pythonnet\1.0.5.30\lib\osx\jupyter\clr.cpython-36m-darwin.so">
+          <Link>jupyter\clr.cpython-36m-darwin.so</Link>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="$(NuGetPackageRoot)\quantconnect.pythonnet\1.0.5.30\lib\osx\jupyter\Python.Runtime.dll">
+          <Link>jupyter\Python.Runtime.dll</Link>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="NodaTime" Version="3.0.5" />
+    <PackageReference Include="QuantConnect.pythonnet" Version="1.0.5.30" />
+    <PackageReference Include="System.ComponentModel.Composition" Version="5.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Algorithm.Framework\QuantConnect.Algorithm.Framework.csproj" />
+    <ProjectReference Include="..\Algorithm\QuantConnect.Algorithm.csproj" />
+    <ProjectReference Include="..\Api\QuantConnect.Api.csproj" />
+    <ProjectReference Include="..\Common\QuantConnect.csproj" />
+    <ProjectReference Include="..\Configuration\QuantConnect.Configuration.csproj" />
+    <ProjectReference Include="..\Engine\QuantConnect.Lean.Engine.csproj" />
+    <ProjectReference Include="..\Indicators\QuantConnect.Indicators.csproj" />
+    <ProjectReference Include="..\Logging\QuantConnect.Logging.csproj" />
+    <ProjectReference Include="..\Queues\QuantConnect.Queues.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BasicCSharpQuantBookTemplate.ipynb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="BasicQuantBookTemplate.ipynb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="QuantConnect.csx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="readme.md" />
+    <Content Include="start.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>

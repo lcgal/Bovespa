@@ -1,0 +1,735 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QuantConnect.AlgorithmFactory</name>
+    </assembly>
+    <members>
+        <member name="T:QuantConnect.AlgorithmFactory.DebuggerHelper">
+            <summary>
+            Helper class used to start a new debugging session
+            </summary>
+        </member>
+        <member name="T:QuantConnect.AlgorithmFactory.DebuggerHelper.DebuggingMethod">
+            <summary>
+            The different implemented debugging methods
+            </summary>
+        </member>
+        <member name="F:QuantConnect.AlgorithmFactory.DebuggerHelper.DebuggingMethod.LocalCmdline">
+            <summary>
+            Local debugging through cmdline.
+            <see cref="F:QuantConnect.Language.Python"/> will use built in 'pdb'
+            </summary>
+        </member>
+        <member name="F:QuantConnect.AlgorithmFactory.DebuggerHelper.DebuggingMethod.VisualStudio">
+            <summary>
+            Visual studio local debugging.
+            <see cref="F:QuantConnect.Language.Python"/> will use 'Python Tools for Visual Studio',
+            attach manually selecting `Python` code type.
+            </summary>
+        </member>
+        <member name="F:QuantConnect.AlgorithmFactory.DebuggerHelper.DebuggingMethod.PTVSD">
+             <summary>
+              Python Tool for Visual Studio Debugger for remote python debugging.
+             <see cref="F:QuantConnect.Language.Python"/> will use 'Python Extension in VS Code' 
+            or 'Python Tools in Visual Studio'
+             </summary>
+        </member>
+        <member name="F:QuantConnect.AlgorithmFactory.DebuggerHelper.DebuggingMethod.PyCharm">
+            <summary>
+             PyCharm PyDev Debugger for remote python debugging.
+            <see cref="F:QuantConnect.Language.Python"/> will use 'Python Debug Server' in PyCharm
+            </summary>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.DebuggerHelper.Initialize(QuantConnect.Language)">
+            <summary>
+            Will start a new debugging session
+            </summary>
+        </member>
+        <member name="T:QuantConnect.AlgorithmFactory.Loader">
+            <summary>
+            Loader creates and manages the memory and exception space of the algorithm, ensuring if it explodes the Lean Engine is intact.
+            </summary>
+        </member>
+        <member name="F:QuantConnect.AlgorithmFactory.Loader.appDomain">
+            <summary>
+            Memory space of the user algorithm
+            </summary>
+        </member>
+        <member name="F:QuantConnect.AlgorithmFactory.Loader.AlgorithmInterfaceType">
+            <summary>
+            The algorithm's interface type that we'll be trying to load
+            </summary>
+        </member>
+        <member name="F:QuantConnect.AlgorithmFactory.Loader.AlgorithmBaseTypeFullName">
+            <summary>
+            The full type name of QCAlgorithm, this is so we don't pick him up when querying for types
+            </summary>
+        </member>
+        <member name="F:QuantConnect.AlgorithmFactory.Loader.FrameworkBaseTypeFullName">
+            <summary>
+            The full type name of QCAlgorithmFramework, this is so we don't pick him up when querying for types
+            </summary>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Loader.#ctor">
+            <summary>
+            Creates a new loader with a 10 second maximum load time that forces exactly one derived type to be found
+            </summary>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Loader.#ctor(System.Boolean,QuantConnect.Language,System.TimeSpan,System.Func{System.Collections.Generic.List{System.String},System.String},QuantConnect.Util.WorkerThread)">
+             <summary>
+             Creates a new loader with the specified configuration
+             </summary>
+             <param name="debugging">True if we are debugging</param>
+             <param name="language">Which language are we trying to load</param>
+             <param name="loaderTimeLimit">
+             Used to limit how long it takes to create a new instance
+             </param>
+             <param name="multipleTypeNameResolverFunction">
+             Used to resolve multiple type names found in assembly to a single type name, if null, defaults to names => names.SingleOrDefault()
+            
+             When we search an assembly for derived types of IAlgorithm, sometimes the assembly will contain multiple matching types. This is the case
+             for the QuantConnect.Algorithm assembly in this solution.  In order to pick the correct type, consumers must specify how to pick the type,
+             that's what this function does, it picks the correct type from the list of types found within the assembly.
+             </param>
+             <param name="workerThread">The worker thread instance the loader should use</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Loader.TryCreateAlgorithmInstance(System.String,QuantConnect.Interfaces.IAlgorithm@,System.String@)">
+            <summary>
+            Creates a new instance of the specified class in the library, safely.
+            </summary>
+            <param name="assemblyPath">Location of the DLL</param>
+            <param name="algorithmInstance">Output algorithm instance</param>
+            <param name="errorMessage">Output error message on failure</param>
+            <returns>Bool true on successfully loading the class.</returns>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Loader.TryCreatePythonAlgorithm(System.String,QuantConnect.Interfaces.IAlgorithm@,System.String@)">
+            <summary>
+            Create a new instance of a python algorithm
+            </summary>
+            <param name="assemblyPath"></param>
+            <param name="algorithmInstance"></param>
+            <param name="errorMessage"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Loader.TryCreateILAlgorithm(System.String,QuantConnect.Interfaces.IAlgorithm@,System.String@)">
+            <summary>
+            Create a generic IL algorithm
+            </summary>
+            <param name="assemblyPath"></param>
+            <param name="algorithmInstance"></param>
+            <param name="errorMessage"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Loader.GetExtendedTypeNames(System.Reflection.Assembly)">
+            <summary>
+            Get a list of all the matching type names in this DLL assembly:
+            </summary>
+            <param name="assembly">Assembly dll we're loading.</param>
+            <returns>String list of types available.</returns>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Loader.TryCreateAlgorithmInstanceWithIsolator(System.String,System.Int32,QuantConnect.Interfaces.IAlgorithm@,System.String@)">
+            <summary>
+            Creates a new instance of the class in the library, safely.
+            </summary>
+            <param name="assemblyPath">Location of the DLL</param>
+            <param name="ramLimit">Limit of the RAM for this process</param>
+            <param name="algorithmInstance">Output algorithm instance</param>
+            <param name="errorMessage">Output error message on failure</param>
+            <returns>bool success</returns>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Loader.Unload">
+            <summary>
+            Unload this factory's appDomain.
+            </summary>
+            <remarks>Not used in lean engine. Running the library in an app domain is 10x slower.</remarks>
+            <seealso cref="M:System.AppDomain.CreateDomain(System.String,System.Security.Policy.Evidence,System.String,System.String,System.Boolean,System.AppDomainInitializer,System.String[])"/>
+        </member>
+        <member name="T:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper">
+            <summary>
+            Creates and wraps the algorithm written in python.
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.IsOnEndOfDayImplemented">
+            <summary>
+            True if the underlying python algorithm implements "OnEndOfDay"
+            </summary>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.#ctor(System.String)">
+            <summary>
+            <see cref = "T:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper"/> constructor.
+            Creates and wraps the algorithm written in python.
+            </summary>
+            <param name="moduleName">Name of the module that can be found in the PYTHONPATH</param>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.AlgorithmId">
+            <summary>
+            AlgorithmId for the backtest
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.Benchmark">
+            <summary>
+            Gets the function used to define the benchmark. This function will return
+            the value of the benchmark at a requested date/time
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.BrokerageMessageHandler">
+            <summary>
+            Gets the brokerage message handler used to decide what to do
+            with each message sent from the brokerage
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.BrokerageModel">
+            <summary>
+            Gets the brokerage model used to emulate a real brokerage
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.DebugMessages">
+            <summary>
+            Debug messages from the strategy:
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.EndDate">
+            <summary>
+            Get Requested Backtest End Date
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.ErrorMessages">
+            <summary>
+            Error messages from the strategy:
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.HistoryProvider">
+            <summary>
+            Gets or sets the history provider for the algorithm
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.IsWarmingUp">
+            <summary>
+            Gets whether or not this algorithm is still warming up
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.LiveMode">
+            <summary>
+            Algorithm is running on a live server.
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.LogMessages">
+            <summary>
+            Log messages from the strategy:
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.Name">
+            <summary>
+            Public name for the algorithm.
+            </summary>
+            <remarks>Not currently used but preserved for API integrity</remarks>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.Notify">
+            <summary>
+            Notification manager for storing and processing live event messages
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.Portfolio">
+            <summary>
+            Security portfolio management class provides wrapper and helper methods for the Security.Holdings class such as
+            IsLong, IsShort, TotalProfit
+            </summary>
+            <remarks>Portfolio is a wrapper and helper class encapsulating the Securities[].Holdings objects</remarks>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.RunTimeError">
+            <summary>
+            Gets the run time error from the algorithm, or null if none was encountered.
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.RuntimeStatistics">
+            <summary>
+            Customizable dynamic statistics displayed during live trading:
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.Schedule">
+            <summary>
+            Gets schedule manager for adding/removing scheduled events
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.Securities">
+            <summary>
+            Security object collection class stores an array of objects representing representing each security/asset
+            we have a subscription for.
+            </summary>
+            <remarks>It is an IDictionary implementation and can be indexed by symbol</remarks>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SecurityInitializer">
+            <summary>
+            Gets an instance that is to be used to initialize newly created securities.
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.TradeBuilder">
+            <summary>
+            Gets the Trade Builder to generate trades from executions
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.Settings">
+            <summary>
+            Gets the user settings for the algorithm
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.OptionChainProvider">
+            <summary>
+            Gets the option chain provider, used to get the list of option contracts for an underlying symbol
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.FutureChainProvider">
+            <summary>
+            Gets the future chain provider, used to get the list of future contracts for an underlying symbol
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.ObjectStore">
+            <summary>
+            Gets the object store, used for persistence
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.CurrentSlice">
+            <summary>
+            Returns the current Slice object
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.StartDate">
+            <summary>
+            Algorithm start date for backtesting, set by the SetStartDate methods.
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.Status">
+            <summary>
+            Gets or sets the current status of the algorithm
+            </summary>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SetStatus(QuantConnect.AlgorithmStatus)">
+            <summary>
+            Set the state of a live deployment
+            </summary>
+            <param name="status">Live deployment status</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SetAvailableDataTypes(System.Collections.Generic.Dictionary{QuantConnect.SecurityType,System.Collections.Generic.List{QuantConnect.TickType}})">
+            <summary>
+            Set the available <see cref="T:QuantConnect.TickType"/> supported by each <see cref="T:QuantConnect.SecurityType"/> in <see cref="T:QuantConnect.Securities.SecurityManager"/>
+            </summary>
+            <param name="availableDataTypes">>The different <see cref="T:QuantConnect.TickType"/> each <see cref="T:QuantConnect.Securities.Security"/> supports</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SetOptionChainProvider(QuantConnect.Interfaces.IOptionChainProvider)">
+            <summary>
+            Sets the option chain provider, used to get the list of option contracts for an underlying symbol
+            </summary>
+            <param name="optionChainProvider">The option chain provider</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SetFutureChainProvider(QuantConnect.Interfaces.IFutureChainProvider)">
+            <summary>
+            Sets the future chain provider, used to get the list of future contracts for an underlying symbol
+            </summary>
+            <param name="futureChainProvider">The future chain provider</param>
+        </member>
+        <member name="E:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.InsightsGenerated">
+            <summary>
+            Event fired when an algorithm generates a insight
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.TimeKeeper">
+            <summary>
+            Gets the time keeper instance
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SubscriptionManager">
+            <summary>
+            Data subscription manager controls the information and subscriptions the algorithms recieves.
+            Subscription configurations can be added through the Subscription Manager.
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.Time">
+            <summary>
+            Current date/time in the algorithm's local time zone
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.TimeZone">
+            <summary>
+            Gets the time zone of the algorithm
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.Transactions">
+            <summary>
+            Security transaction manager class controls the store and processing of orders.
+            </summary>
+            <remarks>The orders and their associated events are accessible here. When a new OrderEvent is recieved the algorithm portfolio is updated.</remarks>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.UniverseManager">
+            <summary>
+            Gets the collection of universes for the algorithm
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.UniverseSettings">
+            <summary>
+            Gets the subscription settings to be used when adding securities via universe selection
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.UtcTime">
+            <summary>
+            Current date/time in UTC.
+            </summary>
+        </member>
+        <member name="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.AccountCurrency">
+            <summary>
+            Gets the account currency
+            </summary>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.AddSecurity(QuantConnect.SecurityType,System.String,System.Nullable{QuantConnect.Resolution},System.String,System.Boolean,System.Decimal,System.Boolean)">
+            <summary>
+            Set a required SecurityType-symbol and resolution for algorithm
+            </summary>
+            <param name="securityType">SecurityType Enum: Equity, Commodity, FOREX or Future</param>
+            <param name="symbol">Symbol Representation of the MarketType, e.g. AAPL</param>
+            <param name="resolution">The <see cref="T:QuantConnect.Resolution"/> of market data, Tick, Second, Minute, Hour, or Daily.</param>
+            <param name="market">The market the requested security belongs to, such as 'usa' or 'fxcm'</param>
+            <param name="fillDataForward">If true, returns the last available data even if none in that timeslice.</param>
+            <param name="leverage">leverage for this security</param>
+            <param name="extendedMarketHours">ExtendedMarketHours send in data from 4am - 8pm, not used for FOREX</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.AddFutureContract(QuantConnect.Symbol,System.Nullable{QuantConnect.Resolution},System.Boolean,System.Decimal)">
+            <summary>
+            Creates and adds a new single <see cref="T:QuantConnect.Securities.Future.Future"/> contract to the algorithm
+            </summary>
+            <param name="symbol">The futures contract symbol</param>
+            <param name="resolution">The <see cref="T:QuantConnect.Resolution"/> of market data, Tick, Second, Minute, Hour, or Daily. Default is <see cref="F:QuantConnect.Resolution.Minute"/></param>
+            <param name="fillDataForward">If true, returns the last available data even if none in that timeslice. Default is <value>true</value></param>
+            <param name="leverage">The requested leverage for this equity. Default is set by <see cref="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SecurityInitializer"/></param>
+            <returns>The new <see cref="T:QuantConnect.Securities.Future.Future"/> security</returns>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.AddOptionContract(QuantConnect.Symbol,System.Nullable{QuantConnect.Resolution},System.Boolean,System.Decimal)">
+            <summary>
+            Creates and adds a new single <see cref="T:QuantConnect.Securities.Option.Option"/> contract to the algorithm
+            </summary>
+            <param name="symbol">The option contract symbol</param>
+            <param name="resolution">The <see cref="T:QuantConnect.Resolution"/> of market data, Tick, Second, Minute, Hour, or Daily. Default is <see cref="F:QuantConnect.Resolution.Minute"/></param>
+            <param name="fillDataForward">If true, returns the last available data even if none in that timeslice. Default is <value>true</value></param>
+            <param name="leverage">The requested leverage for this equity. Default is set by <see cref="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SecurityInitializer"/></param>
+            <returns>The new <see cref="T:QuantConnect.Securities.Option.Option"/> security</returns>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.OnEndOfTimeStep">
+            <summary>
+            Invoked at the end of every time step. This allows the algorithm
+            to process events before advancing to the next time step.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.Debug(System.String)">
+            <summary>
+            Send debug message
+            </summary>
+            <param name="message">String message</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.Error(System.String)">
+            <summary>
+            Send an error message for the algorithm
+            </summary>
+            <param name="message">String message</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.AddChart(QuantConnect.Chart)">
+            <summary>
+            Add a Chart object to algorithm collection
+            </summary>
+            <param name="chart">Chart object to add to collection.</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.GetChartUpdates(System.Boolean)">
+            <summary>
+            Get the chart updates since the last request:
+            </summary>
+            <param name="clearChartData"></param>
+            <returns>List of Chart Updates</returns>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.GetLocked">
+            <summary>
+            Gets whether or not this algorithm has been locked and fully initialized
+            </summary>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.GetParameter(System.String)">
+            <summary>
+            Gets the parameter with the specified name. If a parameter
+            with the specified name does not exist, null is returned
+            </summary>
+            <param name="name">The name of the parameter to get</param>
+            <returns>The value of the specified parameter, or null if not found</returns>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.GetWarmupHistoryRequests">
+            <summary>
+            Gets the history requests required for provide warm up data for the algorithm
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.Initialize">
+            <summary>
+            Initialise the Algorithm and Prepare Required Data:
+            </summary>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.Liquidate(QuantConnect.Symbol,System.String)">
+            <summary>
+            Liquidate your portfolio holdings:
+            </summary>
+            <param name="symbolToLiquidate">Specific asset to liquidate, defaults to all.</param>
+            <param name="tag">Custom tag to know who is calling this.</param>
+            <returns>list of order ids</returns>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.Log(System.String)">
+            <summary>
+            Save entry to the Log
+            </summary>
+            <param name="message">String message</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.OnBrokerageDisconnect">
+            <summary>
+            Brokerage disconnected event handler. This method is called when the brokerage connection is lost.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.OnBrokerageMessage(QuantConnect.Brokerages.BrokerageMessageEvent)">
+            <summary>
+            Brokerage message event handler. This method is called for all types of brokerage messages.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.OnBrokerageReconnect">
+            <summary>
+            Brokerage reconnected event handler. This method is called when the brokerage connection is restored after a disconnection.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.OnData(QuantConnect.Data.Slice)">
+            <summary>
+            v3.0 Handler for all data types
+            </summary>
+            <param name="slice">The current slice of data</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.OnFrameworkData(QuantConnect.Data.Slice)">
+            <summary>
+            Used to send data updates to algorithm framework models
+            </summary>
+            <param name="slice">The current data slice</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.OnEndOfAlgorithm">
+            <summary>
+            Call this event at the end of the algorithm running.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.OnEndOfDay">
+            <summary>
+            End of a trading day event handler. This method is called at the end of the algorithm day (or multiple times if trading multiple assets).
+            </summary>
+            <remarks>Method is called 10 minutes before closing to allow user to close out position.</remarks>
+            <remarks>Deprecated because different assets have different market close times,
+            and because Python does not support two methods with the same name</remarks>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.OnEndOfDay(QuantConnect.Symbol)">
+            <summary>
+            End of a trading day event handler. This method is called at the end of the algorithm day (or multiple times if trading multiple assets).
+            </summary>
+            <remarks>
+            This method is left for backwards compatibility and is invoked via <see cref="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.OnEndOfDay(QuantConnect.Symbol)"/>, if that method is
+            override then this method will not be called without a called to base.OnEndOfDay(string)
+            </remarks>
+            <param name="symbol">Asset symbol for this end of day event. Forex and equities have different closing hours.</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.OnMarginCall(System.Collections.Generic.List{QuantConnect.Orders.SubmitOrderRequest})">
+            <summary>
+            Margin call event handler. This method is called right before the margin call orders are placed in the market.
+            </summary>
+            <param name="requests">The orders to be executed to bring this algorithm within margin limits</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.OnMarginCallWarning">
+            <summary>
+            Margin call warning event handler. This method is called when Portfolio.MarginRemaining is under 5% of your Portfolio.TotalPortfolioValue
+            </summary>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.OnOrderEvent(QuantConnect.Orders.OrderEvent)">
+            <summary>
+            EXPERTS ONLY:: [-!-Async Code-!-]
+            New order event handler: on order status changes (filled, partially filled, cancelled etc).
+            </summary>
+            <param name="newEvent">Event information</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.OnAssignmentOrderEvent(QuantConnect.Orders.OrderEvent)">
+            <summary>
+            Option assignment event handler. On an option assignment event for short legs the resulting information is passed to this method.
+            </summary>
+            <param name="assignmentEvent">Option exercise event details containing details of the assignment</param>
+            <remarks>This method can be called asynchronously and so should only be used by seasoned C# experts. Ensure you use proper locks on thread-unsafe objects</remarks>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.OnSecuritiesChanged(QuantConnect.Data.UniverseSelection.SecurityChanges)">
+            <summary>
+            Event fired each time the we add/remove securities from the data feed
+            </summary>
+            <param name="changes">Security additions/removals for this time step</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.OnFrameworkSecuritiesChanged(QuantConnect.Data.UniverseSelection.SecurityChanges)">
+            <summary>
+            Used to send security changes to algorithm framework models
+            </summary>
+            <param name="changes">Security additions/removals for this time step</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.PostInitialize">
+            <summary>
+            Called by setup handlers after Initialize and allows the algorithm a chance to organize
+            the data gather in the Initialize method
+            </summary>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.OnWarmupFinished">
+            <summary>
+            Called when the algorithm has completed initialization and warm up.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.RemoveSecurity(QuantConnect.Symbol)">
+            <summary>
+            Removes the security with the specified symbol. This will cancel all
+            open orders and then liquidate any existing holdings
+            </summary>
+            <param name="symbol">The symbol of the security to be removed</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SetAlgorithmId(System.String)">
+            <summary>
+            Set the algorithm Id for this backtest or live run. This can be used to identify the order and equity records.
+            </summary>
+            <param name="algorithmId">unique 32 character identifier for backtest or live server</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SetBrokerageMessageHandler(QuantConnect.Brokerages.IBrokerageMessageHandler)">
+            <summary>
+            Sets the implementation used to handle messages from the brokerage.
+            The default implementation will forward messages to debug or error
+            and when a <see cref="F:QuantConnect.Brokerages.BrokerageMessageType.Error"/> occurs, the algorithm
+            is stopped.
+            </summary>
+            <param name="handler">The message handler to use</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SetBrokerageModel(QuantConnect.Brokerages.IBrokerageModel)">
+            <summary>
+            Sets the brokerage model used to resolve transaction models, settlement models,
+            and brokerage specified ordering behaviors.
+            </summary>
+            <param name="brokerageModel">The brokerage model used to emulate the real
+            brokerage</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SetAccountCurrency(System.String)">
+            <summary>
+            Sets the account currency cash symbol this algorithm is to manage.
+            </summary>
+            <remarks>Has to be called during <see cref="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.Initialize"/> before
+            calling <see cref="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SetCash(System.Decimal)"/> or adding any <see cref="T:QuantConnect.Securities.Security"/></remarks>
+            <param name="accountCurrency">The account currency cash symbol to set</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SetCash(System.Decimal)">
+            <summary>
+            Set the starting capital for the strategy
+            </summary>
+            <param name="startingCash">decimal starting capital, default $100,000</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SetCash(System.String,System.Decimal,System.Decimal)">
+            <summary>
+            Set the cash for the specified symbol
+            </summary>
+            <param name="symbol">The cash symbol to set</param>
+            <param name="startingCash">Decimal cash value of portfolio</param>
+            <param name="conversionRate">The current conversion rate for the</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SetDateTime(System.DateTime)">
+            <summary>
+            Set the DateTime Frontier: This is the master time and is
+            </summary>
+            <param name="time"></param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SetStartDate(System.DateTime)">
+            <summary>
+            Set the start date for the backtest
+            </summary>
+            <param name="start">Datetime Start date for backtest</param>
+            <remarks>Must be less than end date and within data available</remarks>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SetEndDate(System.DateTime)">
+            <summary>
+            Set the end date for a backtest.
+            </summary>
+            <param name="end">Datetime value for end date</param>
+            <remarks>Must be greater than the start date</remarks>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SetRunTimeError(System.Exception)">
+            <summary>
+            Set the runtime error
+            </summary>
+            <param name="exception">Represents error that occur during execution</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SetFinishedWarmingUp">
+            <summary>
+            Sets <see cref="P:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.IsWarmingUp"/> to false to indicate this algorithm has finished its warm up
+            </summary>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SetHistoryProvider(QuantConnect.Interfaces.IHistoryProvider)">
+            <summary>
+            Set the historical data provider
+            </summary>
+            <param name="historyProvider">Historical data provider</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SetLiveMode(System.Boolean)">
+            <summary>
+            Set live mode state of the algorithm run: Public setter for the algorithm property LiveMode.
+            </summary>
+            <param name="live">Bool live mode flag</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SetLocked">
+            <summary>
+            Set the algorithm as initialized and locked. No more cash or security changes.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SetMaximumOrders(System.Int32)">
+            <summary>
+            Set the maximum number of orders the algortihm is allowed to process.
+            </summary>
+            <param name="max">Maximum order count int</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SetParameters(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Sets the parameters from the dictionary
+            </summary>
+            <param name="parameters">Dictionary containing the parameter names to values</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.TryConvert``1(Python.Runtime.PyObject,``0@)">
+            <summary>
+            Tries to convert a PyObject into a C# object
+            </summary>
+            <typeparam name="T">Type of the C# object</typeparam>
+            <param name="pyObject">PyObject to be converted</param>
+            <param name="result">C# object that of type T</param>
+            <returns>True if successful conversion</returns>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.ToString">
+            <summary>
+            Returns a <see cref = "T:System.String"/> that represents the current <see cref = "T:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper"/> object.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SetCurrentSlice(QuantConnect.Data.Slice)">
+            <summary>
+            Sets the current slice
+            </summary>
+            <param name="slice">The Slice object</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SetApi(QuantConnect.Interfaces.IApi)">
+            <summary>
+            Provide the API for the algorithm.
+            </summary>
+            <param name="api">Initiated API</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.SetObjectStore(QuantConnect.Interfaces.IObjectStore)">
+            <summary>
+            Sets the object store
+            </summary>
+            <param name="objectStore">The object store</param>
+        </member>
+        <member name="M:QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper.Shortable(QuantConnect.Symbol,System.Decimal)">
+            <summary>
+            Checks if the asset is shortable at the brokerage
+            </summary>
+            <param name="symbol">Symbol to check if it is shortable</param>
+            <param name="quantity">Quantity to short</param>
+            <returns>True if shortable at the brokerage</returns>
+        </member>
+    </members>
+</doc>

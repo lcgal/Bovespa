@@ -1,0 +1,386 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QuantConnect.Api</name>
+    </assembly>
+    <members>
+        <member name="T:QuantConnect.Api.Api">
+            <summary>
+            QuantConnect.com Interaction Via API.
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Api.Api.ApiConnection">
+            <summary>
+            Returns the underlying API connection
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Api.Api.Initialize(System.Int32,System.String,System.String)">
+            <summary>
+            Initialize the API using the config.json file.
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Api.Api.Connected">
+            <summary>
+            Check if Api is successfully connected with correct credentials
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Api.Api.CreateProject(System.String,QuantConnect.Language)">
+            <summary>
+            Create a project with the specified name and language via QuantConnect.com API
+            </summary>
+            <param name="name">Project name</param>
+            <param name="language">Programming language to use</param>
+            <returns>Project object from the API.</returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.ReadProject(System.Int32)">
+            <summary>
+            Get details about a single project
+            </summary>
+            <param name="projectId">Id of the project</param>
+            <returns><see cref="T:QuantConnect.Api.ProjectResponse"/> that contains information regarding the project</returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.ListProjects">
+            <summary>
+            List details of all projects
+            </summary>
+            <returns><see cref="T:QuantConnect.Api.ProjectResponse"/> that contains information regarding the project</returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.AddProjectFile(System.Int32,System.String,System.String)">
+            <summary>
+            Add a file to a project
+            </summary>
+            <param name="projectId">The project to which the file should be added</param>
+            <param name="name">The name of the new file</param>
+            <param name="content">The content of the new file</param>
+            <returns><see cref="T:QuantConnect.Api.ProjectFilesResponse"/> that includes information about the newly created file</returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.UpdateProjectFileName(System.Int32,System.String,System.String)">
+            <summary>
+            Update the name of a file
+            </summary>
+            <param name="projectId">Project id to which the file belongs</param>
+            <param name="oldFileName">The current name of the file</param>
+            <param name="newFileName">The new name for the file</param>
+            <returns><see cref="T:QuantConnect.Api.RestResponse"/> indicating success</returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.UpdateProjectFileContent(System.Int32,System.String,System.String)">
+            <summary>
+            Update the contents of a file
+            </summary>
+            <param name="projectId">Project id to which the file belongs</param>
+            <param name="fileName">The name of the file that should be updated</param>
+            <param name="newFileContents">The new contents of the file</param>
+            <returns><see cref="T:QuantConnect.Api.RestResponse"/> indicating success</returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.ReadProjectFiles(System.Int32)">
+            <summary>
+            Read all files in a project
+            </summary>
+            <param name="projectId">Project id to which the file belongs</param>
+            <returns><see cref="T:QuantConnect.Api.ProjectFilesResponse"/> that includes the information about all files in the project</returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.ReadProjectFile(System.Int32,System.String)">
+            <summary>
+            Read a file in a project
+            </summary>
+            <param name="projectId">Project id to which the file belongs</param>
+            <param name="fileName">The name of the file</param>
+            <returns><see cref="T:QuantConnect.Api.ProjectFilesResponse"/> that includes the file information</returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.DeleteProjectFile(System.Int32,System.String)">
+            <summary>
+            Delete a file in a project
+            </summary>
+            <param name="projectId">Project id to which the file belongs</param>
+            <param name="name">The name of the file that should be deleted</param>
+            <returns><see cref="T:QuantConnect.Api.ProjectFilesResponse"/> that includes the information about all files in the project</returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.DeleteProject(System.Int32)">
+            <summary>
+            Delete a project
+            </summary>
+            <param name="projectId">Project id we own and wish to delete</param>
+            <returns>RestResponse indicating success</returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.CreateCompile(System.Int32)">
+            <summary>
+            Create a new compile job request for this project id.
+            </summary>
+            <param name="projectId">Project id we wish to compile.</param>
+            <returns>Compile object result</returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.ReadCompile(System.Int32,System.String)">
+            <summary>
+            Read a compile packet job result.
+            </summary>
+            <param name="projectId">Project id we sent for compile</param>
+            <param name="compileId">Compile id return from the creation request</param>
+            <returns><see cref="T:QuantConnect.Api.Compile"/></returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.CreateBacktest(System.Int32,System.String,System.String)">
+            <summary>
+            Create a new backtest request and get the id.
+            </summary>
+            <param name="projectId">Id for the project to backtest</param>
+            <param name="compileId">Compile id for the project</param>
+            <param name="backtestName">Name for the new backtest</param>
+            <returns><see cref="T:QuantConnect.Api.Backtest"/>t</returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.ReadBacktest(System.Int32,System.String,System.Boolean)">
+            <summary>
+            Read out a backtest in the project id specified.
+            </summary>
+            <param name="projectId">Project id to read</param>
+            <param name="backtestId">Specific backtest id to read</param>
+            <param name="getCharts">True will return backtest charts</param>
+            <returns><see cref="T:QuantConnect.Api.Backtest"/></returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.UpdateBacktest(System.Int32,System.String,System.String,System.String)">
+            <summary>
+            Update a backtest name
+            </summary>
+            <param name="projectId">Project for the backtest we want to update</param>
+            <param name="backtestId">Backtest id we want to update</param>
+            <param name="name">Name we'd like to assign to the backtest</param>
+            <param name="note">Note attached to the backtest</param>
+            <returns><see cref="T:QuantConnect.Api.RestResponse"/></returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.ListBacktests(System.Int32)">
+            <summary>
+            List all the backtests for a project
+            </summary>
+            <param name="projectId">Project id we'd like to get a list of backtest for</param>
+            <returns><see cref="T:QuantConnect.Api.BacktestList"/></returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.DeleteBacktest(System.Int32,System.String)">
+            <summary>
+            Delete a backtest from the specified project and backtestId.
+            </summary>
+            <param name="projectId">Project for the backtest we want to delete</param>
+            <param name="backtestId">Backtest id we want to delete</param>
+            <returns><see cref="T:QuantConnect.Api.RestResponse"/></returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.CreateLiveAlgorithm(System.Int32,System.String,System.String,QuantConnect.Api.BaseLiveAlgorithmSettings,System.String)">
+            <summary>
+            Create a live algorithm.
+            </summary>
+            <param name="projectId">Id of the project on QuantConnect</param>
+            <param name="compileId">Id of the compilation on QuantConnect</param>
+            <param name="nodeId">Id of the node that will run the algorithm</param>
+            <param name="baseLiveAlgorithmSettings">Brokerage specific <see cref="T:QuantConnect.Api.BaseLiveAlgorithmSettings">BaseLiveAlgorithmSettings</see>.</param>
+            <param name="versionId">The version of the Lean used to run the algorithm.
+                                    -1 is master, however, sometimes this can create problems with live deployments.
+                                    If you experience problems using, try specifying the version of Lean you would like to use.</param>
+            <returns>Information regarding the new algorithm <see cref="T:QuantConnect.Api.LiveAlgorithm"/></returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.ListLiveAlgorithms(System.Nullable{QuantConnect.AlgorithmStatus},System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+            <summary>
+            Get a list of live running algorithms for user
+            </summary>
+            <param name="status">Filter the statuses of the algorithms returned from the api</param>
+            <param name="startTime">Earliest launched time of the algorithms returned by the Api</param>
+            <param name="endTime">Latest launched time of the algorithms returned by the Api</param>
+            <returns><see cref="T:QuantConnect.Api.LiveList"/></returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.ReadLiveAlgorithm(System.Int32,System.String)">
+            <summary>
+            Read out a live algorithm in the project id specified.
+            </summary>
+            <param name="projectId">Project id to read</param>
+            <param name="deployId">Specific instance id to read</param>
+            <returns><see cref="T:QuantConnect.Api.LiveAlgorithmResults"/></returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.LiquidateLiveAlgorithm(System.Int32)">
+            <summary>
+            Liquidate a live algorithm from the specified project and deployId.
+            </summary>
+            <param name="projectId">Project for the live instance we want to stop</param>
+            <returns><see cref="T:QuantConnect.Api.RestResponse"/></returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.StopLiveAlgorithm(System.Int32)">
+            <summary>
+            Stop a live algorithm from the specified project and deployId.
+            </summary>
+            <param name="projectId">Project for the live instance we want to stop</param>
+            <returns><see cref="T:QuantConnect.Api.RestResponse"/></returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.ReadLiveLogs(System.Int32,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+            <summary>
+            Gets the logs of a specific live algorithm
+            </summary>
+            <param name="projectId">Project Id of the live running algorithm</param>
+            <param name="algorithmId">Algorithm Id of the live running algorithm</param>
+            <param name="startTime">No logs will be returned before this time</param>
+            <param name="endTime">No logs will be returned after this time</param>
+            <returns><see cref="T:QuantConnect.Api.LiveLog"/> List of strings that represent the logs of the algorithm</returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.ReadDataLink(QuantConnect.Symbol,QuantConnect.Resolution,System.DateTime)">
+            <summary>
+            Gets the link to the downloadable data.
+            </summary>
+            <param name="symbol">Symbol of security of which data will be requested.</param>
+            <param name="resolution">Resolution of data requested.</param>
+            <param name="date">Date of the data requested.</param>
+            <returns><see cref="T:QuantConnect.Api.Link"/> to the downloadable data.</returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.ReadBacktestReport(System.Int32,System.String)">
+            <summary>
+            Read out the report of a backtest in the project id specified.
+            </summary>
+            <param name="projectId">Project id to read</param>
+            <param name="backtestId">Specific backtest id to read</param>
+            <returns><see cref="T:QuantConnect.Api.BacktestReport"/></returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.DownloadData(QuantConnect.Symbol,QuantConnect.Resolution,System.DateTime)">
+            <summary>
+            Method to download and save the data purchased through QuantConnect
+            </summary>
+            <param name="symbol">Symbol of security of which data will be requested.</param>
+            <param name="resolution">Resolution of data requested.</param>
+            <param name="date">Date of the data requested.</param>
+            <returns>A <see cref="T:System.Boolean"/> indicating whether the data was successfully downloaded or not.</returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.GetAlgorithmStatus(System.String)">
+            <summary>
+            Get the algorithm status from the user with this algorithm id.
+            </summary>
+            <param name="algorithmId">String algorithm id we're searching for.</param>
+            <returns>Algorithm status enum</returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.SetAlgorithmStatus(System.String,QuantConnect.AlgorithmStatus,System.String)">
+            <summary>
+            Algorithm passes back its current status to the UX.
+            </summary>
+            <param name="status">Status of the current algorithm</param>
+            <param name="algorithmId">String algorithm id we're setting.</param>
+            <param name="message">Message for the algorithm status event</param>
+            <returns>Algorithm status enum</returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.SendStatistics(System.String,System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.Int32,System.Double)">
+            <summary>
+            Send the statistics to storage for performance tracking.
+            </summary>
+            <param name="algorithmId">Identifier for algorithm</param>
+            <param name="unrealized">Unrealized gainloss</param>
+            <param name="fees">Total fees</param>
+            <param name="netProfit">Net profi</param>
+            <param name="holdings">Algorithm holdings</param>
+            <param name="equity">Total equity</param>
+            <param name="netReturn">Net return for the deployment</param>
+            <param name="volume">Volume traded</param>
+            <param name="trades">Total trades since inception</param>
+            <param name="sharpe">Sharpe ratio since inception</param>
+        </member>
+        <member name="M:QuantConnect.Api.Api.SendUserEmail(System.String,System.String,System.String)">
+            <summary>
+            Send an email to the user associated with the specified algorithm id
+            </summary>
+            <param name="algorithmId">The algorithm id</param>
+            <param name="subject">The email subject</param>
+            <param name="body">The email message body</param>
+        </member>
+        <member name="M:QuantConnect.Api.Api.Download(System.String,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}},System.String,System.String)">
+            <summary>
+            Local implementation for downloading data to algorithms
+            </summary>
+            <param name="address">URL to download</param>
+            <param name="headers">KVP headers</param>
+            <param name="userName">Username for basic authentication</param>
+            <param name="password">Password for basic authentication</param>
+            <returns></returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="M:QuantConnect.Api.Api.CreateSecureHash(System.Int32,System.String)">
+            <summary>
+            Generate a secure hash for the authorization headers.
+            </summary>
+            <returns>Time based hash of user token and timestamp.</returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.CreateNode(System.String,System.String,QuantConnect.Api.SKU)">
+            <summary>
+            Create a new node in the organization, node configuration is defined by the
+            <see cref="T:QuantConnect.Api.SKU"/>
+            </summary>
+            <param name="name">The name of the new node</param>
+            <param name="organizationId">ID of the organization</param>
+            <param name="sku"><see cref="T:QuantConnect.Api.SKU"/> Object representing configuration</param>
+            <returns>Returns <see cref="T:QuantConnect.Api.CreatedNode"/> which contains API response and
+            <see cref="T:QuantConnect.Api.Node"/></returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.ReadNodes(System.String)">
+            <summary>
+            Reads the nodes associated with the organization, creating a
+            <see cref="T:QuantConnect.Api.NodeList"/> for the response
+            </summary>
+            <param name="organizationId">ID of the organization</param>
+            <returns><see cref="T:QuantConnect.Api.NodeList"/> containing Backtest, Research, and Live Nodes</returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.UpdateNode(System.String,System.String,System.String)">
+            <summary>
+            Update an organizations node with a new name
+            </summary>
+            <param name="nodeId">The node ID of the node you want to update</param>
+            <param name="newName">The new name for that node</param>
+            <param name="organizationId">ID of the organization</param>
+            <returns><see cref="T:QuantConnect.Api.RestResponse"/> containing success response and errors</returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.DeleteNode(System.String,System.String)">
+            <summary>
+            Delete a node from an organization, requires node ID.
+            </summary>
+            <param name="nodeId">The node ID of the node you want to delete</param>
+            <param name="organizationId">ID of the organization</param>
+            <returns><see cref="T:QuantConnect.Api.RestResponse"/> containing success response and errors</returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.StopNode(System.String,System.String)">
+            <summary>
+            Stop a running node in a organization
+            </summary>
+            <param name="nodeId">The node ID of the node you want to stop</param>
+            <param name="organizationId">ID of the organization</param>
+            <returns><see cref="T:QuantConnect.Api.RestResponse"/> containing success response and errors</returns>
+        </member>
+        <member name="M:QuantConnect.Api.Api.ReadAccount(System.String)">
+            <summary>
+            Will read the organization account status
+            </summary>
+            <param name="organizationId">The target organization id, if null will return default organization</param>
+        </member>
+        <member name="T:QuantConnect.Api.ApiConnection">
+            <summary>
+            API Connection and Hash Manager
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Api.ApiConnection.Client">
+            <summary>
+            Authorized client to use for requests.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Api.ApiConnection.#ctor(System.Int32,System.String)">
+            <summary>
+            Create a new Api Connection Class.
+            </summary>
+            <param name="userId">User Id number from QuantConnect.com account. Found at www.quantconnect.com/account </param>
+            <param name="token">Access token for the QuantConnect account. Found at www.quantconnect.com/account </param>
+        </member>
+        <member name="P:QuantConnect.Api.ApiConnection.Connected">
+            <summary>
+            Return true if connected successfully.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Api.ApiConnection.TryRequest``1(RestSharp.RestRequest,``0@)">
+            <summary>
+            Place a secure request and get back an object of type T.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="request"></param>
+            <param name="result">Result object from the </param>
+            <returns>T typed object response</returns>
+        </member>
+    </members>
+</doc>

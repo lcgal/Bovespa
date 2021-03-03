@@ -1,0 +1,80 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Repositorios\\Bovespa\\Lean\\Logging\\QuantConnect.Logging.csproj": {}
+  },
+  "projects": {
+    "C:\\Repositorios\\Bovespa\\Lean\\Logging\\QuantConnect.Logging.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Repositorios\\Bovespa\\Lean\\Logging\\QuantConnect.Logging.csproj",
+        "projectName": "QuantConnect.Logging",
+        "projectPath": "C:\\Repositorios\\Bovespa\\Lean\\Logging\\QuantConnect.Logging.csproj",
+        "packagesPath": "C:\\Users\\Lucas\\.nuget\\packages\\",
+        "outputPath": "C:\\Repositorios\\Bovespa\\Lean\\Logging\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net462"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/EDPBR-TI/_packaging/EDP-FSA/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "net462": {
+            "targetAlias": "net462",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net462": {
+          "targetAlias": "net462",
+          "dependencies": {
+            "MathNet.Filtering": {
+              "target": "Package",
+              "version": "[0.4.0, )"
+            },
+            "MathNet.Numerics": {
+              "target": "Package",
+              "version": "[3.19.0, )"
+            },
+            "Microsoft.CodeAnalysis.NetAnalyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.3, )"
+            },
+            "NLog": {
+              "target": "Package",
+              "version": "[4.4.13, )"
+            },
+            "NLog.Config": {
+              "target": "Package",
+              "version": "[4.4.13, )"
+            },
+            "NLog.Schema": {
+              "target": "Package",
+              "version": "[4.4.13, )"
+            },
+            "System.ComponentModel.Composition": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

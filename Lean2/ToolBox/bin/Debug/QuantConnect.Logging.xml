@@ -1,0 +1,544 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QuantConnect.Logging</name>
+    </assembly>
+    <members>
+        <member name="T:QuantConnect.Logging.CompositeLogHandler">
+            <summary>
+            Provides an <see cref="T:QuantConnect.Logging.ILogHandler"/> implementation that composes multiple handlers
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Logging.CompositeLogHandler.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Logging.CompositeLogHandler"/> that pipes log messages to the console and log.txt
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Logging.CompositeLogHandler.#ctor(QuantConnect.Logging.ILogHandler[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Logging.CompositeLogHandler"/> class from the specified handlers
+            </summary>
+            <param name="handlers">The implementations to compose</param>
+        </member>
+        <member name="M:QuantConnect.Logging.CompositeLogHandler.Error(System.String)">
+            <summary>
+            Write error message to log
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="M:QuantConnect.Logging.CompositeLogHandler.Debug(System.String)">
+            <summary>
+            Write debug message to log
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="M:QuantConnect.Logging.CompositeLogHandler.Trace(System.String)">
+            <summary>
+            Write debug message to log
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="M:QuantConnect.Logging.CompositeLogHandler.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="T:QuantConnect.Logging.CompositeNLogHandler">
+            <summary>
+            Provides an <see cref="T:QuantConnect.Logging.ILogHandler"/> implementation that composes multiple handlers
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Logging.CompositeNLogHandler.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Logging.CompositeNLogHandler"/> that pipes log messages to the console and log.txt
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Logging.CompositeNLogHandler.#ctor(QuantConnect.Logging.ILogHandler[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Logging.CompositeNLogHandler"/> class from the specified handlers
+            </summary>
+            <param name="handlers">The implementations to compose</param>
+        </member>
+        <member name="M:QuantConnect.Logging.CompositeNLogHandler.Error(System.String)">
+            <summary>
+            Write error message to log
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="M:QuantConnect.Logging.CompositeNLogHandler.Debug(System.String)">
+            <summary>
+            Write debug message to log
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="M:QuantConnect.Logging.CompositeNLogHandler.Trace(System.String)">
+            <summary>
+            Write debug message to log
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="M:QuantConnect.Logging.CompositeNLogHandler.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="T:QuantConnect.Logging.ConsoleErrorLogHandler">
+            <summary>
+            Subclass of ConsoleLogHandler that only logs error messages
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Logging.ConsoleErrorLogHandler.Debug(System.String)">
+            <summary>
+            Hide debug messages from log
+            </summary>
+            <param name="text">The debug text to log</param>
+        </member>
+        <member name="M:QuantConnect.Logging.ConsoleErrorLogHandler.Trace(System.String)">
+            <summary>
+            Hide trace messages from log
+            </summary>
+            <param name="text">The trace text to log</param>
+        </member>
+        <member name="T:QuantConnect.Logging.ConsoleLogHandler">
+            <summary>
+            ILogHandler implementation that writes log output to console.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Logging.ConsoleLogHandler.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Logging.ConsoleLogHandler"/> class.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Logging.ConsoleLogHandler.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Logging.ConsoleLogHandler"/> class.
+            </summary>
+            <param name="dateFormat">Specifies the date format to use when writing log messages to the console window</param>
+        </member>
+        <member name="M:QuantConnect.Logging.ConsoleLogHandler.Error(System.String)">
+            <summary>
+            Write error message to log
+            </summary>
+            <param name="text">The error text to log</param>
+        </member>
+        <member name="M:QuantConnect.Logging.ConsoleLogHandler.Debug(System.String)">
+            <summary>
+            Write debug message to log
+            </summary>
+            <param name="text">The debug text to log</param>
+        </member>
+        <member name="M:QuantConnect.Logging.ConsoleLogHandler.Trace(System.String)">
+            <summary>
+            Write debug message to log
+            </summary>
+            <param name="text">The trace text to log</param>
+        </member>
+        <member name="M:QuantConnect.Logging.ConsoleLogHandler.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="T:QuantConnect.Logging.FileLogHandler">
+            <summary>
+            Provides an implementation of <see cref="T:QuantConnect.Logging.ILogHandler"/> that writes all log messages to a file on disk.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Logging.FileLogHandler.#ctor(System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Logging.FileLogHandler"/> class to write messages to the specified file path.
+            The file will be opened using <see cref="F:System.IO.FileMode.Append"/>
+            </summary>
+            <param name="filepath">The file path use to save the log messages</param>
+            <param name="useTimestampPrefix">True to prefix each line in the log which the UTC timestamp, false otherwise</param>
+        </member>
+        <member name="M:QuantConnect.Logging.FileLogHandler.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Logging.FileLogHandler"/> class using 'log.txt' for the filepath.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Logging.FileLogHandler.Error(System.String)">
+            <summary>
+            Write error message to log
+            </summary>
+            <param name="text">The error text to log</param>
+        </member>
+        <member name="M:QuantConnect.Logging.FileLogHandler.Debug(System.String)">
+            <summary>
+            Write debug message to log
+            </summary>
+            <param name="text">The debug text to log</param>
+        </member>
+        <member name="M:QuantConnect.Logging.FileLogHandler.Trace(System.String)">
+            <summary>
+            Write debug message to log
+            </summary>
+            <param name="text">The trace text to log</param>
+        </member>
+        <member name="M:QuantConnect.Logging.FileLogHandler.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="M:QuantConnect.Logging.FileLogHandler.CreateMessage(System.String,System.String)">
+            <summary>
+            Creates the message to be logged
+            </summary>
+            <param name="text">The text to be logged</param>
+            <param name="level">The logging leel</param>
+            <returns></returns>
+        </member>
+        <member name="M:QuantConnect.Logging.FileLogHandler.WriteMessage(System.String,System.String)">
+            <summary>
+            Writes the message to the writer
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Logging.FunctionalLogHandler">
+            <summary>
+            ILogHandler implementation that writes log output to result handler
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Logging.FunctionalLogHandler.#ctor">
+            <summary>
+            Default constructor to handle MEF.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Logging.FunctionalLogHandler.#ctor(System.Action{System.String},System.Action{System.String},System.Action{System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Logging.FunctionalLogHandler"/> class.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Logging.FunctionalLogHandler.Error(System.String)">
+            <summary>
+            Write error message to log
+            </summary>
+            <param name="text">The error text to log</param>
+        </member>
+        <member name="M:QuantConnect.Logging.FunctionalLogHandler.Debug(System.String)">
+            <summary>
+            Write debug message to log
+            </summary>
+            <param name="text">The debug text to log</param>
+        </member>
+        <member name="M:QuantConnect.Logging.FunctionalLogHandler.Trace(System.String)">
+            <summary>
+            Write debug message to log
+            </summary>
+            <param name="text">The trace text to log</param>
+        </member>
+        <member name="M:QuantConnect.Logging.FunctionalLogHandler.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="T:QuantConnect.Logging.ILogHandler">
+            <summary>
+            Interface for redirecting log output
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Logging.ILogHandler.Error(System.String)">
+            <summary>
+            Write error message to log
+            </summary>
+            <param name="text">The error text to log</param>
+        </member>
+        <member name="M:QuantConnect.Logging.ILogHandler.Debug(System.String)">
+            <summary>
+            Write debug message to log
+            </summary>
+            <param name="text">The debug text to log</param>
+        </member>
+        <member name="M:QuantConnect.Logging.ILogHandler.Trace(System.String)">
+            <summary>
+            Write debug message to log
+            </summary>
+            <param name="text">The trace text to log</param>
+        </member>
+        <member name="T:QuantConnect.Logging.LogHandlerExtensions">
+            <summary>
+            Logging extensions.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Logging.LogHandlerExtensions.Error(QuantConnect.Logging.ILogHandler,System.String,System.Object[])">
+            <summary>
+            Write error message to log
+            </summary>
+            <param name="logHandler"></param>
+            <param name="text">Message</param>
+            <param name="args">Arguments to format.</param>
+        </member>
+        <member name="M:QuantConnect.Logging.LogHandlerExtensions.Debug(QuantConnect.Logging.ILogHandler,System.String,System.Object[])">
+            <summary>
+            Write debug message to log
+            </summary>
+            <param name="logHandler"></param>
+            <param name="text">Message</param>
+            <param name="args">Arguments to format.</param>
+        </member>
+        <member name="M:QuantConnect.Logging.LogHandlerExtensions.Trace(QuantConnect.Logging.ILogHandler,System.String,System.Object[])">
+            <summary>
+            Write debug message to log
+            </summary>
+            <param name="logHandler"></param>
+            <param name="text">Message</param>
+            <param name="args">Arguments to format.</param>
+        </member>
+        <member name="T:QuantConnect.Logging.Log">
+            <summary>
+            Logging management class.
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Logging.Log.LogHandler">
+            <summary>
+            Gets or sets the ILogHandler instance used as the global logging implementation.
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Logging.Log.DebuggingEnabled">
+            <summary>
+            Global flag whether to enable debugging logging:
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Logging.Log.FilePath">
+            <summary>
+            Global flag to specify file based log path
+            </summary>
+            <remarks>Only valid for file based loggers</remarks>
+        </member>
+        <member name="P:QuantConnect.Logging.Log.DebuggingLevel">
+            <summary>
+            Set the minimum message level:
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Logging.Log.Error(System.String,System.Boolean)">
+            <summary>
+            Log error
+            </summary>
+            <param name="error">String Error</param>
+            <param name="overrideMessageFloodProtection">Force sending a message, overriding the "do not flood" directive</param>
+        </member>
+        <member name="M:QuantConnect.Logging.Log.Error(System.String,System.Exception,System.String,System.Boolean)">
+            <summary>
+            Log error. This overload is usefull when exceptions are being thrown from within an anonymous function.
+            </summary>
+            <param name="method">The method identifier to be used</param>
+            <param name="exception">The exception to be logged</param>
+            <param name="message">An optional message to be logged, if null/whitespace the messge text will be extracted</param>
+            <param name="overrideMessageFloodProtection">Force sending a message, overriding the "do not flood" directive</param>
+        </member>
+        <member name="M:QuantConnect.Logging.Log.Error(System.Exception,System.String,System.Boolean)">
+            <summary>
+            Log error
+            </summary>
+            <param name="exception">The exception to be logged</param>
+            <param name="message">An optional message to be logged, if null/whitespace the messge text will be extracted</param>
+            <param name="overrideMessageFloodProtection">Force sending a message, overriding the "do not flood" directive</param>
+        </member>
+        <member name="M:QuantConnect.Logging.Log.Trace(System.String,System.Boolean)">
+            <summary>
+            Log trace
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Logging.Log.Trace(System.String,System.Object[])">
+            <summary>
+            Writes the message in normal text
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Logging.Log.Error(System.String,System.Object[])">
+            <summary>
+            Writes the message in red
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Logging.Log.Debug(System.String,System.Int32)">
+            <summary>
+            Output to the console
+            </summary>
+            <param name="text">The message to show</param>
+            <param name="level">debug level</param>
+        </member>
+        <member name="M:QuantConnect.Logging.Log.VarDump(System.Object,System.Int32)">
+            <summary>
+            C# Equivalent of Print_r in PHP:
+            </summary>
+            <param name="obj"></param>
+            <param name="recursion"></param>
+            <returns></returns>
+        </member>
+        <member name="T:QuantConnect.Logging.LogEntry">
+            <summary>
+            Log entry wrapper to make logging simpler:
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Logging.LogEntry.Time">
+            <summary>
+            Time of the log entry
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Logging.LogEntry.Message">
+            <summary>
+            Message of the log entry
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Logging.LogEntry.MessageType">
+            <summary>
+            Descriptor of the message type.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Logging.LogEntry.#ctor(System.String)">
+            <summary>
+            Create a default log message with the current time.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:QuantConnect.Logging.LogEntry.#ctor(System.String,System.DateTime,QuantConnect.Logging.LogType)">
+            <summary>
+            Create a log entry at a specific time in the analysis (for a backtest).
+            </summary>
+            <param name="message">Message for log</param>
+            <param name="time">Utc time of the message</param>
+            <param name="type">Type of the log entry</param>
+        </member>
+        <member name="M:QuantConnect.Logging.LogEntry.ToString">
+            <summary>
+            Helper override on the log entry.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:QuantConnect.Logging.LogType">
+            <summary>
+            Error level
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Logging.NLogHandler">
+            <summary>
+            Provides an implementation of <see cref="T:QuantConnect.Logging.ILogHandler"/> that writes all log messages to a file on disk.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Logging.NLogHandler.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Logging.NLogHandler"/> class to write messages to the specified file path.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Logging.NLogHandler.Error(System.String)">
+            <summary>
+            Write error message to log
+            </summary>
+            <param name="text">The error text to log</param>
+        </member>
+        <member name="M:QuantConnect.Logging.NLogHandler.Debug(System.String)">
+            <summary>
+            Write debug message to log
+            </summary>
+            <param name="text">The debug text to log</param>
+        </member>
+        <member name="M:QuantConnect.Logging.NLogHandler.Trace(System.String)">
+            <summary>
+            Write debug message to log
+            </summary>
+            <param name="text">The trace text to log</param>
+        </member>
+        <member name="M:QuantConnect.Logging.NLogHandler.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="M:QuantConnect.Logging.NLogHandler.CreateMessage(System.String,System.String)">
+            <summary>
+            Creates the message to be logged
+            </summary>
+            <param name="text">The text to be logged</param>
+            <param name="level">The logging leel</param>
+            <returns></returns>
+        </member>
+        <member name="M:QuantConnect.Logging.NLogHandler.WriteMessage(System.String,System.String)">
+            <summary>
+            Writes the message to the writer
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Logging.QueueLogHandler">
+            <summary>
+            ILogHandler implementation that queues all logs and writes them when instructed.
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Logging.QueueLogHandler.Logs">
+            <summary>
+            Public access to the queue for log processing.
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Logging.QueueLogHandler.LogEventRaised">
+            <summary>
+            LOgging event delegate
+            </summary>
+        </member>
+        <member name="E:QuantConnect.Logging.QueueLogHandler.LogEvent">
+            <summary>
+            Logging Event Handler
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Logging.QueueLogHandler.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Logging.QueueLogHandler"/> class.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Logging.QueueLogHandler.Error(System.String)">
+            <summary>
+            Write error message to log
+            </summary>
+            <param name="text">The error text to log</param>
+        </member>
+        <member name="M:QuantConnect.Logging.QueueLogHandler.Debug(System.String)">
+            <summary>
+            Write debug message to log
+            </summary>
+            <param name="text">The debug text to log</param>
+        </member>
+        <member name="M:QuantConnect.Logging.QueueLogHandler.Trace(System.String)">
+            <summary>
+            Write debug message to log
+            </summary>
+            <param name="text">The trace text to log</param>
+        </member>
+        <member name="M:QuantConnect.Logging.QueueLogHandler.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="M:QuantConnect.Logging.QueueLogHandler.OnLogEvent(QuantConnect.Logging.LogEntry)">
+            <summary>
+            Raise a log event safely
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Logging.RegressionFileLogHandler">
+            <summary>
+            Provides an implementation of <see cref="T:QuantConnect.Logging.ILogHandler"/> that writes all log messages to a file on disk
+            without timestamps.
+            </summary>
+            <remarks>
+            This type is provided for convenience/setting from configuration
+            </remarks>
+        </member>
+        <member name="M:QuantConnect.Logging.RegressionFileLogHandler.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Logging.RegressionFileLogHandler"/> class
+            that will write to a 'regression.log' file in the executing directory
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Logging.WhoCalledMe">
+            <summary>
+            Provides methods for determining higher stack frames
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Logging.WhoCalledMe.GetMethodName(System.Int32)">
+            <summary>
+            Gets the method name of the caller
+            </summary>
+            <param name="frame">The number of stack frames to retrace from the caller's position</param>
+            <returns>The method name of the containing scope 'frame' stack frames above the caller</returns>
+        </member>
+    </members>
+</doc>

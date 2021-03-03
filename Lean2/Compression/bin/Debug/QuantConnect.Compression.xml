@@ -1,0 +1,282 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QuantConnect.Compression</name>
+    </assembly>
+    <members>
+        <member name="T:QuantConnect.Compression">
+            <summary>
+            Compression class manages the opening and extraction of compressed files (zip, tar, tar.gz).
+            </summary>
+            <remarks>QuantConnect's data library is stored in zip format locally on the hard drive.</remarks>
+        </member>
+        <member name="M:QuantConnect.Compression.ZipData(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Create a zip file of the supplied file names and string data source
+            </summary>
+            <param name="zipPath">Output location to save the file.</param>
+            <param name="filenamesAndData">File names and data in a dictionary format.</param>
+            <returns>True on successfully creating the zip file.</returns>
+        </member>
+        <member name="M:QuantConnect.Compression.ZipData(System.String,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Byte[]}})">
+            <summary>
+            Create a zip file of the supplied file names and data using a byte array
+            </summary>
+            <param name="zipPath">Output location to save the file.</param>
+            <param name="filenamesAndData">File names and data in a dictionary format.</param>
+            <returns>True on successfully saving the file</returns>
+        </member>
+        <member name="M:QuantConnect.Compression.ZipData(System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Zips the specified lines of text into the zipPath
+            </summary>
+            <param name="zipPath">The destination zip file path</param>
+            <param name="zipEntry">The entry name in the zip</param>
+            <param name="lines">The lines to be written to the zip</param>
+            <returns>True if successful, otherwise false</returns>
+        </member>
+        <member name="M:QuantConnect.Compression.ZipCreateAppendData(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Append the zip data to the file-entry specified.
+            </summary>
+            <param name="path">The zip file path</param>
+            <param name="entry">The entry name</param>
+            <param name="data">The entry data</param>
+            <param name="overrideEntry">True if should override entry if it already exists</param>
+            <returns>True on success</returns>
+        </member>
+        <member name="M:QuantConnect.Compression.UnzipData(System.Byte[],System.Text.Encoding)">
+            <summary>
+            Uncompress zip data byte array into a dictionary string array of filename-contents.
+            </summary>
+            <param name="zipData">Byte data array of zip compressed information</param>
+            <param name="encoding">Specifies the encoding used to read the bytes. If not specified, defaults to ASCII</param>
+            <returns>Uncompressed dictionary string-sting of files in the zip</returns>
+        </member>
+        <member name="M:QuantConnect.Compression.ZipBytes(System.Byte[],System.String)">
+            <summary>
+            Performs an in memory zip of the specified bytes
+            </summary>
+            <param name="bytes">The file contents in bytes to be zipped</param>
+            <param name="zipEntryName">The zip entry name</param>
+            <returns>The zipped file as a byte array</returns>
+        </member>
+        <member name="M:QuantConnect.Compression.UnGZip(System.String,System.String)">
+            <summary>
+            Extract .gz files to disk
+            </summary>
+            <param name="gzipFileName"></param>
+            <param name="targetDirectory"></param>
+        </member>
+        <member name="M:QuantConnect.Compression.Zip(System.String,System.String,System.Boolean)">
+            <summary>
+            Compress a given file and delete the original file. Automatically rename the file to name.zip.
+            </summary>
+            <param name="textPath">Path of the original file</param>
+            <param name="zipEntryName">The name of the entry inside the zip file</param>
+            <param name="deleteOriginal">Boolean flag to delete the original file after completion</param>
+            <returns>String path for the new zip file</returns>
+        </member>
+        <member name="M:QuantConnect.Compression.Zip(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Compresses the specified source file.
+            </summary>
+            <param name="source">The source file to be compressed</param>
+            <param name="destination">The destination zip file path</param>
+            <param name="zipEntryName">The zip entry name for the file</param>
+            <param name="deleteOriginal">True to delete the source file upon completion</param>
+        </member>
+        <member name="M:QuantConnect.Compression.Zip(System.String,System.Boolean)">
+            <summary>
+            Compress a given file and delete the original file. Automatically rename the file to name.zip.
+            </summary>
+            <param name="textPath">Path of the original file</param>
+            <param name="deleteOriginal">Boolean flag to delete the original file after completion</param>
+            <returns>String path for the new zip file</returns>
+        </member>
+        <member name="M:QuantConnect.Compression.ZipDirectory(System.String,System.String,System.Boolean)">
+            <summary>
+            Zips the specified directory, preserving folder structure
+            </summary>
+            <param name="directory">The directory to be zipped</param>
+            <param name="destination">The output zip file destination</param>
+            <param name="includeRootInZip">True to include the root 'directory' in the zip, false otherwise</param>
+            <returns>True on a successful zip, false otherwise</returns>
+        </member>
+        <member name="T:QuantConnect.Compression.PathEncoder">
+            <summary>
+            Encode the paths as linux format for cross platform compatibility
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Compression.Unzip(System.String,System.String,System.Boolean)">
+            <summary>
+            Unzips the specified zip file to the specified directory
+            </summary>
+            <param name="zip">The zip to be unzipped</param>
+            <param name="directory">The directory to place the unzipped files</param>
+            <param name="overwrite">Flag specifying whether or not to overwrite existing files</param>
+        </member>
+        <member name="M:QuantConnect.Compression.ZipFiles(System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Zips all files specified to a new zip at the destination path
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Compression.Unzip(System.String,Ionic.Zip.ZipFile@)">
+            <summary>
+            Streams a local zip file using a streamreader.
+            Important: the caller must call Dispose() on the returned ZipFile instance.
+            </summary>
+            <param name="filename">Location of the original zip file</param>
+            <param name="zip">The ZipFile instance to be returned to the caller</param>
+            <returns>Stream reader of the first file contents in the zip file</returns>
+        </member>
+        <member name="M:QuantConnect.Compression.Unzip(System.String,System.String,Ionic.Zip.ZipFile@)">
+            <summary>
+            Streams a local zip file using a streamreader.
+            Important: the caller must call Dispose() on the returned ZipFile instance.
+            </summary>
+            <param name="filename">Location of the original zip file</param>
+            <param name="zipEntryName">The zip entry name to open a reader for. Specify null to access the first entry</param>
+            <param name="zip">The ZipFile instance to be returned to the caller</param>
+            <returns>Stream reader of the first file contents in the zip file</returns>
+        </member>
+        <member name="M:QuantConnect.Compression.Unzip(System.String)">
+            <summary>
+            Streams the unzipped file as key value pairs of file name to file contents.
+            NOTE: When the returned enumerable finishes enumerating, the zip stream will be
+            closed rendering all key value pair Value properties unaccessible. Ideally this
+            would be enumerated depth first.
+            </summary>
+            <remarks>
+            This method has the potential for a memory leak if each kvp.Value enumerable is not disposed
+            </remarks>
+            <param name="filename">The zip file to stream</param>
+            <returns>The stream zip contents</returns>
+        </member>
+        <member name="M:QuantConnect.Compression.Unzip(System.IO.Stream)">
+            <summary>
+            Lazily unzips the specified stream
+            </summary>
+            <param name="stream">The zipped stream to be read</param>
+            <returns>An enumerable whose elements are zip entry key value pairs with
+            a key of the zip entry name and the value of the zip entry's file lines</returns>
+        </member>
+        <member name="M:QuantConnect.Compression.ReadLines(System.String)">
+            <summary>
+            Streams each line from the first zip entry in the specified zip file
+            </summary>
+            <param name="filename">The zip file path to stream</param>
+            <returns>An enumerable containing each line from the first unzipped entry</returns>
+        </member>
+        <member name="M:QuantConnect.Compression.UnzipStreamToStreamReader(System.IO.Stream)">
+            <summary>
+            Unzip a local file and return its contents via streamreader:
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Compression.UnzipStream(System.IO.Stream,Ionic.Zip.ZipFile@)">
+            <summary>
+            Unzip a stream that represents a zip file and return the first entry as a stream
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Compression.UnzipToFolder(System.String)">
+            <summary>
+            Unzip a local file and return its contents via streamreader to a local the same location as the ZIP.
+            </summary>
+            <param name="zipFile">Location of the zip on the HD</param>
+            <returns>List of unzipped file names</returns>
+        </member>
+        <member name="M:QuantConnect.Compression.UnTarFiles(System.String,System.String)">
+            <summary>
+            Extracts all file from a zip archive and copies them to a destination folder.
+            </summary>
+            <param name="source">The source zip file.</param>
+            <param name="destination">The destination folder to extract the file to.</param>
+        </member>
+        <member name="M:QuantConnect.Compression.UnTarGzFiles(System.String,System.String)">
+            <summary>
+            Extract tar.gz files to disk
+            </summary>
+            <param name="source">Tar.gz source file</param>
+            <param name="destination">Location folder to unzip to</param>
+        </member>
+        <member name="M:QuantConnect.Compression.UnTar(System.IO.Stream,System.Boolean)">
+            <summary>
+            Enumerate through the files of a TAR and get a list of KVP names-byte arrays
+            </summary>
+            <param name="stream">The input tar stream</param>
+            <param name="isTarGz">True if the input stream is a .tar.gz or .tgz</param>
+            <returns>An enumerable containing each tar entry and it's contents</returns>
+        </member>
+        <member name="M:QuantConnect.Compression.UnTar(System.String)">
+            <summary>
+            Enumerate through the files of a TAR and get a list of KVP names-byte arrays.
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QuantConnect.Compression.ValidateZip(System.String)">
+            <summary>
+            Validates whether the zip is corrupted or not
+            </summary>
+            <param name="path">Path to the zip file</param>
+            <returns>true if archive tests ok; false otherwise.</returns>
+        </member>
+        <member name="M:QuantConnect.Compression.GetZipEntryFileNames(System.String)">
+            <summary>
+            Returns the entry file names contained in a zip file
+            </summary>
+            <param name="zipFileName">The zip file name</param>
+            <returns>An IEnumerable of entry file names</returns>
+        </member>
+        <member name="T:QuantConnect.ZipStreamWriter">
+            <summary>
+            Provides an implementation of <see cref="T:System.IO.TextWriter"/> to write to a zip file
+            </summary>
+        </member>
+        <member name="P:QuantConnect.ZipStreamWriter.Encoding">
+            <summary>
+            When overridden in a derived class, returns the character encoding in which the output is written.
+            </summary>
+            <returns>
+            The character encoding in which the output is written.
+            </returns>
+            <filterpriority>1</filterpriority>
+        </member>
+        <member name="M:QuantConnect.ZipStreamWriter.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.ZipStreamWriter"/> class
+            </summary>
+            <param name="filename">The output zip file name</param>
+            <param name="zipEntry">The file name in the zip file</param>
+        </member>
+        <member name="M:QuantConnect.ZipStreamWriter.Write(System.Char)">
+            <summary>
+            Writes a character to the text string or stream.
+            </summary>
+            <param name="value">The character to write to the text stream. </param>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter"/> is closed. </exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs. </exception>
+            <filterpriority>1</filterpriority>
+        </member>
+        <member name="M:QuantConnect.ZipStreamWriter.WriteLine(System.String)">
+            <summary>
+            Writes a string followed by a line terminator to the text string or stream.
+            </summary>
+            <param name="value">The string to write. If <paramref name="value"/> is null, only the line terminator is written. </param>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter"/> is closed. </exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs. </exception>
+            <filterpriority>1</filterpriority>
+        </member>
+        <member name="M:QuantConnect.ZipStreamWriter.Flush">
+            <summary>
+            Clears all buffers for the current writer and causes any buffered data to be written to the underlying device.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.ZipStreamWriter.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources used by the <see cref="T:System.IO.TextWriter"/> and optionally releases the managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources. </param>
+        </member>
+    </members>
+</doc>

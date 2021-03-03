@@ -1,0 +1,12 @@
+C:\Repositorios\Bovespa\Lean\Logging\bin\Debug\NLog.config
+C:\Repositorios\Bovespa\Lean\Logging\bin\Debug\QuantConnect.Logging.xml
+C:\Repositorios\Bovespa\Lean\Logging\bin\Debug\QuantConnect.Logging.dll
+C:\Repositorios\Bovespa\Lean\Logging\bin\Debug\QuantConnect.Logging.pdb
+C:\Repositorios\Bovespa\Lean\Logging\bin\Debug\MathNet.Filtering.dll
+C:\Repositorios\Bovespa\Lean\Logging\bin\Debug\MathNet.Numerics.dll
+C:\Repositorios\Bovespa\Lean\Logging\bin\Debug\NLog.dll
+C:\Repositorios\Bovespa\Lean\Logging\obj\Debug\QuantConnect.Logging.GeneratedMSBuildEditorConfig.editorconfig
+C:\Repositorios\Bovespa\Lean\Logging\obj\Debug\QuantConnect.Logging.csproj.CoreCompileInputs.cache
+C:\Repositorios\Bovespa\Lean\Logging\obj\Debug\QuantConnect.Logging.csproj.CopyComplete
+C:\Repositorios\Bovespa\Lean\Logging\obj\Debug\QuantConnect.Logging.dll
+C:\Repositorios\Bovespa\Lean\Logging\obj\Debug\QuantConnect.Logging.pdb

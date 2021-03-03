@@ -1,0 +1,214 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QuantConnect.Configuration</name>
+    </assembly>
+    <members>
+        <member name="T:QuantConnect.Configuration.ApplicationParser">
+            <summary>
+            Command Line application parser
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Configuration.ApplicationParser.Parse(System.String,System.String,System.String,System.String[],System.Collections.Generic.List{QuantConnect.Configuration.CommandLineOption},System.Boolean)">
+            <summary>
+            This function will parse args based on options and will show application name, version, help
+            </summary>
+            <param name="applicationName">The application name to be shown</param>
+            <param name="applicationDescription">The application description to be shown</param>
+            <param name="applicationHelpText">The application help text</param>
+            <param name="args">The command line arguments</param>
+            <param name="options">The applications command line available options</param>
+            <param name="noArgsShowHelp">To show help when no command line arguments were provided</param>
+            <returns>The user provided options. Key is option name</returns>
+        </member>
+        <member name="T:QuantConnect.Configuration.CommandLineOption">
+            <summary>
+            Auxiliary class to keep information about a specific command line option
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Configuration.CommandLineOption.Type">
+            <summary>
+            Command line option type
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Configuration.CommandLineOption.Description">
+            <summary>
+            Command line option description
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Configuration.CommandLineOption.Name">
+            <summary>
+            Command line option name
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Configuration.CommandLineOption.#ctor(System.String,McMaster.Extensions.CommandLineUtils.CommandOptionType,System.String)">
+            <summary>
+            Command line option contructor
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Configuration.Config">
+            <summary>
+            Configuration class loads the required external setup variables to launch the Lean engine.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Configuration.Config.SetConfigurationFile(System.String)">
+            <summary>
+            Set configuration file on-fly
+            </summary>
+            <param name="fileName"></param>
+        </member>
+        <member name="M:QuantConnect.Configuration.Config.MergeCommandLineArgumentsWithConfiguration(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Merge CLI arguments with configuration file + load custom config file via CLI arg
+            </summary>
+            <param name="cliArguments"></param>
+        </member>
+        <member name="M:QuantConnect.Configuration.Config.Reset">
+            <summary>
+            Resets the config settings to their default values.
+            Called in regression tests where multiple algorithms are run sequentially,
+            and we need to guarantee that every test starts with the same configuration.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Configuration.Config.GetEnvironment">
+            <summary>
+            Gets the currently selected environment. If sub-environments are defined,
+            they'll be returned as {env1}.{env2}
+            </summary>
+            <returns>The fully qualified currently selected environment</returns>
+        </member>
+        <member name="M:QuantConnect.Configuration.Config.Get(System.String,System.String)">
+            <summary>
+            Get the matching config setting from the file searching for this key.
+            </summary>
+            <param name="key">String key value we're seaching for in the config file.</param>
+            <param name="defaultValue"></param>
+            <returns>String value of the configuration setting or empty string if nothing found.</returns>
+        </member>
+        <member name="M:QuantConnect.Configuration.Config.GetToken(System.String)">
+            <summary>
+            Gets the underlying JToken for the specified key
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Configuration.Config.Set(System.String,System.Object)">
+            <summary>
+            Sets a configuration value. This is really only used to help testing. The key heye can be
+            specified as {environment}.key to set a value on a specific environment
+            </summary>
+            <param name="key">The key to be set</param>
+            <param name="value">The new value</param>
+        </member>
+        <member name="M:QuantConnect.Configuration.Config.GetBool(System.String,System.Boolean)">
+            <summary>
+            Get a boolean value configuration setting by a configuration key.
+            </summary>
+            <param name="key">String value of the configuration key.</param>
+            <param name="defaultValue">The default value to use if not found in configuration</param>
+            <returns>Boolean value of the config setting.</returns>
+        </member>
+        <member name="M:QuantConnect.Configuration.Config.GetInt(System.String,System.Int32)">
+            <summary>
+            Get the int value of a config string.
+            </summary>
+            <param name="key">Search key from the config file</param>
+            <param name="defaultValue">The default value to use if not found in configuration</param>
+            <returns>Int value of the config setting.</returns>
+        </member>
+        <member name="M:QuantConnect.Configuration.Config.GetDouble(System.String,System.Double)">
+            <summary>
+            Get the double value of a config string.
+            </summary>
+            <param name="key">Search key from the config file</param>
+            <param name="defaultValue">The default value to use if not found in configuration</param>
+            <returns>Double value of the config setting.</returns>
+        </member>
+        <member name="M:QuantConnect.Configuration.Config.GetValue``1(System.String,``0)">
+            <summary>
+            Gets a value from configuration and converts it to the requested type, assigning a default if
+            the configuration is null or empty
+            </summary>
+            <typeparam name="T">The requested type</typeparam>
+            <param name="key">Search key from the config file</param>
+            <param name="defaultValue">The default value to use if not found in configuration</param>
+            <returns>Converted value of the config setting.</returns>
+        </member>
+        <member name="M:QuantConnect.Configuration.Config.TryGetValue``1(System.String,``0@)">
+            <summary>
+            Tries to find the specified key and parse it as a T, using
+            default(T) if unable to locate the key or unable to parse it
+            </summary>
+            <typeparam name="T">The desired output type</typeparam>
+            <param name="key">The configuration key</param>
+            <param name="value">The output value</param>
+            <returns>True on successful parse, false when output value is default(T)</returns>
+        </member>
+        <member name="M:QuantConnect.Configuration.Config.TryGetValue``1(System.String,``0,``0@)">
+            <summary>
+            Tries to find the specified key and parse it as a T, using
+            defaultValue if unable to locate the key or unable to parse it
+            </summary>
+            <typeparam name="T">The desired output type</typeparam>
+            <param name="key">The configuration key</param>
+            <param name="defaultValue">The default value to use on key not found or unsuccessful parse</param>
+            <param name="value">The output value</param>
+            <returns>True on successful parse, false when output value is defaultValue</returns>
+        </member>
+        <member name="M:QuantConnect.Configuration.Config.Write">
+            <summary>
+            Write the contents of the serialized configuration back to the disk.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Configuration.Config.Flatten(System.String)">
+            <summary>
+            Flattens the jobject with respect to the selected environment and then
+            removes the 'environments' node
+            </summary>
+            <param name="overrideEnvironment">The environment to use</param>
+            <returns>The flattened JObject</returns>
+        </member>
+        <member name="M:QuantConnect.Configuration.Config.Flatten(Newtonsoft.Json.Linq.JObject,System.String)">
+            <summary>
+            Flattens the jobject with respect to the selected environment and then
+            removes the 'environments' node
+            </summary>
+            <param name="config">The configuration represented as a JObject</param>
+            <param name="overrideEnvironment">The environment to use</param>
+            <returns>The flattened JObject</returns>
+        </member>
+        <member name="T:QuantConnect.Configuration.LeanArgumentParser">
+            <summary>
+            Command Line arguments parser for Lean configuration
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Configuration.LeanArgumentParser.ParseArguments(System.String[])">
+            <summary>
+            Argument parser contructor
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Configuration.ReportArgumentParser">
+            <summary>
+            Command Line arguments parser for Report Creator
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Configuration.ReportArgumentParser.ParseArguments(System.String[])">
+            <summary>
+            Parse and construct the args.
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Configuration.ToolboxArgumentParser">
+            <summary>
+            Command Line arguments parser for Toolbox configuration
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Configuration.ToolboxArgumentParser.ParseArguments(System.String[])">
+            <summary>
+            Argument parser contructor
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Configuration.ToolboxArgumentParser.GetTickers(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Helper method to get the tickers from the provided options
+            </summary>
+        </member>
+    </members>
+</doc>

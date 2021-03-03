@@ -1,0 +1,461 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.6.2": {
+      "MathNet.Filtering/0.4.0": {
+        "type": "package",
+        "dependencies": {
+          "MathNet.Numerics": "3.8.0"
+        },
+        "compile": {
+          "lib/net40/MathNet.Filtering.dll": {}
+        },
+        "runtime": {
+          "lib/net40/MathNet.Filtering.dll": {}
+        }
+      },
+      "MathNet.Numerics/3.19.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/MathNet.Numerics.dll": {}
+        },
+        "runtime": {
+          "lib/net40/MathNet.Numerics.dll": {}
+        }
+      },
+      "Microsoft.CodeAnalysis.NetAnalyzers/5.0.3": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.CodeAnalysis.NetAnalyzers.props": {},
+          "build/Microsoft.CodeAnalysis.NetAnalyzers.targets": {}
+        }
+      },
+      "NLog/4.4.13": {
+        "type": "package",
+        "compile": {
+          "lib/net45/NLog.dll": {}
+        },
+        "runtime": {
+          "lib/net45/NLog.dll": {}
+        }
+      },
+      "NLog.Config/4.4.13": {
+        "type": "package",
+        "dependencies": {
+          "NLog": "4.4.13",
+          "NLog.Schema": "4.4.13"
+        }
+      },
+      "NLog.Schema/4.4.13": {
+        "type": "package"
+      },
+      "System.ComponentModel.Composition/5.0.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System.ComponentModel.Composition"
+        ],
+        "compile": {
+          "ref/net45/_._": {}
+        },
+        "runtime": {
+          "lib/net45/_._": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MathNet.Filtering/0.4.0": {
+      "sha512": "DsagutRwV4TGYivEHaAEvf52l9dkbzjKh7gYZlnslQumX8XkVEoWnfkJPG6cL/uqoQc5nJNmAbjfH5u+Bd27bg==",
+      "type": "package",
+      "path": "mathnet.filtering/0.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net35/MathNet.Filtering.dll",
+        "lib/net35/MathNet.Filtering.xml",
+        "lib/net40/MathNet.Filtering.dll",
+        "lib/net40/MathNet.Filtering.xml",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/MathNet.Filtering.XML",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/MathNet.Filtering.dll",
+        "license.txt",
+        "mathnet.filtering.0.4.0.nupkg.sha512",
+        "mathnet.filtering.nuspec",
+        "readme.txt"
+      ]
+    },
+    "MathNet.Numerics/3.19.0": {
+      "sha512": "t8a70ASbC4oyZcJBG+c6iKwgIGfPDufDb0WYp5YAcFqh2e0RiIzqFHEOOC61PpckkbYymn3dKEDzC4TnWBh03g==",
+      "type": "package",
+      "path": "mathnet.numerics/3.19.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net35/MathNet.Numerics.dll",
+        "lib/net35/MathNet.Numerics.xml",
+        "lib/net40/MathNet.Numerics.dll",
+        "lib/net40/MathNet.Numerics.xml",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/MathNet.Numerics.XML",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/MathNet.Numerics.dll",
+        "lib/portable-net45+netcore45+MonoAndroid1+MonoTouch1/MathNet.Numerics.XML",
+        "lib/portable-net45+netcore45+MonoAndroid1+MonoTouch1/MathNet.Numerics.dll",
+        "lib/portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1/MathNet.Numerics.XML",
+        "lib/portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1/MathNet.Numerics.dll",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/MathNet.Numerics.XML",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/MathNet.Numerics.dll",
+        "lib/portable-net45+sl5+netcore45+MonoAndroid1+MonoTouch1/MathNet.Numerics.XML",
+        "lib/portable-net45+sl5+netcore45+MonoAndroid1+MonoTouch1/MathNet.Numerics.dll",
+        "license.txt",
+        "mathnet.numerics.3.19.0.nupkg.sha512",
+        "mathnet.numerics.nuspec",
+        "readme.txt"
+      ]
+    },
+    "Microsoft.CodeAnalysis.NetAnalyzers/5.0.3": {
+      "sha512": "7rw0JUPSAVGR0HPekQiQvwGPor44p/Ek21+wZABraG4bVYNrSkx98ZZsxSxG5jJ4oqjACJxea8E62UO0dsKDBw==",
+      "type": "package",
+      "path": "microsoft.codeanalysis.netanalyzers/5.0.3",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "EULA.rtf",
+        "ThirdPartyNotices.rtf",
+        "analyzers/dotnet/cs/Microsoft.CodeAnalysis.CSharp.NetAnalyzers.dll",
+        "analyzers/dotnet/cs/Microsoft.CodeAnalysis.NetAnalyzers.dll",
+        "analyzers/dotnet/cs/cs/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/cs/de/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/cs/es/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/cs/fr/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/cs/it/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/cs/ja/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/cs/ko/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/cs/pl/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/cs/pt-BR/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/cs/ru/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/cs/tr/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/cs/zh-Hans/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/cs/zh-Hant/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/Microsoft.CodeAnalysis.NetAnalyzers.dll",
+        "analyzers/dotnet/vb/Microsoft.CodeAnalysis.VisualBasic.NetAnalyzers.dll",
+        "analyzers/dotnet/vb/cs/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/de/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/es/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/fr/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/it/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/ja/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/ko/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/pl/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/pt-BR/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/ru/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/tr/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/zh-Hans/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/zh-Hant/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "build/DisableNETAnalyzersForNuGetPackage.props",
+        "build/Microsoft.CodeAnalysis.NetAnalyzers.props",
+        "build/Microsoft.CodeAnalysis.NetAnalyzers.targets",
+        "build/config/AnalysisLevelDesign_5_all.editorconfig",
+        "build/config/AnalysisLevelDesign_5_default.editorconfig",
+        "build/config/AnalysisLevelDesign_5_minimum.editorconfig",
+        "build/config/AnalysisLevelDesign_5_none.editorconfig",
+        "build/config/AnalysisLevelDesign_5_recommended.editorconfig",
+        "build/config/AnalysisLevelDocumentation_5_all.editorconfig",
+        "build/config/AnalysisLevelDocumentation_5_default.editorconfig",
+        "build/config/AnalysisLevelDocumentation_5_minimum.editorconfig",
+        "build/config/AnalysisLevelDocumentation_5_none.editorconfig",
+        "build/config/AnalysisLevelDocumentation_5_recommended.editorconfig",
+        "build/config/AnalysisLevelGlobalization_5_all.editorconfig",
+        "build/config/AnalysisLevelGlobalization_5_default.editorconfig",
+        "build/config/AnalysisLevelGlobalization_5_minimum.editorconfig",
+        "build/config/AnalysisLevelGlobalization_5_none.editorconfig",
+        "build/config/AnalysisLevelGlobalization_5_recommended.editorconfig",
+        "build/config/AnalysisLevelInteroperability_5_all.editorconfig",
+        "build/config/AnalysisLevelInteroperability_5_default.editorconfig",
+        "build/config/AnalysisLevelInteroperability_5_minimum.editorconfig",
+        "build/config/AnalysisLevelInteroperability_5_none.editorconfig",
+        "build/config/AnalysisLevelInteroperability_5_recommended.editorconfig",
+        "build/config/AnalysisLevelMaintainability_5_all.editorconfig",
+        "build/config/AnalysisLevelMaintainability_5_default.editorconfig",
+        "build/config/AnalysisLevelMaintainability_5_minimum.editorconfig",
+        "build/config/AnalysisLevelMaintainability_5_none.editorconfig",
+        "build/config/AnalysisLevelMaintainability_5_recommended.editorconfig",
+        "build/config/AnalysisLevelNaming_5_all.editorconfig",
+        "build/config/AnalysisLevelNaming_5_default.editorconfig",
+        "build/config/AnalysisLevelNaming_5_minimum.editorconfig",
+        "build/config/AnalysisLevelNaming_5_none.editorconfig",
+        "build/config/AnalysisLevelNaming_5_recommended.editorconfig",
+        "build/config/AnalysisLevelPerformance_5_all.editorconfig",
+        "build/config/AnalysisLevelPerformance_5_default.editorconfig",
+        "build/config/AnalysisLevelPerformance_5_minimum.editorconfig",
+        "build/config/AnalysisLevelPerformance_5_none.editorconfig",
+        "build/config/AnalysisLevelPerformance_5_recommended.editorconfig",
+        "build/config/AnalysisLevelPublish_5_all.editorconfig",
+        "build/config/AnalysisLevelPublish_5_default.editorconfig",
+        "build/config/AnalysisLevelPublish_5_minimum.editorconfig",
+        "build/config/AnalysisLevelPublish_5_none.editorconfig",
+        "build/config/AnalysisLevelPublish_5_recommended.editorconfig",
+        "build/config/AnalysisLevelReliability_5_all.editorconfig",
+        "build/config/AnalysisLevelReliability_5_default.editorconfig",
+        "build/config/AnalysisLevelReliability_5_minimum.editorconfig",
+        "build/config/AnalysisLevelReliability_5_none.editorconfig",
+        "build/config/AnalysisLevelReliability_5_recommended.editorconfig",
+        "build/config/AnalysisLevelSecurity_5_all.editorconfig",
+        "build/config/AnalysisLevelSecurity_5_default.editorconfig",
+        "build/config/AnalysisLevelSecurity_5_minimum.editorconfig",
+        "build/config/AnalysisLevelSecurity_5_none.editorconfig",
+        "build/config/AnalysisLevelSecurity_5_recommended.editorconfig",
+        "build/config/AnalysisLevelUsage_5_all.editorconfig",
+        "build/config/AnalysisLevelUsage_5_default.editorconfig",
+        "build/config/AnalysisLevelUsage_5_minimum.editorconfig",
+        "build/config/AnalysisLevelUsage_5_none.editorconfig",
+        "build/config/AnalysisLevelUsage_5_recommended.editorconfig",
+        "build/config/AnalysisLevel_5_all.editorconfig",
+        "build/config/AnalysisLevel_5_default.editorconfig",
+        "build/config/AnalysisLevel_5_minimum.editorconfig",
+        "build/config/AnalysisLevel_5_none.editorconfig",
+        "build/config/AnalysisLevel_5_recommended.editorconfig",
+        "documentation/Analyzer Configuration.md",
+        "documentation/Microsoft.CodeAnalysis.NetAnalyzers.md",
+        "documentation/Microsoft.CodeAnalysis.NetAnalyzers.sarif",
+        "editorconfig/AllRulesDefault/.editorconfig",
+        "editorconfig/AllRulesDisabled/.editorconfig",
+        "editorconfig/AllRulesEnabled/.editorconfig",
+        "editorconfig/DataflowRulesDefault/.editorconfig",
+        "editorconfig/DataflowRulesEnabled/.editorconfig",
+        "editorconfig/DesignRulesDefault/.editorconfig",
+        "editorconfig/DesignRulesEnabled/.editorconfig",
+        "editorconfig/DocumentationRulesDefault/.editorconfig",
+        "editorconfig/DocumentationRulesEnabled/.editorconfig",
+        "editorconfig/GlobalizationRulesDefault/.editorconfig",
+        "editorconfig/GlobalizationRulesEnabled/.editorconfig",
+        "editorconfig/InteroperabilityRulesDefault/.editorconfig",
+        "editorconfig/InteroperabilityRulesEnabled/.editorconfig",
+        "editorconfig/MaintainabilityRulesDefault/.editorconfig",
+        "editorconfig/MaintainabilityRulesEnabled/.editorconfig",
+        "editorconfig/NamingRulesDefault/.editorconfig",
+        "editorconfig/NamingRulesEnabled/.editorconfig",
+        "editorconfig/PerformanceRulesDefault/.editorconfig",
+        "editorconfig/PerformanceRulesEnabled/.editorconfig",
+        "editorconfig/PortedFromFxCopRulesDefault/.editorconfig",
+        "editorconfig/PortedFromFxCopRulesEnabled/.editorconfig",
+        "editorconfig/PublishRulesDefault/.editorconfig",
+        "editorconfig/PublishRulesEnabled/.editorconfig",
+        "editorconfig/ReliabilityRulesDefault/.editorconfig",
+        "editorconfig/ReliabilityRulesEnabled/.editorconfig",
+        "editorconfig/SecurityRulesDefault/.editorconfig",
+        "editorconfig/SecurityRulesEnabled/.editorconfig",
+        "editorconfig/UsageRulesDefault/.editorconfig",
+        "editorconfig/UsageRulesEnabled/.editorconfig",
+        "microsoft.codeanalysis.netanalyzers.5.0.3.nupkg.sha512",
+        "microsoft.codeanalysis.netanalyzers.nuspec",
+        "rulesets/AllRulesDefault.ruleset",
+        "rulesets/AllRulesDisabled.ruleset",
+        "rulesets/AllRulesEnabled.ruleset",
+        "rulesets/DataflowRulesDefault.ruleset",
+        "rulesets/DataflowRulesEnabled.ruleset",
+        "rulesets/DesignRulesDefault.ruleset",
+        "rulesets/DesignRulesEnabled.ruleset",
+        "rulesets/DocumentationRulesDefault.ruleset",
+        "rulesets/DocumentationRulesEnabled.ruleset",
+        "rulesets/GlobalizationRulesDefault.ruleset",
+        "rulesets/GlobalizationRulesEnabled.ruleset",
+        "rulesets/InteroperabilityRulesDefault.ruleset",
+        "rulesets/InteroperabilityRulesEnabled.ruleset",
+        "rulesets/MaintainabilityRulesDefault.ruleset",
+        "rulesets/MaintainabilityRulesEnabled.ruleset",
+        "rulesets/NamingRulesDefault.ruleset",
+        "rulesets/NamingRulesEnabled.ruleset",
+        "rulesets/PerformanceRulesDefault.ruleset",
+        "rulesets/PerformanceRulesEnabled.ruleset",
+        "rulesets/PortedFromFxCopRulesDefault.ruleset",
+        "rulesets/PortedFromFxCopRulesEnabled.ruleset",
+        "rulesets/PublishRulesDefault.ruleset",
+        "rulesets/PublishRulesEnabled.ruleset",
+        "rulesets/ReliabilityRulesDefault.ruleset",
+        "rulesets/ReliabilityRulesEnabled.ruleset",
+        "rulesets/SecurityRulesDefault.ruleset",
+        "rulesets/SecurityRulesEnabled.ruleset",
+        "rulesets/UsageRulesDefault.ruleset",
+        "rulesets/UsageRulesEnabled.ruleset",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
+    "NLog/4.4.13": {
+      "sha512": "EJU3yYEW1migC1lG8dhX6Vi/DKJ8VuRL7JmJnLh1iQFIWh5lRQbZ8Zu9i6t/iP3h2Q6m6VeZjz6/mVmRvEKwYQ==",
+      "type": "package",
+      "path": "nlog/4.4.13",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/MonoAndroid10/NLog.dll",
+        "lib/MonoAndroid10/NLog.xml",
+        "lib/Xamarin.iOS10/NLog.dll",
+        "lib/Xamarin.iOS10/NLog.xml",
+        "lib/net35/NLog.dll",
+        "lib/net35/NLog.xml",
+        "lib/net40/NLog.dll",
+        "lib/net40/NLog.xml",
+        "lib/net45/NLog.dll",
+        "lib/net45/NLog.xml",
+        "lib/sl4/NLog.dll",
+        "lib/sl4/NLog.xml",
+        "lib/sl5/NLog.dll",
+        "lib/sl5/NLog.xml",
+        "lib/wp8/NLog.dll",
+        "lib/wp8/NLog.xml",
+        "nlog.4.4.13.nupkg.sha512",
+        "nlog.nuspec"
+      ]
+    },
+    "NLog.Config/4.4.13": {
+      "sha512": "4Oz/GUzYfIGU5aJSOFxNz42Sxlhm3mgCoAe4SiPvVIFSl0Lw4eyKCNuFP0Gq2Twa+myboyPB5om8ndiK6FJm4w==",
+      "type": "package",
+      "path": "nlog.config/4.4.13",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/NLog.config",
+        "nlog.config.4.4.13.nupkg.sha512",
+        "nlog.config.nuspec",
+        "tools/Install.ps1"
+      ]
+    },
+    "NLog.Schema/4.4.13": {
+      "sha512": "5fIRmMoxdhLpsEywBI0gTUzRpWU7/rMjNclzCHdpTLy77xUQTgwOaIQ78RgizvRIMmSSm8AD6diGnbLmTZ7P6g==",
+      "type": "package",
+      "path": "nlog.schema/4.4.13",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/NLog.xsd",
+        "nlog.schema.4.4.13.nupkg.sha512",
+        "nlog.schema.nuspec"
+      ]
+    },
+    "System.ComponentModel.Composition/5.0.0": {
+      "sha512": "YL8iA3VOFxhyomn7FxtBgh3F+8XG5jOfT5UcqYLtkafSa6g6alQfKZuRwlEIWe+tzH6OVnj0Ekg5tn/DmV7SkQ==",
+      "type": "package",
+      "path": "system.componentmodel.composition/5.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/netcoreapp2.0/System.ComponentModel.Composition.dll",
+        "lib/netcoreapp2.0/System.ComponentModel.Composition.xml",
+        "lib/netstandard2.0/System.ComponentModel.Composition.dll",
+        "lib/netstandard2.0/System.ComponentModel.Composition.xml",
+        "lib/uap10.0.16299/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net45/_._",
+        "ref/netstandard2.0/System.ComponentModel.Composition.dll",
+        "ref/netstandard2.0/System.ComponentModel.Composition.xml",
+        "ref/uap10.0.16299/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.componentmodel.composition.5.0.0.nupkg.sha512",
+        "system.componentmodel.composition.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.6.2": [
+      "MathNet.Filtering >= 0.4.0",
+      "MathNet.Numerics >= 3.19.0",
+      "Microsoft.CodeAnalysis.NetAnalyzers >= 5.0.3",
+      "NLog >= 4.4.13",
+      "NLog.Config >= 4.4.13",
+      "NLog.Schema >= 4.4.13",
+      "System.ComponentModel.Composition >= 5.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Lucas\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Repositorios\\Bovespa\\Lean\\Logging\\QuantConnect.Logging.csproj",
+      "projectName": "QuantConnect.Logging",
+      "projectPath": "C:\\Repositorios\\Bovespa\\Lean\\Logging\\QuantConnect.Logging.csproj",
+      "packagesPath": "C:\\Users\\Lucas\\.nuget\\packages\\",
+      "outputPath": "C:\\Repositorios\\Bovespa\\Lean\\Logging\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\Lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net462"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {},
+        "https://pkgs.dev.azure.com/EDPBR-TI/_packaging/EDP-FSA/nuget/v3/index.json": {}
+      },
+      "frameworks": {
+        "net462": {
+          "targetAlias": "net462",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net462": {
+        "targetAlias": "net462",
+        "dependencies": {
+          "MathNet.Filtering": {
+            "target": "Package",
+            "version": "[0.4.0, )"
+          },
+          "MathNet.Numerics": {
+            "target": "Package",
+            "version": "[3.19.0, )"
+          },
+          "Microsoft.CodeAnalysis.NetAnalyzers": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[5.0.3, )"
+          },
+          "NLog": {
+            "target": "Package",
+            "version": "[4.4.13, )"
+          },
+          "NLog.Config": {
+            "target": "Package",
+            "version": "[4.4.13, )"
+          },
+          "NLog.Schema": {
+            "target": "Package",
+            "version": "[4.4.13, )"
+          },
+          "System.ComponentModel.Composition": {
+            "target": "Package",
+            "version": "[5.0.0, )"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

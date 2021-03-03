@@ -1,0 +1,1947 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QuantConnect.Algorithm.Framework</name>
+    </assembly>
+    <members>
+        <member name="T:QuantConnect.Algorithm.Framework.Alphas.BasePairsTradingAlphaModel">
+            <summary>
+            This alpha model is designed to accept every possible pair combination
+            from securities selected by the universe selection model
+            This model generates alternating long ratio/short ratio insights emitted as a group
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Algorithm.Framework.Alphas.BasePairsTradingAlphaModel.Securities">
+            <summary>
+            List of security objects present in the universe
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Alphas.BasePairsTradingAlphaModel.#ctor(System.Int32,QuantConnect.Resolution,System.Decimal)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Alphas.BasePairsTradingAlphaModel"/> class
+            </summary>
+            <param name="lookback">Lookback period of the analysis</param>
+            <param name="resolution">Analysis resolution</param>
+            <param name="threshold">The percent [0, 100] deviation of the ratio from the mean before emitting an insight</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Alphas.BasePairsTradingAlphaModel.Update(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Data.Slice)">
+            <summary>
+            Updates this alpha model with the latest data from the algorithm.
+            This is called each time the algorithm receives data for subscribed securities
+            </summary>
+            <param name="algorithm">The algorithm instance</param>
+            <param name="data">The new data available</param>
+            <returns>The new insights generated</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Alphas.BasePairsTradingAlphaModel.OnSecuritiesChanged(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Data.UniverseSelection.SecurityChanges)">
+            <summary>
+            Event fired each time the we add/remove securities from the data feed
+            </summary>
+            <param name="algorithm">The algorithm instance that experienced the change in securities</param>
+            <param name="changes">The security additions and removals from the algorithm</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Alphas.BasePairsTradingAlphaModel.HasPassedTest(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Symbol,QuantConnect.Symbol)">
+            <summary>
+            Check whether the assets pass a pairs trading test
+            </summary>
+            <param name="algorithm">The algorithm instance that experienced the change in securities</param>
+            <param name="asset1">The first asset's symbol in the pair</param>
+            <param name="asset2">The second asset's symbol in the pair</param>
+            <returns>True if the statistical test for the pair is successful</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Alphas.BasePairsTradingAlphaModel.PairData.#ctor(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Symbol,QuantConnect.Symbol,System.TimeSpan,System.Decimal)">
+            <summary>
+            Create a new pair
+            </summary>
+            <param name="algorithm">The algorithm instance that experienced the change in securities</param>
+            <param name="asset1">The first asset's symbol in the pair</param>
+            <param name="asset2">The second asset's symbol in the pair</param>
+            <param name="period">Period over which this insight is expected to come to fruition</param>
+            <param name="threshold">The percent [0, 100] deviation of the ratio from the mean before emitting an insight</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Alphas.BasePairsTradingAlphaModel.PairData.GetInsightGroup">
+            <summary>
+            Gets the insights group for the pair
+            </summary>
+            <returns>Insights grouped by an unique group id</returns>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Alphas.ConstantAlphaModel">
+            <summary>
+            Provides an implementation of <see cref="T:QuantConnect.Algorithm.Framework.Alphas.IAlphaModel"/> that always returns the same insight for each security
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Alphas.ConstantAlphaModel.#ctor(QuantConnect.Algorithm.Framework.Alphas.InsightType,QuantConnect.Algorithm.Framework.Alphas.InsightDirection,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Alphas.ConstantAlphaModel"/> class
+            </summary>
+            <param name="type">The type of insight</param>
+            <param name="direction">The direction of the insight</param>
+            <param name="period">The period over which the insight with come to fruition</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Alphas.ConstantAlphaModel.#ctor(QuantConnect.Algorithm.Framework.Alphas.InsightType,QuantConnect.Algorithm.Framework.Alphas.InsightDirection,System.TimeSpan,System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Double})">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Alphas.ConstantAlphaModel"/> class
+            </summary>
+            <param name="type">The type of insight</param>
+            <param name="direction">The direction of the insight</param>
+            <param name="period">The period over which the insight with come to fruition</param>
+            <param name="magnitude">The predicted change in magnitude as a +- percentage</param>
+            <param name="confidence">The confidence in the insight</param>
+            <param name="weight">The portfolio weight of the insights</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Alphas.ConstantAlphaModel.Update(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Data.Slice)">
+            <summary>
+            Creates a constant insight for each security as specified via the constructor
+            </summary>
+            <param name="algorithm">The algorithm instance</param>
+            <param name="data">The new data available</param>
+            <returns>The new insights generated</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Alphas.ConstantAlphaModel.OnSecuritiesChanged(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Data.UniverseSelection.SecurityChanges)">
+            <summary>
+            Event fired each time the we add/remove securities from the data feed
+            </summary>
+            <param name="algorithm">The algorithm instance that experienced the change in securities</param>
+            <param name="changes">The security additions and removals from the algorithm</param>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Alphas.EmaCrossAlphaModel">
+            <summary>
+            Alpha model that uses an EMA cross to create insights
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Alphas.EmaCrossAlphaModel.#ctor(System.Int32,System.Int32,QuantConnect.Resolution)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Alphas.EmaCrossAlphaModel"/> class
+            </summary>
+            <param name="fastPeriod">The fast EMA period</param>
+            <param name="slowPeriod">The slow EMA period</param>
+            <param name="resolution">The resolution of data sent into the EMA indicators</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Alphas.EmaCrossAlphaModel.Update(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Data.Slice)">
+            <summary>
+            Updates this alpha model with the latest data from the algorithm.
+            This is called each time the algorithm receives data for subscribed securities
+            </summary>
+            <param name="algorithm">The algorithm instance</param>
+            <param name="data">The new data available</param>
+            <returns>The new insights generated</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Alphas.EmaCrossAlphaModel.OnSecuritiesChanged(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Data.UniverseSelection.SecurityChanges)">
+            <summary>
+            Event fired each time the we add/remove securities from the data feed
+            </summary>
+            <param name="algorithm">The algorithm instance that experienced the change in securities</param>
+            <param name="changes">The security additions and removals from the algorithm</param>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Alphas.EmaCrossAlphaModel.SymbolData">
+            <summary>
+            Contains data specific to a symbol required by this model
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Algorithm.Framework.Alphas.EmaCrossAlphaModel.SymbolData.FastIsOverSlow">
+            <summary>
+            True if the fast is above the slow, otherwise false.
+            This is used to prevent emitting the same signal repeatedly
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Alphas.HistoricalReturnsAlphaModel">
+            <summary>
+            Alpha model that uses historical returns to create insights
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Alphas.HistoricalReturnsAlphaModel.#ctor(System.Int32,QuantConnect.Resolution)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Alphas.HistoricalReturnsAlphaModel"/> class
+            </summary>
+            <param name="lookback">Historical return lookback period</param>
+            <param name="resolution">The resolution of historical data</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Alphas.HistoricalReturnsAlphaModel.Update(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Data.Slice)">
+            <summary>
+            Updates this alpha model with the latest data from the algorithm.
+            This is called each time the algorithm receives data for subscribed securities
+            </summary>
+            <param name="algorithm">The algorithm instance</param>
+            <param name="data">The new data available</param>
+            <returns>The new insights generated</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Alphas.HistoricalReturnsAlphaModel.OnSecuritiesChanged(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Data.UniverseSelection.SecurityChanges)">
+            <summary>
+            Event fired each time the we add/remove securities from the data feed
+            </summary>
+            <param name="algorithm">The algorithm instance that experienced the change in securities</param>
+            <param name="changes">The security additions and removals from the algorithm</param>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Alphas.HistoricalReturnsAlphaModel.SymbolData">
+            <summary>
+            Contains data specific to a symbol required by this model
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Alphas.MacdAlphaModel">
+            <summary>
+            Defines a custom alpha model that uses MACD crossovers. The MACD signal line is
+            used to generate up/down insights if it's stronger than the bounce threshold.
+            If the MACD signal is within the bounce threshold then a flat price insight is returned.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Alphas.MacdAlphaModel.#ctor(System.Int32,System.Int32,System.Int32,QuantConnect.Indicators.MovingAverageType,QuantConnect.Resolution)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Alphas.MacdAlphaModel"/> class
+            </summary>
+            <param name="fastPeriod">The MACD fast period</param>
+            <param name="slowPeriod">The MACD slow period</param>
+            <param name="signalPeriod">The smoothing period for the MACD signal</param>
+            <param name="movingAverageType">The type of moving average to use in the MACD</param>
+            <param name="resolution">The resolution of data sent into the MACD indicator</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Alphas.MacdAlphaModel.Update(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Data.Slice)">
+            <summary>
+            Determines an insight for each security based on it's current MACD signal
+            </summary>
+            <param name="algorithm">The algorithm instance</param>
+            <param name="data">The new data available</param>
+            <returns>The new insights generated</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Alphas.MacdAlphaModel.OnSecuritiesChanged(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Data.UniverseSelection.SecurityChanges)">
+            <summary>
+            Event fired each time the we add/remove securities from the data feed.
+            This initializes the MACD for each added security and cleans up the indicator for each removed security.
+            </summary>
+            <param name="algorithm">The algorithm instance that experienced the change in securities</param>
+            <param name="changes">The security additions and removals from the algorithm</param>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Alphas.PearsonCorrelationPairsTradingAlphaModel">
+            <summary>
+            This alpha model is designed to rank every pair combination by its pearson correlation
+            and trade the pair with the hightest correlation
+            This model generates alternating long ratio/short ratio insights emitted as a group
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Alphas.PearsonCorrelationPairsTradingAlphaModel.#ctor(System.Int32,QuantConnect.Resolution,System.Decimal,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Alphas.PearsonCorrelationPairsTradingAlphaModel"/> class
+            </summary>
+            <param name="lookback">Lookback period of the analysis</param>
+            <param name="resolution">Analysis resolution</param>
+            <param name="threshold">The percent [0, 100] deviation of the ratio from the mean before emitting an insight</param>
+            <param name="minimumCorrelation">The minimum correlation to consider a tradable pair</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Alphas.PearsonCorrelationPairsTradingAlphaModel.OnSecuritiesChanged(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Data.UniverseSelection.SecurityChanges)">
+            <summary>
+            Event fired each time the we add/remove securities from the data feed
+            </summary>
+            <param name="algorithm">The algorithm instance that experienced the change in securities</param>
+            <param name="changes">The security additions and removals from the algorithm</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Alphas.PearsonCorrelationPairsTradingAlphaModel.HasPassedTest(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Symbol,QuantConnect.Symbol)">
+            <summary>
+            Check whether the assets pass a pairs trading test
+            </summary>
+            <param name="algorithm">The algorithm instance that experienced the change in securities</param>
+            <param name="asset1">The first asset's symbol in the pair</param>
+            <param name="asset2">The second asset's symbol in the pair</param>
+            <returns>True if the statistical test for the pair is successful</returns>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Alphas.RsiAlphaModel">
+            <summary>
+            Uses Wilder's RSI to create insights. Using default settings, a cross over below 30 or above 70 will
+            trigger a new insight.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Alphas.RsiAlphaModel.#ctor(System.Int32,QuantConnect.Resolution)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Alphas.RsiAlphaModel"/> class
+            </summary>
+            <param name="period">The RSI indicator period</param>
+            <param name="resolution">The resolution of data sent into the RSI indicator</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Alphas.RsiAlphaModel.Update(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Data.Slice)">
+            <summary>
+            Updates this alpha model with the latest data from the algorithm.
+            This is called each time the algorithm receives data for subscribed securities
+            </summary>
+            <param name="algorithm">The algorithm instance</param>
+            <param name="data">The new data available</param>
+            <returns>The new insights generated</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Alphas.RsiAlphaModel.OnSecuritiesChanged(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Data.UniverseSelection.SecurityChanges)">
+            <summary>
+            Cleans out old security data and initializes the RSI for any newly added securities.
+            This functional also seeds any new indicators using a history request.
+            </summary>
+            <param name="algorithm">The algorithm instance that experienced the change in securities</param>
+            <param name="changes">The security additions and removals from the algorithm</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Alphas.RsiAlphaModel.GetState(QuantConnect.Indicators.RelativeStrengthIndex,QuantConnect.Algorithm.Framework.Alphas.RsiAlphaModel.State)">
+            <summary>
+            Determines the new state. This is basically cross-over detection logic that
+            includes considerations for bouncing using the configured bounce tolerance.
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Alphas.RsiAlphaModel.SymbolData">
+            <summary>
+            Contains data specific to a symbol required by this model
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Alphas.RsiAlphaModel.State">
+            <summary>
+            Defines the state. This is used to prevent signal spamming and aid in bounce detection.
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Execution.StandardDeviationExecutionModel">
+            <summary>
+            Execution model that submits orders while the current market prices is at least the configured number of standard
+            deviations away from the mean in the favorable direction (below/above for buy/sell respectively)
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Algorithm.Framework.Execution.StandardDeviationExecutionModel.MaximumOrderValue">
+            <summary>
+            Gets or sets the maximum order value in units of the account currency.
+            This defaults to $20,000. For example, if purchasing a stock with a price
+            of $100, then the maximum order size would be 200 shares.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Execution.StandardDeviationExecutionModel.#ctor(System.Int32,System.Decimal,QuantConnect.Resolution)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Execution.StandardDeviationExecutionModel"/> class
+            </summary>
+            <param name="period">Period of the standard deviation indicator</param>
+            <param name="deviations">The number of deviations away from the mean before submitting an order</param>
+            <param name="resolution">The resolution of the STD and SMA indicators</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Execution.StandardDeviationExecutionModel.Execute(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Algorithm.Framework.Portfolio.IPortfolioTarget[])">
+            <summary>
+            Executes market orders if the standard deviation of price is more than the configured number of deviations
+            in the favorable direction.
+            </summary>
+            <param name="algorithm">The algorithm instance</param>
+            <param name="targets">The portfolio targets</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Execution.StandardDeviationExecutionModel.OnSecuritiesChanged(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Data.UniverseSelection.SecurityChanges)">
+            <summary>
+            Event fired each time the we add/remove securities from the data feed
+            </summary>
+            <param name="algorithm">The algorithm instance that experienced the change in securities</param>
+            <param name="changes">The security additions and removals from the algorithm</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Execution.StandardDeviationExecutionModel.PriceIsFavorable(QuantConnect.Algorithm.Framework.Execution.StandardDeviationExecutionModel.SymbolData,System.Decimal)">
+            <summary>
+            Determines if the current price is more than the configured number of standard deviations
+            away from the mean in the favorable direction.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Execution.StandardDeviationExecutionModel.IsSafeToRemove(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Symbol)">
+            <summary>
+            Determines if it's safe to remove the associated symbol data
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Execution.VolumeWeightedAveragePriceExecutionModel">
+            <summary>
+            Execution model that submits orders while the current market price is more favorable that the current volume weighted average price.
+            </summary>
+        </member>
+        <member name="P:QuantConnect.Algorithm.Framework.Execution.VolumeWeightedAveragePriceExecutionModel.MaximumOrderQuantityPercentVolume">
+            <summary>
+            Gets or sets the maximum order quantity as a percentage of the current bar's volume.
+            This defaults to 0.01m = 1%. For example, if the current bar's volume is 100, then
+            the maximum order size would equal 1 share.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Execution.VolumeWeightedAveragePriceExecutionModel.Execute(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Algorithm.Framework.Portfolio.IPortfolioTarget[])">
+            <summary>
+            Submit orders for the specified portolio targets.
+            This model is free to delay or spread out these orders as it sees fit
+            </summary>
+            <param name="algorithm">The algorithm instance</param>
+            <param name="targets">The portfolio targets to be ordered</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Execution.VolumeWeightedAveragePriceExecutionModel.OnSecuritiesChanged(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Data.UniverseSelection.SecurityChanges)">
+            <summary>
+            Event fired each time the we add/remove securities from the data feed
+            </summary>
+            <param name="algorithm">The algorithm instance that experienced the change in securities</param>
+            <param name="changes">The security additions and removals from the algorithm</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Execution.VolumeWeightedAveragePriceExecutionModel.IsSafeToRemove(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Symbol)">
+            <summary>
+            Determines if it's safe to remove the associated symbol data
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Execution.VolumeWeightedAveragePriceExecutionModel.PriceIsFavorable(QuantConnect.Algorithm.Framework.Execution.VolumeWeightedAveragePriceExecutionModel.SymbolData,System.Decimal)">
+            <summary>
+            Determines if the current price is better than VWAP
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.NotifiedSecurityChanges">
+            <summary>
+            Provides convenience methods for updating collections in responses to securities changed events
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.NotifiedSecurityChanges.UpdateCollection(System.Collections.Generic.ICollection{QuantConnect.Securities.Security},QuantConnect.Data.UniverseSelection.SecurityChanges)">
+            <summary>
+            Adds and removes the security changes to/from the collection
+            </summary>
+            <param name="securities">The securities collection to be updated with the changes</param>
+            <param name="changes">The changes to be applied to the securities collection</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.NotifiedSecurityChanges.UpdateCollection``1(System.Collections.Generic.ICollection{``0},QuantConnect.Data.UniverseSelection.SecurityChanges,System.Func{QuantConnect.Securities.Security,``0})">
+            <summary>
+            Adds and removes the security changes to/from the collection
+            </summary>
+            <param name="securities">The securities collection to be updated with the changes</param>
+            <param name="changes">The changes to be applied to the securities collection</param>
+            <param name="valueFactory">Delegate used to create instances of <typeparamref name="TValue"/> from a <see cref="T:QuantConnect.Securities.Security"/> object</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.NotifiedSecurityChanges.UpdateDictionary``1(System.Collections.Generic.IDictionary{QuantConnect.Securities.Security,``0},QuantConnect.Data.UniverseSelection.SecurityChanges,System.Func{QuantConnect.Securities.Security,``0})">
+            <summary>
+            Adds and removes the security changes to/from the collection
+            </summary>
+            <param name="dictionary">The securities collection to be updated with the changes</param>
+            <param name="changes">The changes to be applied to the securities collection</param>
+            <param name="valueFactory">Factory for creating dictonary values for a key</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.NotifiedSecurityChanges.UpdateDictionary``1(System.Collections.Generic.IDictionary{QuantConnect.Symbol,``0},QuantConnect.Data.UniverseSelection.SecurityChanges,System.Func{QuantConnect.Securities.Security,``0})">
+            <summary>
+            Adds and removes the security changes to/from the collection
+            </summary>
+            <param name="dictionary">The securities collection to be updated with the changes</param>
+            <param name="changes">The changes to be applied to the securities collection</param>
+            <param name="valueFactory">Factory for creating dictonary values for a key</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.NotifiedSecurityChanges.UpdateDictionary``2(System.Collections.Generic.IDictionary{``0,``1},QuantConnect.Data.UniverseSelection.SecurityChanges,System.Func{QuantConnect.Securities.Security,``0},System.Func{QuantConnect.Securities.Security,``1})">
+            <summary>
+            Most generic form of <see cref="M:QuantConnect.Algorithm.Framework.NotifiedSecurityChanges.UpdateCollection(System.Collections.Generic.ICollection{QuantConnect.Securities.Security},QuantConnect.Data.UniverseSelection.SecurityChanges)"/>
+            </summary>
+            <typeparam name="TKey">The dictionary's key type</typeparam>
+            <typeparam name="TValue">The dictionary's value type</typeparam>
+            <param name="dictionary">The dictionary to update</param>
+            <param name="changes">The <seealso cref="T:QuantConnect.Data.UniverseSelection.SecurityChanges"/> to apply to the dictionary</param>
+            <param name="keyFactory">Selector pulling <typeparamref name="TKey"/> from a <seealso cref="T:QuantConnect.Securities.Security"/></param>
+            <param name="valueFactory">Selector pulling <typeparamref name="TValue"/> from a <seealso cref="T:QuantConnect.Securities.Security"/></param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.NotifiedSecurityChanges.Update(QuantConnect.Data.UniverseSelection.SecurityChanges,System.Action{QuantConnect.Securities.Security},System.Action{QuantConnect.Securities.Security})">
+            <summary>
+            Invokes the provided <paramref name="add"/> and <paramref name="remove"/> functions for each
+            <seealso cref="M:QuantConnect.Data.UniverseSelection.SecurityChanges.Added(QuantConnect.Securities.Security[])"/> and <seealso cref="M:QuantConnect.Data.UniverseSelection.SecurityChanges.Removed(QuantConnect.Securities.Security[])"/>, respectively
+            </summary>
+            <param name="changes">The security changes to process</param>
+            <param name="add">Function called for each added security</param>
+            <param name="remove">Function called for each removed security</param>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Portfolio.AccumulativeInsightPortfolioConstructionModel">
+            <summary>
+            Provides an implementation of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.IPortfolioConstructionModel"/> that allocates percent of account
+            to each insight, defaulting to 3%.
+            For insights of direction <see cref="F:QuantConnect.Algorithm.Framework.Alphas.InsightDirection.Up"/>, long targets are returned and
+            for insights of direction <see cref="F:QuantConnect.Algorithm.Framework.Alphas.InsightDirection.Down"/>, short targets are returned.
+            By default, no rebalancing shall be done.
+            Rules:
+               1. On active Up insight, increase position size by percent
+               2. On active Down insight, decrease position size by percent
+               3. On active Flat insight, move by percent towards 0
+               4. On expired insight, and no other active insight, emits a 0 target'''
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.AccumulativeInsightPortfolioConstructionModel.#ctor(QuantConnect.Scheduling.IDateRule,QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias,System.Double)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.AccumulativeInsightPortfolioConstructionModel"/>
+            </summary>
+            <param name="rebalancingDateRules">The date rules used to define the next expected rebalance time
+            in UTC</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+            <param name="percent">The percentage amount of the portfolio value to allocate
+            to a single insight. The value of percent should be in the range [0,1].
+            The default value is 0.03.</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.AccumulativeInsightPortfolioConstructionModel.#ctor(System.Func{System.DateTime,System.Nullable{System.DateTime}},QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias,System.Double)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.AccumulativeInsightPortfolioConstructionModel"/>
+            </summary>
+            <param name="rebalancingFunc">For a given algorithm UTC DateTime returns the next expected rebalance time
+            or null if unknown, in which case the function will be called again in the next loop. Returning current time
+            will trigger rebalance. If null will be ignored</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+            <param name="percent">The percentage amount of the portfolio value to allocate
+            to a single insight. The value of percent should be in the range [0,1].
+            The default value is 0.03.</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.AccumulativeInsightPortfolioConstructionModel.#ctor(System.Func{System.DateTime,System.DateTime},QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias,System.Double)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.AccumulativeInsightPortfolioConstructionModel"/>
+            </summary>
+            <param name="rebalancingFunc">For a given algorithm UTC DateTime returns the next expected rebalance UTC time.
+            Returning current time will trigger rebalance. If null will be ignored</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+            <param name="percent">The percentage amount of the portfolio value to allocate
+            to a single insight. The value of percent should be in the range [0,1].
+            The default value is 0.03.</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.AccumulativeInsightPortfolioConstructionModel.#ctor(Python.Runtime.PyObject,QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias,System.Double)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.AccumulativeInsightPortfolioConstructionModel"/>
+            </summary>
+            <param name="rebalance">Rebalancing func or if a date rule, timedelta will be converted into func.
+            For a given algorithm UTC DateTime the func returns the next expected rebalance time
+            or null if unknown, in which case the function will be called again in the next loop. Returning current time
+            will trigger rebalance. If null will be ignored</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+            <remarks>This is required since python net can not convert python methods into func nor resolve the correct
+            constructor for the date rules parameter.
+            For performance we prefer python algorithms using the C# implementation</remarks>
+            <param name="percent">The percentage amount of the portfolio value to allocate
+            to a single insight. The value of percent should be in the range [0,1].
+            The default value is 0.03.</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.AccumulativeInsightPortfolioConstructionModel.#ctor(System.TimeSpan,QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias,System.Double)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.AccumulativeInsightPortfolioConstructionModel"/>
+            </summary>
+            <param name="timeSpan">Rebalancing frequency</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+            <param name="percent">The percentage amount of the portfolio value to allocate
+            to a single insight. The value of percent should be in the range [0,1].
+            The default value is 0.03.</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.AccumulativeInsightPortfolioConstructionModel.#ctor(QuantConnect.Resolution,QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias,System.Double)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.AccumulativeInsightPortfolioConstructionModel"/>
+            </summary>
+            <param name="resolution">Rebalancing frequency</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+            <param name="percent">The percentage amount of the portfolio value to allocate
+            to a single insight. The value of percent should be in the range [0,1].
+            The default value is 0.03.</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.AccumulativeInsightPortfolioConstructionModel.GetTargetInsights">
+            <summary>
+            Gets the target insights to calculate a portfolio target percent for
+            </summary>
+            <returns>An enumerable of the target insights</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.AccumulativeInsightPortfolioConstructionModel.DetermineTargetPercent(System.Collections.Generic.List{QuantConnect.Algorithm.Framework.Alphas.Insight})">
+            <summary>
+            Determines the target percent for each insight
+            </summary>
+            <param name="activeInsights">The active insights to generate a target for</param>
+            <returns>A target percent for each insight</returns>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Portfolio.BlackLittermanOptimizationPortfolioConstructionModel">
+            <summary>
+            Provides an implementation of Black-Litterman portfolio optimization. The model adjusts equilibrium market
+            returns by incorporating views from multiple alpha models and therefore to get the optimal risky portfolio
+            reflecting those views. If insights of all alpha models have None magnitude or there are linearly dependent
+            vectors in link matrix of views, the expected return would be the implied excess equilibrium return.
+            The interval of weights in optimization method can be changed based on the long-short algorithm.
+            The default model uses the 0.0025 as weight-on-views scalar parameter tau. The optimization method
+            maximizes the Sharpe ratio with the weight range from -1 to 1.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.BlackLittermanOptimizationPortfolioConstructionModel.#ctor(System.TimeSpan,QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias,System.Int32,System.Int32,QuantConnect.Resolution,System.Double,System.Double,System.Double,QuantConnect.Algorithm.Framework.Portfolio.IPortfolioOptimizer)">
+            <summary>
+            Initialize the model
+            </summary>
+            <param name="timeSpan">Rebalancing frequency</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+            <param name="lookback">Historical return lookback period</param>
+            <param name="period">The time interval of history price to calculate the weight</param>
+            <param name="resolution">The resolution of the history price</param>
+            <param name="riskFreeRate">The risk free rate</param>
+            <param name="delta">The risk aversion coeffficient of the market portfolio</param>
+            <param name="tau">The model parameter indicating the uncertainty of the CAPM prior</param>
+            <param name="optimizer">The portfolio optimization algorithm. If no algorithm is explicitly provided then the default will be max Sharpe ratio optimization.</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.BlackLittermanOptimizationPortfolioConstructionModel.#ctor(QuantConnect.Resolution,QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias,System.Int32,System.Int32,QuantConnect.Resolution,System.Double,System.Double,System.Double,QuantConnect.Algorithm.Framework.Portfolio.IPortfolioOptimizer)">
+            <summary>
+            Initialize the model
+            </summary>
+            <param name="rebalanceResolution">Rebalancing frequency</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+            <param name="lookback">Historical return lookback period</param>
+            <param name="period">The time interval of history price to calculate the weight</param>
+            <param name="resolution">The resolution of the history price</param>
+            <param name="riskFreeRate">The risk free rate</param>
+            <param name="delta">The risk aversion coeffficient of the market portfolio</param>
+            <param name="tau">The model parameter indicating the uncertainty of the CAPM prior</param>
+            <param name="optimizer">The portfolio optimization algorithm. If no algorithm is explicitly provided then the default will be max Sharpe ratio optimization.</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.BlackLittermanOptimizationPortfolioConstructionModel.#ctor(System.Func{System.DateTime,System.DateTime},QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias,System.Int32,System.Int32,QuantConnect.Resolution,System.Double,System.Double,System.Double,QuantConnect.Algorithm.Framework.Portfolio.IPortfolioOptimizer)">
+            <summary>
+            Initialize the model
+            </summary>
+            <param name="rebalancingFunc">For a given algorithm UTC DateTime returns the next expected rebalance UTC time.
+            Returning current time will trigger rebalance. If null will be ignored</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+            <param name="lookback">Historical return lookback period</param>
+            <param name="period">The time interval of history price to calculate the weight</param>
+            <param name="resolution">The resolution of the history price</param>
+            <param name="riskFreeRate">The risk free rate</param>
+            <param name="delta">The risk aversion coeffficient of the market portfolio</param>
+            <param name="tau">The model parameter indicating the uncertainty of the CAPM prior</param>
+            <param name="optimizer">The portfolio optimization algorithm. If no algorithm is explicitly provided then the default will be max Sharpe ratio optimization.</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.BlackLittermanOptimizationPortfolioConstructionModel.#ctor(QuantConnect.Scheduling.IDateRule,QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias,System.Int32,System.Int32,QuantConnect.Resolution,System.Double,System.Double,System.Double,QuantConnect.Algorithm.Framework.Portfolio.IPortfolioOptimizer)">
+            <summary>
+            Initialize the model
+            </summary>
+            <param name="rebalancingDateRules">The date rules used to define the next expected rebalance time
+            in UTC</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+            <param name="lookback">Historical return lookback period</param>
+            <param name="period">The time interval of history price to calculate the weight</param>
+            <param name="resolution">The resolution of the history price</param>
+            <param name="riskFreeRate">The risk free rate</param>
+            <param name="delta">The risk aversion coeffficient of the market portfolio</param>
+            <param name="tau">The model parameter indicating the uncertainty of the CAPM prior</param>
+            <param name="optimizer">The portfolio optimization algorithm. If no algorithm is explicitly provided then the default will be max Sharpe ratio optimization.</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.BlackLittermanOptimizationPortfolioConstructionModel.#ctor(Python.Runtime.PyObject,QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias,System.Int32,System.Int32,QuantConnect.Resolution,System.Double,System.Double,System.Double,QuantConnect.Algorithm.Framework.Portfolio.IPortfolioOptimizer)">
+            <summary>
+            Initialize the model
+            </summary>
+            <param name="rebalance">Rebalancing func or if a date rule, timedelta will be converted into func.
+            For a given algorithm UTC DateTime the func returns the next expected rebalance time
+            or null if unknown, in which case the function will be called again in the next loop. Returning current time
+            will trigger rebalance. If null will be ignored</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+            <param name="lookback">Historical return lookback period</param>
+            <param name="period">The time interval of history price to calculate the weight</param>
+            <param name="resolution">The resolution of the history price</param>
+            <param name="riskFreeRate">The risk free rate</param>
+            <param name="delta">The risk aversion coeffficient of the market portfolio</param>
+            <param name="tau">The model parameter indicating the uncertainty of the CAPM prior</param>
+            <param name="optimizer">The portfolio optimization algorithm. If no algorithm is explicitly provided then the default will be max Sharpe ratio optimization.</param>
+            <remarks>This is required since python net can not convert python methods into func nor resolve the correct
+            constructor for the date rules parameter.
+            For performance we prefer python algorithms using the C# implementation</remarks>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.BlackLittermanOptimizationPortfolioConstructionModel.#ctor(System.Func{System.DateTime,System.Nullable{System.DateTime}},QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias,System.Int32,System.Int32,QuantConnect.Resolution,System.Double,System.Double,System.Double,QuantConnect.Algorithm.Framework.Portfolio.IPortfolioOptimizer)">
+            <summary>
+            Initialize the model
+            </summary>
+            <param name="rebalancingFunc">For a given algorithm UTC DateTime returns the next expected rebalance time
+            or null if unknown, in which case the function will be called again in the next loop. Returning current time
+            will trigger rebalance.</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+            <param name="lookback">Historical return lookback period</param>
+            <param name="period">The time interval of history price to calculate the weight</param>
+            <param name="resolution">The resolution of the history price</param>
+            <param name="riskFreeRate">The risk free rate</param>
+            <param name="delta">The risk aversion coeffficient of the market portfolio</param>
+            <param name="tau">The model parameter indicating the uncertainty of the CAPM prior</param>
+            <param name="optimizer">The portfolio optimization algorithm. If no algorithm is explicitly provided then the default will be max Sharpe ratio optimization.</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.BlackLittermanOptimizationPortfolioConstructionModel.ShouldCreateTargetForInsight(QuantConnect.Algorithm.Framework.Alphas.Insight)">
+            <summary>
+            Method that will determine if the portfolio construction model should create a
+            target for this insight
+            </summary>
+            <param name="insight">The insight to create a target for</param>
+            <returns>True if the portfolio should create a target for the insight</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.BlackLittermanOptimizationPortfolioConstructionModel.DetermineTargetPercent(System.Collections.Generic.List{QuantConnect.Algorithm.Framework.Alphas.Insight})">
+            <summary>
+            Will determine the target percent for each insight
+            </summary>
+            <param name="lastActiveInsights">The active insights to generate a target for</param>
+            <returns>A target percent for each insight</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.BlackLittermanOptimizationPortfolioConstructionModel.GetTargetInsights">
+            <summary>
+            Gets the target insights to calculate a portfolio target percent for
+            </summary>
+            <returns>An enumerable of the target insights</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.BlackLittermanOptimizationPortfolioConstructionModel.OnSecuritiesChanged(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Data.UniverseSelection.SecurityChanges)">
+            <summary>
+            Event fired each time the we add/remove securities from the data feed
+            </summary>
+            <param name="algorithm">The algorithm instance that experienced the change in securities</param>
+            <param name="changes">The security additions and removals from the algorithm</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.BlackLittermanOptimizationPortfolioConstructionModel.GetEquilibriumReturns(System.Double[0:,0:],System.Double[0:,0:]@)">
+            <summary>
+            Calculate equilibrium returns and covariance
+            </summary>
+            <param name="returns">Matrix of returns where each column represents a security and each row returns for the given date/time (size: K x N)</param>
+            <param name="Σ">Multi-dimensional array of double with the portfolio covariance of returns (size: K x K).</param>
+            <returns>Array of double of equilibrium returns</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.BlackLittermanOptimizationPortfolioConstructionModel.TryGetViews(System.Collections.Generic.ICollection{QuantConnect.Algorithm.Framework.Alphas.Insight},System.Double[0:,0:]@,System.Double[]@)">
+            <summary>
+            Generate views from multiple alpha models
+            </summary>
+            <param name="insights">Array of insight that represent the investors' views</param>
+            <param name="P">A matrix that identifies the assets involved in the views (size: K x N)</param>
+            <param name="Q">A view vector (size: K x 1)</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.BlackLittermanOptimizationPortfolioConstructionModel.ApplyBlackLittermanMasterFormula(System.Double[]@,System.Double[0:,0:]@,System.Double[0:,0:],System.Double[])">
+            <summary>
+            Apply Black-Litterman master formula
+            http://www.blacklitterman.org/cookbook.html
+            </summary>
+            <param name="Π">Prior/Posterior mean array</param>
+            <param name="Σ">Prior/Posterior covariance matrix</param>
+            <param name="P">A matrix that identifies the assets involved in the views (size: K x N)</param>
+            <param name="Q">A view vector (size: K x 1)</param>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Portfolio.ConfidenceWeightedPortfolioConstructionModel">
+            <summary>
+            Provides an implementation of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.IPortfolioConstructionModel"/> that generates percent targets based on the
+            <see cref="P:QuantConnect.Algorithm.Framework.Alphas.Insight.Confidence"/>. The target percent holdings of each Symbol is given by the <see cref="P:QuantConnect.Algorithm.Framework.Alphas.Insight.Confidence"/>
+            from the last active <see cref="T:QuantConnect.Algorithm.Framework.Alphas.Insight"/> for that symbol.
+            For insights of direction <see cref="F:QuantConnect.Algorithm.Framework.Alphas.InsightDirection.Up"/>, long targets are returned and for insights of direction
+            <see cref="F:QuantConnect.Algorithm.Framework.Alphas.InsightDirection.Down"/>, short targets are returned.
+            If the sum of all the last active <see cref="T:QuantConnect.Algorithm.Framework.Alphas.Insight"/> per symbol is bigger than 1, it will factor down each target
+            percent holdings proportionally so the sum is 1.
+            It will ignore <see cref="T:QuantConnect.Algorithm.Framework.Alphas.Insight"/> that have no <see cref="P:QuantConnect.Algorithm.Framework.Alphas.Insight.Confidence"/> value.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.ConfidenceWeightedPortfolioConstructionModel.#ctor(QuantConnect.Scheduling.IDateRule,QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.ConfidenceWeightedPortfolioConstructionModel"/>
+            </summary>
+            <param name="rebalancingDateRules">The date rules used to define the next expected rebalance time
+            in UTC</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.ConfidenceWeightedPortfolioConstructionModel.#ctor(Python.Runtime.PyObject,QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.ConfidenceWeightedPortfolioConstructionModel"/>
+            </summary>
+            <param name="rebalance">Rebalancing func or if a date rule, timedelta will be converted into func.
+            For a given algorithm UTC DateTime the func returns the next expected rebalance time
+            or null if unknown, in which case the function will be called again in the next loop. Returning current time
+            will trigger rebalance. If null will be ignored</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+            <remarks>This is required since python net can not convert python methods into func nor resolve the correct
+            constructor for the date rules parameter.
+            For performance we prefer python algorithms using the C# implementation</remarks>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.ConfidenceWeightedPortfolioConstructionModel.#ctor(System.Func{System.DateTime,System.Nullable{System.DateTime}},QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.ConfidenceWeightedPortfolioConstructionModel"/>
+            </summary>
+            <param name="rebalancingFunc">For a given algorithm UTC DateTime returns the next expected rebalance time
+            or null if unknown, in which case the function will be called again in the next loop. Returning current time
+            will trigger rebalance. If null will be ignored</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.ConfidenceWeightedPortfolioConstructionModel.#ctor(System.Func{System.DateTime,System.DateTime},QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.ConfidenceWeightedPortfolioConstructionModel"/>
+            </summary>
+            <param name="rebalancingFunc">For a given algorithm UTC DateTime returns the next expected rebalance UTC time.
+            Returning current time will trigger rebalance. If null will be ignored</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.ConfidenceWeightedPortfolioConstructionModel.#ctor(System.TimeSpan,QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.ConfidenceWeightedPortfolioConstructionModel"/>
+            </summary>
+            <param name="timeSpan">Rebalancing frequency</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.ConfidenceWeightedPortfolioConstructionModel.#ctor(QuantConnect.Resolution,QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.ConfidenceWeightedPortfolioConstructionModel"/>
+            </summary>
+            <param name="resolution">Rebalancing frequency</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.ConfidenceWeightedPortfolioConstructionModel.ShouldCreateTargetForInsight(QuantConnect.Algorithm.Framework.Alphas.Insight)">
+            <summary>
+            Method that will determine if the portfolio construction model should create a
+            target for this insight
+            </summary>
+            <param name="insight">The insight to create a target for</param>
+            <returns>True if the portfolio should create a target for the insight</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.ConfidenceWeightedPortfolioConstructionModel.GetValue(QuantConnect.Algorithm.Framework.Alphas.Insight)">
+            <summary>
+            Method that will determine which member will be used to compute the weights and gets its value
+            </summary>
+            <param name="insight">The insight to create a target for</param>
+            <returns>The value of the selected insight member</returns>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Portfolio.EqualWeightingPortfolioConstructionModel">
+            <summary>
+            Provides an implementation of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.IPortfolioConstructionModel"/> that gives equal weighting to all
+            securities. The target percent holdings of each security is 1/N where N is the number of securities. For
+            insights of direction <see cref="F:QuantConnect.Algorithm.Framework.Alphas.InsightDirection.Up"/>, long targets are returned and for insights of direction
+            <see cref="F:QuantConnect.Algorithm.Framework.Alphas.InsightDirection.Down"/>, short targets are returned.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.EqualWeightingPortfolioConstructionModel.#ctor(QuantConnect.Scheduling.IDateRule,QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.EqualWeightingPortfolioConstructionModel"/>
+            </summary>
+            <param name="rebalancingDateRules">The date rules used to define the next expected rebalance time
+            in UTC</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.EqualWeightingPortfolioConstructionModel.#ctor(System.Func{System.DateTime,System.Nullable{System.DateTime}},QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.EqualWeightingPortfolioConstructionModel"/>
+            </summary>
+            <param name="rebalancingFunc">For a given algorithm UTC DateTime returns the next expected rebalance time
+            or null if unknown, in which case the function will be called again in the next loop. Returning current time
+            will trigger rebalance. If null will be ignored</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.EqualWeightingPortfolioConstructionModel.#ctor(System.Func{System.DateTime,System.DateTime},QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.EqualWeightingPortfolioConstructionModel"/>
+            </summary>
+            <param name="rebalancingFunc">For a given algorithm UTC DateTime returns the next expected rebalance UTC time.
+            Returning current time will trigger rebalance. If null will be ignored</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.EqualWeightingPortfolioConstructionModel.#ctor(Python.Runtime.PyObject,QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.EqualWeightingPortfolioConstructionModel"/>
+            </summary>
+            <param name="rebalance">Rebalancing func or if a date rule, timedelta will be converted into func.
+            For a given algorithm UTC DateTime the func returns the next expected rebalance time
+            or null if unknown, in which case the function will be called again in the next loop. Returning current time
+            will trigger rebalance. If null will be ignored</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+            <remarks>This is required since python net can not convert python methods into func nor resolve the correct
+            constructor for the date rules parameter.
+            For performance we prefer python algorithms using the C# implementation</remarks>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.EqualWeightingPortfolioConstructionModel.#ctor(System.TimeSpan,QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.EqualWeightingPortfolioConstructionModel"/>
+            </summary>
+            <param name="timeSpan">Rebalancing frequency</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.EqualWeightingPortfolioConstructionModel.#ctor(QuantConnect.Resolution,QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.EqualWeightingPortfolioConstructionModel"/>
+            </summary>
+            <param name="resolution">Rebalancing frequency</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.EqualWeightingPortfolioConstructionModel.DetermineTargetPercent(System.Collections.Generic.List{QuantConnect.Algorithm.Framework.Alphas.Insight})">
+            <summary>
+            Will determine the target percent for each insight
+            </summary>
+            <param name="activeInsights">The active insights to generate a target for</param>
+            <returns>A target percent for each insight</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.EqualWeightingPortfolioConstructionModel.RespectPortfolioBias(QuantConnect.Algorithm.Framework.Alphas.Insight)">
+            <summary>
+            Method that will determine if a given insight respects the portfolio bias
+            </summary>
+            <param name="insight">The insight to create a target for</param>
+            <returns>True if the insight respects the portfolio bias</returns>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Portfolio.InsightWeightingPortfolioConstructionModel">
+            <summary>
+            Provides an implementation of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.IPortfolioConstructionModel"/> that generates percent targets based on the
+            <see cref="P:QuantConnect.Algorithm.Framework.Alphas.Insight.Weight"/>. The target percent holdings of each Symbol is given by the <see cref="P:QuantConnect.Algorithm.Framework.Alphas.Insight.Weight"/>
+            from the last active <see cref="T:QuantConnect.Algorithm.Framework.Alphas.Insight"/> for that symbol.
+            For insights of direction <see cref="F:QuantConnect.Algorithm.Framework.Alphas.InsightDirection.Up"/>, long targets are returned and for insights of direction
+            <see cref="F:QuantConnect.Algorithm.Framework.Alphas.InsightDirection.Down"/>, short targets are returned.
+            If the sum of all the last active <see cref="T:QuantConnect.Algorithm.Framework.Alphas.Insight"/> per symbol is bigger than 1, it will factor down each target
+            percent holdings proportionally so the sum is 1.
+            It will ignore <see cref="T:QuantConnect.Algorithm.Framework.Alphas.Insight"/> that have no <see cref="P:QuantConnect.Algorithm.Framework.Alphas.Insight.Weight"/> value.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.InsightWeightingPortfolioConstructionModel.#ctor(QuantConnect.Scheduling.IDateRule,QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.InsightWeightingPortfolioConstructionModel"/>
+            </summary>
+            <param name="rebalancingDateRules">The date rules used to define the next expected rebalance time
+            in UTC</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.InsightWeightingPortfolioConstructionModel.#ctor(Python.Runtime.PyObject,QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.InsightWeightingPortfolioConstructionModel"/>
+            </summary>
+            <param name="rebalance">Rebalancing func or if a date rule, timedelta will be converted into func.
+            For a given algorithm UTC DateTime the func returns the next expected rebalance time
+            or null if unknown, in which case the function will be called again in the next loop. Returning current time
+            will trigger rebalance. If null will be ignored</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+            <remarks>This is required since python net can not convert python methods into func nor resolve the correct
+            constructor for the date rules parameter.
+            For performance we prefer python algorithms using the C# implementation</remarks>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.InsightWeightingPortfolioConstructionModel.#ctor(System.Func{System.DateTime,System.Nullable{System.DateTime}},QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.InsightWeightingPortfolioConstructionModel"/>
+            </summary>
+            <param name="rebalancingFunc">For a given algorithm UTC DateTime returns the next expected rebalance time
+            or null if unknown, in which case the function will be called again in the next loop. Returning current time
+            will trigger rebalance.</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.InsightWeightingPortfolioConstructionModel.#ctor(System.Func{System.DateTime,System.DateTime},QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.InsightWeightingPortfolioConstructionModel"/>
+            </summary>
+            <param name="rebalancingFunc">For a given algorithm UTC DateTime returns the next expected rebalance UTC time.
+            Returning current time will trigger rebalance. If null will be ignored</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.InsightWeightingPortfolioConstructionModel.#ctor(System.TimeSpan,QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.InsightWeightingPortfolioConstructionModel"/>
+            </summary>
+            <param name="timeSpan">Rebalancing frequency</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.InsightWeightingPortfolioConstructionModel.#ctor(QuantConnect.Resolution,QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.InsightWeightingPortfolioConstructionModel"/>
+            </summary>
+            <param name="resolution">Rebalancing frequency</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.InsightWeightingPortfolioConstructionModel.ShouldCreateTargetForInsight(QuantConnect.Algorithm.Framework.Alphas.Insight)">
+            <summary>
+            Method that will determine if the portfolio construction model should create a
+            target for this insight
+            </summary>
+            <param name="insight">The insight to create a target for</param>
+            <returns>True if the portfolio should create a target for the insight</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.InsightWeightingPortfolioConstructionModel.DetermineTargetPercent(System.Collections.Generic.List{QuantConnect.Algorithm.Framework.Alphas.Insight})">
+            <summary>
+            Will determine the target percent for each insight
+            </summary>
+            <param name="activeInsights">The active insights to generate a target for</param>
+            <returns>A target percent for each insight</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.InsightWeightingPortfolioConstructionModel.GetValue(QuantConnect.Algorithm.Framework.Alphas.Insight)">
+            <summary>
+            Method that will determine which member will be used to compute the weights and gets its value
+            </summary>
+            <param name="insight">The insight to create a target for</param>
+            <returns>The value of the selected insight member</returns>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Portfolio.MaximumSharpeRatioPortfolioOptimizer">
+            <summary>
+            Provides an implementation of a portfolio optimizer that maximizes the portfolio Sharpe Ratio.
+            The interval of weights in optimization method can be changed based on the long-short algorithm.
+            The default model uses flat risk free rate and weight for an individual security range from -1 to 1.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.MaximumSharpeRatioPortfolioOptimizer.GetBudgetConstraint(System.Int32)">
+            <summary>
+            Sum of all weight is one: 1^T w = 1 / Σw = 1
+            </summary>
+            <param name="size">number of variables</param>
+            <returns>linear constaraint object</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.MaximumSharpeRatioPortfolioOptimizer.GetBoundaryConditions(System.Int32)">
+            <summary>
+            Boundary constraints on weights: lw ≤ w ≤ up
+            </summary>
+            <param name="size">number of variables</param>
+            <returns>enumeration of linear constaraint objects</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.MaximumSharpeRatioPortfolioOptimizer.Optimize(System.Double[0:,0:],System.Double[],System.Double[0:,0:])">
+            <summary>
+            Perform portfolio optimization for a provided matrix of historical returns and an array of expected returns
+            </summary>
+            <param name="historicalReturns">Matrix of annualized historical returns where each column represents a security and each row returns for the given date/time (size: K x N).</param>
+            <param name="expectedReturns">Array of double with the portfolio annualized expected returns (size: K x 1).</param>
+            <param name="covariance">Multi-dimensional array of double with the portfolio covariance of annualized returns (size: K x K).</param>
+            <returns>Array of double with the portfolio weights (size: K x 1)</returns>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Portfolio.MeanVarianceOptimizationPortfolioConstructionModel">
+            <summary>
+            Provides an implementation of Mean-Variance portfolio optimization based on modern portfolio theory.
+            The interval of weights in optimization method can be changed based on the long-short algorithm.
+            The default model uses the last three months daily price to calculate the optimal weight
+            with the weight range from -1 to 1 and minimize the portfolio variance with a target return of 2%
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.MeanVarianceOptimizationPortfolioConstructionModel.#ctor(QuantConnect.Scheduling.IDateRule,QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias,System.Int32,System.Int32,QuantConnect.Resolution,System.Double,QuantConnect.Algorithm.Framework.Portfolio.IPortfolioOptimizer)">
+            <summary>
+            Initialize the model
+            </summary>
+            <param name="rebalancingDateRules">The date rules used to define the next expected rebalance time
+            in UTC</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+            <param name="lookback">Historical return lookback period</param>
+            <param name="period">The time interval of history price to calculate the weight</param>
+            <param name="resolution">The resolution of the history price</param>
+            <param name="targetReturn">The target portfolio return</param>
+            <param name="optimizer">The portfolio optimization algorithm. If the algorithm is not provided then the default will be mean-variance optimization.</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.MeanVarianceOptimizationPortfolioConstructionModel.#ctor(QuantConnect.Resolution,QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias,System.Int32,System.Int32,QuantConnect.Resolution,System.Double,QuantConnect.Algorithm.Framework.Portfolio.IPortfolioOptimizer)">
+            <summary>
+            Initialize the model
+            </summary>
+            <param name="rebalanceResolution">Rebalancing frequency</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+            <param name="lookback">Historical return lookback period</param>
+            <param name="period">The time interval of history price to calculate the weight</param>
+            <param name="resolution">The resolution of the history price</param>
+            <param name="targetReturn">The target portfolio return</param>
+            <param name="optimizer">The portfolio optimization algorithm. If the algorithm is not provided then the default will be mean-variance optimization.</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.MeanVarianceOptimizationPortfolioConstructionModel.#ctor(System.TimeSpan,QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias,System.Int32,System.Int32,QuantConnect.Resolution,System.Double,QuantConnect.Algorithm.Framework.Portfolio.IPortfolioOptimizer)">
+            <summary>
+            Initialize the model
+            </summary>
+            <param name="timeSpan">Rebalancing frequency</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+            <param name="lookback">Historical return lookback period</param>
+            <param name="period">The time interval of history price to calculate the weight</param>
+            <param name="resolution">The resolution of the history price</param>
+            <param name="targetReturn">The target portfolio return</param>
+            <param name="optimizer">The portfolio optimization algorithm. If the algorithm is not provided then the default will be mean-variance optimization.</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.MeanVarianceOptimizationPortfolioConstructionModel.#ctor(Python.Runtime.PyObject,QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias,System.Int32,System.Int32,QuantConnect.Resolution,System.Double,QuantConnect.Algorithm.Framework.Portfolio.IPortfolioOptimizer)">
+            <summary>
+            Initialize the model
+            </summary>
+            <param name="rebalance">Rebalancing func or if a date rule, timedelta will be converted into func.
+            For a given algorithm UTC DateTime the func returns the next expected rebalance time
+            or null if unknown, in which case the function will be called again in the next loop. Returning current time
+            will trigger rebalance. If null will be ignored</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+            <param name="lookback">Historical return lookback period</param>
+            <param name="period">The time interval of history price to calculate the weight</param>
+            <param name="resolution">The resolution of the history price</param>
+            <param name="targetReturn">The target portfolio return</param>
+            <param name="optimizer">The portfolio optimization algorithm. If the algorithm is not provided then the default will be mean-variance optimization.</param>
+            <remarks>This is required since python net can not convert python methods into func nor resolve the correct
+            constructor for the date rules parameter.
+            For performance we prefer python algorithms using the C# implementation</remarks>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.MeanVarianceOptimizationPortfolioConstructionModel.#ctor(System.Func{System.DateTime,System.DateTime},QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias,System.Int32,System.Int32,QuantConnect.Resolution,System.Double,QuantConnect.Algorithm.Framework.Portfolio.IPortfolioOptimizer)">
+            <summary>
+            Initialize the model
+            </summary>
+            <param name="rebalancingFunc">For a given algorithm UTC DateTime returns the next expected rebalance UTC time.
+            Returning current time will trigger rebalance. If null will be ignored</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+            <param name="lookback">Historical return lookback period</param>
+            <param name="period">The time interval of history price to calculate the weight</param>
+            <param name="resolution">The resolution of the history price</param>
+            <param name="targetReturn">The target portfolio return</param>
+            <param name="optimizer">The portfolio optimization algorithm. If the algorithm is not provided then the default will be mean-variance optimization.</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.MeanVarianceOptimizationPortfolioConstructionModel.#ctor(System.Func{System.DateTime,System.Nullable{System.DateTime}},QuantConnect.Algorithm.Framework.Portfolio.PortfolioBias,System.Int32,System.Int32,QuantConnect.Resolution,System.Double,QuantConnect.Algorithm.Framework.Portfolio.IPortfolioOptimizer)">
+            <summary>
+            Initialize the model
+            </summary>
+            <param name="rebalancingFunc">For a given algorithm UTC DateTime returns the next expected rebalance time
+            or null if unknown, in which case the function will be called again in the next loop. Returning current time
+            will trigger rebalance.</param>
+            <param name="portfolioBias">Specifies the bias of the portfolio (Short, Long/Short, Long)</param>
+            <param name="lookback">Historical return lookback period</param>
+            <param name="period">The time interval of history price to calculate the weight</param>
+            <param name="resolution">The resolution of the history price</param>
+            <param name="targetReturn">The target portfolio return</param>
+            <param name="optimizer">The portfolio optimization algorithm. If the algorithm is not provided then the default will be mean-variance optimization.</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.MeanVarianceOptimizationPortfolioConstructionModel.ShouldCreateTargetForInsight(QuantConnect.Algorithm.Framework.Alphas.Insight)">
+            <summary>
+            Method that will determine if the portfolio construction model should create a
+            target for this insight
+            </summary>
+            <param name="insight">The insight to create a target for</param>
+            <returns>True if the portfolio should create a target for the insight</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.MeanVarianceOptimizationPortfolioConstructionModel.DetermineTargetPercent(System.Collections.Generic.List{QuantConnect.Algorithm.Framework.Alphas.Insight})">
+            <summary>
+            Will determine the target percent for each insight
+            </summary>
+            <param name="activeInsights">The active insights to generate a target for</param>
+            <returns>A target percent for each insight</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.MeanVarianceOptimizationPortfolioConstructionModel.OnSecuritiesChanged(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Data.UniverseSelection.SecurityChanges)">
+            <summary>
+            Event fired each time the we add/remove securities from the data feed
+            </summary>
+            <param name="algorithm">The algorithm instance that experienced the change in securities</param>
+            <param name="changes">The security additions and removals from the algorithm</param>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Portfolio.MinimumVariancePortfolioOptimizer">
+            <summary>
+            Provides an implementation of a minimum variance portfolio optimizer that calculate the optimal weights
+            with the weight range from -1 to 1 and minimize the portfolio variance with a target return of 2%
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.MinimumVariancePortfolioOptimizer.GetBudgetConstraint(System.Int32)">
+            <summary>
+            Sum of all weight is one: 1^T w = 1 / Σw = 1
+            </summary>
+            <param name="size">number of variables</param>
+            <returns>linear constaraint object</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.MinimumVariancePortfolioOptimizer.GetBoundaryConditions(System.Int32)">
+            <summary>
+            Boundary constraints on weights: lw ≤ w ≤ up
+            </summary>
+            <param name="size">number of variables</param>
+            <returns>enumeration of linear constaraint objects</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.MinimumVariancePortfolioOptimizer.Optimize(System.Double[0:,0:],System.Double[],System.Double[0:,0:])">
+            <summary>
+            Perform portfolio optimization for a provided matrix of historical returns and an array of expected returns
+            </summary>
+            <param name="historicalReturns">Matrix of annualized historical returns where each column represents a security and each row returns for the given date/time (size: K x N).</param>
+            <param name="expectedReturns">Array of double with the portfolio annualized expected returns (size: K x 1).</param>
+            <param name="covariance">Multi-dimensional array of double with the portfolio covariance of annualized returns (size: K x K).</param>
+            <returns>Array of double with the portfolio weights (size: K x 1)</returns>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Portfolio.ReturnsSymbolData">
+            <summary>
+            Contains returns specific to a symbol required for optimization model
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.ReturnsSymbolData.#ctor(QuantConnect.Symbol,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.ReturnsSymbolData"/> class
+            </summary>
+            <param name="symbol">The symbol of the data that updates the indicators</param>
+            <param name="lookback">Look-back period for the RateOfChange indicator</param>
+            <param name="period">Size of rolling window that contains historical RateOfChange</param>
+        </member>
+        <member name="P:QuantConnect.Algorithm.Framework.Portfolio.ReturnsSymbolData.Returns">
+            <summary>
+            Historical returns
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.ReturnsSymbolData.Add(System.DateTime,System.Decimal)">
+            <summary>
+            Adds an item to this window and shifts all other elements
+            </summary>
+            <param name="time">The time associated with the value</param>
+            <param name="value">The value to use to update this window</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.ReturnsSymbolData.Update(System.DateTime,System.Decimal)">
+            <summary>
+            Updates the state of the RateOfChange with the given value and returns true
+            if this indicator is ready, false otherwise
+            </summary>
+            <param name="time">The time associated with the value</param>
+            <param name="value">The value to use to update this indicator</param>
+            <returns>True if this indicator is ready, false otherwise</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.ReturnsSymbolData.Reset">
+            <summary>
+            Resets all indicators of this object to its initial state
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.ReturnsSymbolData.OnRateOfChangeUpdated(System.Object,QuantConnect.Indicators.IndicatorDataPoint)">
+            <summary>
+            When the RateOfChange is updated, adds the new value to the RollingWindow
+            </summary>
+            <param name="roc"></param>
+            <param name="updated"></param>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Portfolio.ReturnsSymbolDataExtensions">
+            <summary>
+            Extension methods for <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.ReturnsSymbolData"/>
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.ReturnsSymbolDataExtensions.FormReturnsMatrix(System.Collections.Generic.Dictionary{QuantConnect.Symbol,QuantConnect.Algorithm.Framework.Portfolio.ReturnsSymbolData},System.Collections.Generic.IEnumerable{QuantConnect.Symbol})">
+            <summary>
+            Converts a dictionary of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.ReturnsSymbolData"/> keyed by <see cref="T:QuantConnect.Symbol"/> into a matrix
+            </summary>
+            <param name="symbolData">Dictionary of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.ReturnsSymbolData"/> keyed by <see cref="T:QuantConnect.Symbol"/> to be converted into a matrix</param>
+            <param name="symbols">List of <see cref="T:QuantConnect.Symbol"/> to be included in the matrix</param>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Portfolio.SectorWeightingPortfolioConstructionModel">
+            <summary>
+            Provides an implementation of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.IPortfolioConstructionModel"/> that generates percent targets based on the
+            <see cref="P:QuantConnect.Data.Fundamental.CompanyReference.IndustryTemplateCode"/>. 
+            The target percent holdings of each sector is 1/S where S is the number of sectors and
+            the target percent holdings of each security is 1/N where N is the number of securities of each sector.
+            For insights of direction <see cref="F:QuantConnect.Algorithm.Framework.Alphas.InsightDirection.Up"/>, long targets are returned and for insights of direction
+            <see cref="F:QuantConnect.Algorithm.Framework.Alphas.InsightDirection.Down"/>, short targets are returned.
+            It will ignore <see cref="T:QuantConnect.Algorithm.Framework.Alphas.Insight"/> for symbols that have no <see cref="P:QuantConnect.Data.Fundamental.CompanyReference.IndustryTemplateCode"/> value.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.SectorWeightingPortfolioConstructionModel.#ctor(QuantConnect.Scheduling.IDateRule)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.SectorWeightingPortfolioConstructionModel"/>
+            </summary>
+            <param name="rebalancingDateRules">The date rules used to define the next expected rebalance time
+            in UTC</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.SectorWeightingPortfolioConstructionModel.#ctor(System.Func{System.DateTime,System.Nullable{System.DateTime}})">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.SectorWeightingPortfolioConstructionModel"/>
+            </summary>
+            <param name="rebalancingFunc">For a given algorithm UTC DateTime returns the next expected rebalance time
+            or null if unknown, in which case the function will be called again in the next loop. Returning current time
+            will trigger rebalance. If null will be ignored</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.SectorWeightingPortfolioConstructionModel.#ctor(System.Func{System.DateTime,System.DateTime})">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.SectorWeightingPortfolioConstructionModel"/>
+            </summary>
+            <param name="rebalancingFunc">For a given algorithm UTC DateTime returns the next expected rebalance UTC time.
+            Returning current time will trigger rebalance. If null will be ignored</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.SectorWeightingPortfolioConstructionModel.#ctor(Python.Runtime.PyObject)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.SectorWeightingPortfolioConstructionModel"/>
+            </summary>
+            <param name="rebalance">Rebalancing func or if a date rule, timedelta will be converted into func.
+            For a given algorithm UTC DateTime the func returns the next expected rebalance time
+            or null if unknown, in which case the function will be called again in the next loop. Returning current time
+            will trigger rebalance. If null will be ignored</param>
+            <remarks>This is required since python net can not convert python methods into func nor resolve the correct
+            constructor for the date rules parameter.
+            For performance we prefer python algorithms using the C# implementation</remarks>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.SectorWeightingPortfolioConstructionModel.#ctor(System.TimeSpan)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.SectorWeightingPortfolioConstructionModel"/>
+            </summary>
+            <param name="timeSpan">Rebalancing frequency</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.SectorWeightingPortfolioConstructionModel.#ctor(QuantConnect.Resolution)">
+            <summary>
+            Initialize a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Portfolio.SectorWeightingPortfolioConstructionModel"/>
+            </summary>
+            <param name="resolution">Rebalancing frequency</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.SectorWeightingPortfolioConstructionModel.ShouldCreateTargetForInsight(QuantConnect.Algorithm.Framework.Alphas.Insight)">
+            <summary>
+            Method that will determine if the portfolio construction model should create a
+            target for this insight
+            </summary>
+            <param name="insight">The insight to create a target for</param>
+            <returns>True if the portfolio should create a target for the insight</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.SectorWeightingPortfolioConstructionModel.DetermineTargetPercent(System.Collections.Generic.List{QuantConnect.Algorithm.Framework.Alphas.Insight})">
+            <summary>
+            Will determine the target percent for each insight
+            </summary>
+            <param name="activeInsights">The active insights to generate a target for</param>
+            <returns>A target percent for each insight</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.SectorWeightingPortfolioConstructionModel.OnSecuritiesChanged(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Data.UniverseSelection.SecurityChanges)">
+            <summary>
+            Event fired each time the we add/remove securities from the data feed
+            </summary>
+            <param name="algorithm">The algorithm instance that experienced the change in securities</param>
+            <param name="changes">The security additions and removals from the algorithm</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.SectorWeightingPortfolioConstructionModel.GetSectorCode(QuantConnect.Securities.Security)">
+            <summary>
+            Gets the sector code
+            </summary>
+            <param name="security">The security to create a sector code for</param>
+            <returns>The value of the sector code for the security</returns>
+            <remarks>Other sectors can be defined using <see cref="T:QuantConnect.Data.Fundamental.AssetClassification"/></remarks>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Portfolio.UnconstrainedMeanVariancePortfolioOptimizer">
+            <summary>
+            Provides an implementation of a portfolio optimizer with unconstrained mean variance.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Portfolio.UnconstrainedMeanVariancePortfolioOptimizer.Optimize(System.Double[0:,0:],System.Double[],System.Double[0:,0:])">
+            <summary>
+            Perform portfolio optimization for a provided matrix of historical returns and an array of expected returns
+            </summary>
+            <param name="historicalReturns">Matrix of annualized historical returns where each column represents a security and each row returns for the given date/time (size: K x N).</param>
+            <param name="expectedReturns">Array of double with the portfolio annualized expected returns (size: K x 1).</param>
+            <param name="covariance">Multi-dimensional array of double with the portfolio covariance of annualized returns (size: K x K).</param>
+            <returns>Array of double with the portfolio weights (size: K x 1)</returns>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Risk.MaximumDrawdownPercentPerSecurity">
+            <summary>
+            Provides an implementation of <see cref="T:QuantConnect.Algorithm.Framework.Risk.IRiskManagementModel"/> that limits the drawdown
+            per holding to the specified percentage
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Risk.MaximumDrawdownPercentPerSecurity.#ctor(System.Decimal)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Risk.MaximumDrawdownPercentPerSecurity"/> class
+            </summary>
+            <param name="maximumDrawdownPercent">The maximum percentage drawdown allowed for any single security holding,
+            defaults to 5% drawdown per security</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Risk.MaximumDrawdownPercentPerSecurity.ManageRisk(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Algorithm.Framework.Portfolio.IPortfolioTarget[])">
+            <summary>
+            Manages the algorithm's risk at each time step
+            </summary>
+            <param name="algorithm">The algorithm instance</param>
+            <param name="targets">The current portfolio targets to be assessed for risk</param>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Risk.MaximumDrawdownPercentPortfolio">
+            <summary>
+            Provides an implementation of <see cref="T:QuantConnect.Algorithm.Framework.Risk.IRiskManagementModel"/> that limits the drawdown of the portfolio
+            to the specified percentage. Once this is triggered the algorithm will need to be manually restarted.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Risk.MaximumDrawdownPercentPortfolio.#ctor(System.Decimal,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Risk.MaximumDrawdownPercentPortfolio"/> class
+            </summary>
+            <param name="maximumDrawdownPercent">The maximum percentage drawdown allowed for algorithm portfolio
+            compared with starting value, defaults to 5% drawdown</param>
+            <param name="isTrailing">If "false", the drawdown will be relative to the starting value of the portfolio.
+            If "true", the drawdown will be relative the last maximum portfolio value</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Risk.MaximumDrawdownPercentPortfolio.ManageRisk(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Algorithm.Framework.Portfolio.IPortfolioTarget[])">
+            <summary>
+            Manages the algorithm's risk at each time step
+            </summary>
+            <param name="algorithm">The algorithm instance</param>
+            <param name="targets">The current portfolio targets to be assessed for risk</param>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Risk.MaximumSectorExposureRiskManagementModel">
+            <summary>
+            Provides an implementation of <see cref="T:QuantConnect.Algorithm.Framework.Risk.IRiskManagementModel"/> that limits
+            the sector exposure to the specified percentage
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Risk.MaximumSectorExposureRiskManagementModel.#ctor(System.Decimal)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Risk.MaximumSectorExposureRiskManagementModel"/> class
+            </summary>
+            <param name="maximumSectorExposure">The maximum exposure for any sector, defaults to 20% sector exposure.</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Risk.MaximumSectorExposureRiskManagementModel.ManageRisk(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Algorithm.Framework.Portfolio.IPortfolioTarget[])">
+            <summary>
+            Manages the algorithm's risk at each time step
+            </summary>
+            <param name="algorithm">The algorithm instance</param>
+            <param name="targets">The current portfolio targets to be assessed for risk</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Risk.MaximumSectorExposureRiskManagementModel.OnSecuritiesChanged(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Data.UniverseSelection.SecurityChanges)">
+            <summary>
+            Event fired each time the we add/remove securities from the data feed
+            </summary>
+            <param name="algorithm">The algorithm instance that experienced the change in securities</param>
+            <param name="changes">The security additions and removals from the algorithm</param>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Risk.MaximumUnrealizedProfitPercentPerSecurity">
+            <summary>
+            Provides an implementation of <see cref="T:QuantConnect.Algorithm.Framework.Risk.IRiskManagementModel"/> that limits the unrealized profit
+            per holding to the specified percentage
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Risk.MaximumUnrealizedProfitPercentPerSecurity.#ctor(System.Decimal)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Risk.MaximumUnrealizedProfitPercentPerSecurity"/> class
+            </summary>
+            <param name="maximumUnrealizedProfitPercent">The maximum percentage unrealized profit allowed for any single security holding,
+            defaults to 5% drawdown per security</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Risk.MaximumUnrealizedProfitPercentPerSecurity.ManageRisk(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Algorithm.Framework.Portfolio.IPortfolioTarget[])">
+            <summary>
+            Manages the algorithm's risk at each time step
+            </summary>
+            <param name="algorithm">The algorithm instance</param>
+            <param name="targets">The current portfolio targets to be assessed for risk</param>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Risk.TrailingStopRiskManagementModel">
+            <summary>
+            Provides an implementation of <see cref="T:QuantConnect.Algorithm.Framework.Risk.IRiskManagementModel"/> that limits the maximum possible loss
+            measured from the highest unrealized profit
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Risk.TrailingStopRiskManagementModel.#ctor(System.Decimal)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Risk.TrailingStopRiskManagementModel"/> class
+            </summary>
+            <param name="maximumDrawdownPercent">The maximum percentage relative drawdown allowed for algorithm portfolio compared with the highest unrealized profit, defaults to 5% drawdown per security</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Risk.TrailingStopRiskManagementModel.ManageRisk(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Algorithm.Framework.Portfolio.IPortfolioTarget[])">
+            <summary>
+            Manages the algorithm's risk at each time step
+            </summary>
+            <param name="algorithm">The algorithm instance</param>
+            <param name="targets">The current portfolio targets to be assessed for risk</param>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Selection.CoarseFundamentalUniverseSelectionModel">
+            <summary>
+            Portfolio selection model that uses coarse selectors. For US equities only.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.CoarseFundamentalUniverseSelectionModel.#ctor(System.Func{System.Collections.Generic.IEnumerable{QuantConnect.Data.UniverseSelection.CoarseFundamental},System.Collections.Generic.IEnumerable{QuantConnect.Symbol}},QuantConnect.Data.UniverseSelection.UniverseSettings,QuantConnect.Securities.ISecurityInitializer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Selection.CoarseFundamentalUniverseSelectionModel"/> class
+            </summary>
+            <param name="coarseSelector">Selects symbols from the provided coarse data set</param>
+            <param name="universeSettings">Universe settings define attributes of created subscriptions, such as their resolution and the minimum time in universe before they can be removed</param>
+            <param name="securityInitializer">Performs extra initialization (such as setting models) after we create a new security object</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.CoarseFundamentalUniverseSelectionModel.#ctor(Python.Runtime.PyObject,QuantConnect.Data.UniverseSelection.UniverseSettings,QuantConnect.Securities.ISecurityInitializer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Selection.CoarseFundamentalUniverseSelectionModel"/> class
+            </summary>
+            <param name="coarseSelector">Selects symbols from the provided coarse data set</param>
+            <param name="universeSettings">Universe settings define attributes of created subscriptions, such as their resolution and the minimum time in universe before they can be removed</param>
+            <param name="securityInitializer">Performs extra initialization (such as setting models) after we create a new security object</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.CoarseFundamentalUniverseSelectionModel.SelectCoarse(QuantConnect.Algorithm.QCAlgorithm,System.Collections.Generic.IEnumerable{QuantConnect.Data.UniverseSelection.CoarseFundamental})">
+            <inheritdoc />
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Selection.EmaCrossUniverseSelectionModel">
+            <summary>
+            Provides an implementation of <see cref="T:QuantConnect.Algorithm.Framework.Selection.FundamentalUniverseSelectionModel"/> that subscribes
+            to symbols with the larger delta by percentage between the two exponential moving average
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.EmaCrossUniverseSelectionModel.#ctor(System.Int32,System.Int32,System.Int32,QuantConnect.Data.UniverseSelection.UniverseSettings,QuantConnect.Securities.ISecurityInitializer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Selection.EmaCrossUniverseSelectionModel"/> class
+            </summary>
+            <param name="fastPeriod">Fast EMA period</param>
+            <param name="slowPeriod">Slow EMA period</param>
+            <param name="universeCount">Maximum number of members of this universe selection</param>
+            <param name="universeSettings">The settings used when adding symbols to the algorithm, specify null to use algorthm.UniverseSettings</param>
+            <param name="securityInitializer">Optional security initializer invoked when creating new securities, specify null to use algorithm.SecurityInitializer</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.EmaCrossUniverseSelectionModel.SelectCoarse(QuantConnect.Algorithm.QCAlgorithm,System.Collections.Generic.IEnumerable{QuantConnect.Data.UniverseSelection.CoarseFundamental})">
+            <summary>
+            Defines the coarse fundamental selection function.
+            </summary>
+            <param name="algorithm">The algorithm instance</param>
+            <param name="coarse">The coarse fundamental data used to perform filtering</param>
+            <returns>An enumerable of symbols passing the filter</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:QuantConnect.Algorithm.Framework.Selection.EnergyETFUniverse" -->
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.EnergyETFUniverse.#ctor">
+            <summary>
+            Initializes a new instance of the EnergyETFUniverse class
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Selection.FineFundamentalUniverseSelectionModel">
+            <summary>
+            Portfolio selection model that uses coarse/fine selectors. For US equities only.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.FineFundamentalUniverseSelectionModel.#ctor(System.Func{System.Collections.Generic.IEnumerable{QuantConnect.Data.UniverseSelection.CoarseFundamental},System.Collections.Generic.IEnumerable{QuantConnect.Symbol}},System.Func{System.Collections.Generic.IEnumerable{QuantConnect.Data.Fundamental.FineFundamental},System.Collections.Generic.IEnumerable{QuantConnect.Symbol}},QuantConnect.Data.UniverseSelection.UniverseSettings,QuantConnect.Securities.ISecurityInitializer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Selection.FineFundamentalUniverseSelectionModel"/> class
+            </summary>
+            <param name="coarseSelector">Selects symbols from the provided coarse data set</param>
+            <param name="fineSelector">Selects symbols from the provided fine data set (this set has already been filtered according to the coarse selection)</param>
+            <param name="universeSettings">Universe settings define attributes of created subscriptions, such as their resolution and the minimum time in universe before they can be removed</param>
+            <param name="securityInitializer">Performs extra initialization (such as setting models) after we create a new security object</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.FineFundamentalUniverseSelectionModel.#ctor(Python.Runtime.PyObject,Python.Runtime.PyObject,QuantConnect.Data.UniverseSelection.UniverseSettings,QuantConnect.Securities.ISecurityInitializer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Selection.FineFundamentalUniverseSelectionModel"/> class
+            </summary>
+            <param name="coarseSelector">Selects symbols from the provided coarse data set</param>
+            <param name="fineSelector">Selects symbols from the provided fine data set (this set has already been filtered according to the coarse selection)</param>
+            <param name="universeSettings">Universe settings define attributes of created subscriptions, such as their resolution and the minimum time in universe before they can be removed</param>
+            <param name="securityInitializer">Performs extra initialization (such as setting models) after we create a new security object</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.FineFundamentalUniverseSelectionModel.SelectCoarse(QuantConnect.Algorithm.QCAlgorithm,System.Collections.Generic.IEnumerable{QuantConnect.Data.UniverseSelection.CoarseFundamental})">
+            <inheritdoc />
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.FineFundamentalUniverseSelectionModel.SelectFine(QuantConnect.Algorithm.QCAlgorithm,System.Collections.Generic.IEnumerable{QuantConnect.Data.Fundamental.FineFundamental})">
+            <inheritdoc />
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Selection.FundamentalUniverseSelectionModel">
+            <summary>
+            Provides a base class for defining equity coarse/fine fundamental selection models
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.FundamentalUniverseSelectionModel.#ctor(System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Selection.FundamentalUniverseSelectionModel"/> class
+            </summary>
+            <param name="filterFineData">True to also filter using fine fundamental data, false to only filter on coarse data</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.FundamentalUniverseSelectionModel.#ctor(System.Boolean,QuantConnect.Data.UniverseSelection.UniverseSettings,QuantConnect.Securities.ISecurityInitializer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Selection.FundamentalUniverseSelectionModel"/> class
+            </summary>
+            <param name="filterFineData">True to also filter using fine fundamental data, false to only filter on coarse data</param>
+            <param name="universeSettings">The settings used when adding symbols to the algorithm, specify null to use algorthm.UniverseSettings</param>
+            <param name="securityInitializer">Optional security initializer invoked when creating new securities, specify null to use algorithm.SecurityInitializer</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.FundamentalUniverseSelectionModel.CreateUniverses(QuantConnect.Algorithm.QCAlgorithm)">
+            <summary>
+            Creates a new fundamental universe using this class's selection functions
+            </summary>
+            <param name="algorithm">The algorithm instance to create universes for</param>
+            <returns>The universe defined by this model</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.FundamentalUniverseSelectionModel.CreateCoarseFundamentalUniverse(QuantConnect.Algorithm.QCAlgorithm)">
+            <summary>
+            Creates the coarse fundamental universe object.
+            This is provided to allow more flexibility when creating coarse universe, such as using algorithm.Universe.DollarVolume.Top(5)
+            </summary>
+            <param name="algorithm">The algorithm instance</param>
+            <returns>The coarse fundamental universe</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.FundamentalUniverseSelectionModel.SelectCoarse(QuantConnect.Algorithm.QCAlgorithm,System.Collections.Generic.IEnumerable{QuantConnect.Data.UniverseSelection.CoarseFundamental})">
+            <summary>
+            Defines the coarse fundamental selection function.
+            </summary>
+            <param name="algorithm">The algorithm instance</param>
+            <param name="coarse">The coarse fundamental data used to perform filtering</param>
+            <returns>An enumerable of symbols passing the filter</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.FundamentalUniverseSelectionModel.SelectFine(QuantConnect.Algorithm.QCAlgorithm,System.Collections.Generic.IEnumerable{QuantConnect.Data.Fundamental.FineFundamental})">
+            <summary>
+            Defines the fine fundamental selection function.
+            </summary>
+            <param name="algorithm">The algorithm instance</param>
+            <param name="fine">The fine fundamental data used to perform filtering</param>
+            <returns>An enumerable of symbols passing the filter</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.FundamentalUniverseSelectionModel.Coarse(System.Func{System.Collections.Generic.IEnumerable{QuantConnect.Data.UniverseSelection.CoarseFundamental},System.Collections.Generic.IEnumerable{QuantConnect.Symbol}})">
+            <summary>
+            Convenience method for creating a selection model that uses only coarse data
+            </summary>
+            <param name="coarseSelector">Selects symbols from the provided coarse data set</param>
+            <returns>A new universe selection model that will select US equities according to the selection function specified</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.FundamentalUniverseSelectionModel.Fine(System.Func{System.Collections.Generic.IEnumerable{QuantConnect.Data.UniverseSelection.CoarseFundamental},System.Collections.Generic.IEnumerable{QuantConnect.Symbol}},System.Func{System.Collections.Generic.IEnumerable{QuantConnect.Data.Fundamental.FineFundamental},System.Collections.Generic.IEnumerable{QuantConnect.Symbol}})">
+             <summary>
+            
+             </summary>
+             <param name="coarseSelector">Selects symbols from the provided coarse data set</param>
+             <param name="fineSelector">Selects symbols from the provided fine data set (this set has already been filtered according to the coarse selection)</param>
+             <returns>A new universe selection model that will select US equities according to the selection functions specified</returns>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Selection.FutureUniverseSelectionModel">
+            <summary>
+            Provides an implementation of <see cref="T:QuantConnect.Algorithm.Framework.Selection.IUniverseSelectionModel"/> that subscribes to future chains
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.FutureUniverseSelectionModel.GetNextRefreshTimeUtc">
+            <summary>
+            Gets the next time the framework should invoke the `CreateUniverses` method to refresh the set of universes.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.FutureUniverseSelectionModel.#ctor(System.TimeSpan,System.Func{System.DateTime,System.Collections.Generic.IEnumerable{QuantConnect.Symbol}})">
+            <summary>
+            Creates a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Selection.FutureUniverseSelectionModel"/>
+            </summary>
+            <param name="refreshInterval">Time interval between universe refreshes</param>
+            <param name="futureChainSymbolSelector">Selects symbols from the provided future chain</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.FutureUniverseSelectionModel.#ctor(System.TimeSpan,System.Func{System.DateTime,System.Collections.Generic.IEnumerable{QuantConnect.Symbol}},QuantConnect.Data.UniverseSelection.UniverseSettings,QuantConnect.Securities.ISecurityInitializer)">
+            <summary>
+            Creates a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Selection.FutureUniverseSelectionModel"/>
+            </summary>
+            <param name="refreshInterval">Time interval between universe refreshes</param>
+            <param name="futureChainSymbolSelector">Selects symbols from the provided future chain</param>
+            <param name="universeSettings">Universe settings define attributes of created subscriptions, such as their resolution and the minimum time in universe before they can be removed</param>
+            <param name="securityInitializer">Performs extra initialization (such as setting models) after we create a new security object</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.FutureUniverseSelectionModel.#ctor(System.TimeSpan,System.Func{System.DateTime,System.Collections.Generic.IEnumerable{QuantConnect.Symbol}},QuantConnect.Data.UniverseSelection.UniverseSettings)">
+            <summary>
+            Creates a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Selection.FutureUniverseSelectionModel"/>
+            </summary>
+            <param name="refreshInterval">Time interval between universe refreshes</param>
+            <param name="futureChainSymbolSelector">Selects symbols from the provided future chain</param>
+            <param name="universeSettings">Universe settings define attributes of created subscriptions, such as their resolution and the minimum time in universe before they can be removed</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.FutureUniverseSelectionModel.CreateUniverses(QuantConnect.Algorithm.QCAlgorithm)">
+            <summary>
+            Creates the universes for this algorithm. Called once after <see cref="M:QuantConnect.Interfaces.IAlgorithm.Initialize"/>
+            </summary>
+            <param name="algorithm">The algorithm instance to create universes for</param>
+            <returns>The universes to be used by the algorithm</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.FutureUniverseSelectionModel.CreateFutureChainSecurity(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Symbol,QuantConnect.Data.UniverseSelection.UniverseSettings,QuantConnect.Securities.ISecurityInitializer)">
+            <summary>
+            Creates the canonical <see cref="T:QuantConnect.Securities.Future.Future"/> chain security for a given symbol
+            </summary>
+            <param name="algorithm">The algorithm instance to create universes for</param>
+            <param name="symbol">Symbol of the future</param>
+            <param name="settings">Universe settings define attributes of created subscriptions, such as their resolution and the minimum time in universe before they can be removed</param>
+            <param name="initializer">Performs extra initialization (such as setting models) after we create a new security object</param>
+            <returns><see cref="T:QuantConnect.Securities.Future.Future"/> for the given symbol</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.FutureUniverseSelectionModel.CreateFutureChainSecurity(QuantConnect.Interfaces.ISubscriptionDataConfigService,QuantConnect.Symbol,QuantConnect.Data.UniverseSelection.UniverseSettings,QuantConnect.Securities.SecurityManager)">
+            <summary>
+            Creates the canonical <see cref="T:QuantConnect.Securities.Future.Future"/> chain security for a given symbol
+            </summary>
+            <param name="subscriptionDataConfigService">The service used to create new <see cref="T:QuantConnect.Data.SubscriptionDataConfig"/></param>
+            <param name="symbol">Symbol of the future</param>
+            <param name="settings">Universe settings define attributes of created subscriptions, such as their resolution and the minimum time in universe before they can be removed</param>
+            <param name="securityManager">Used to create new <see cref="T:QuantConnect.Securities.Security"/></param>
+            <returns><see cref="T:QuantConnect.Securities.Future.Future"/> for the given symbol</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.FutureUniverseSelectionModel.Filter(QuantConnect.Securities.FutureFilterUniverse)">
+            <summary>
+            Defines the future chain universe filter
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.FutureUniverseSelectionModel.CreateFutureChain(QuantConnect.Algorithm.QCAlgorithm,QuantConnect.Symbol)">
+            <summary>
+            Creates a <see cref="T:QuantConnect.Data.UniverseSelection.FuturesChainUniverse"/> for a given symbol
+            </summary>
+            <param name="algorithm">The algorithm instance to create universes for</param>
+            <param name="symbol">Symbol of the future</param>
+            <returns><see cref="T:QuantConnect.Data.UniverseSelection.FuturesChainUniverse"/> for the given symbol</returns>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Selection.InceptionDateUniverseSelectionModel">
+            <summary>
+            Inception Date Universe that accepts a Dictionary of DateTime keyed by String that represent
+            the Inception date for each ticker
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.InceptionDateUniverseSelectionModel.#ctor(System.String,System.Collections.Generic.Dictionary{System.String,System.DateTime})">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Selection.InceptionDateUniverseSelectionModel"/> class
+            </summary>
+            <param name="name">A unique name for this universe</param>
+            <param name="tickersByDate">Dictionary of DateTime keyed by String that represent the Inception date for each ticker</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.InceptionDateUniverseSelectionModel.#ctor(System.String,Python.Runtime.PyObject)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Selection.InceptionDateUniverseSelectionModel"/> class
+            </summary>
+            <param name="name">A unique name for this universe</param>
+            <param name="tickersByDate">Dictionary of DateTime keyed by String that represent the Inception date for each ticker</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.InceptionDateUniverseSelectionModel.Select(QuantConnect.Algorithm.QCAlgorithm,System.DateTime)">
+            <summary>
+            Returns all tickers that are trading at current algorithm Time
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Selection.LiquidETFUniverse">
+            <summary>
+            Universe Selection Model that adds the following ETFs at their inception date
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Algorithm.Framework.Selection.LiquidETFUniverse.Energy">
+            <summary>
+            Represents the Energy ETF Category which can be used to access the list of Long and Inverse symbols
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Algorithm.Framework.Selection.LiquidETFUniverse.Metals">
+            <summary>
+            Represents the Metals ETF Category which can be used to access the list of Long and Inverse symbols
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Algorithm.Framework.Selection.LiquidETFUniverse.Technology">
+            <summary>
+            Represents the Technology ETF Category which can be used to access the list of Long and Inverse symbols
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Algorithm.Framework.Selection.LiquidETFUniverse.Treasuries">
+            <summary>
+            Represents the Treasuries ETF Category which can be used to access the list of Long and Inverse symbols
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Algorithm.Framework.Selection.LiquidETFUniverse.Volatility">
+            <summary>
+            Represents the Volatility ETF Category which can be used to access the list of Long and Inverse symbols
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Algorithm.Framework.Selection.LiquidETFUniverse.SP500Sectors">
+            <summary>
+            Represents the SP500 Sectors ETF Category which can be used to access the list of Long and Inverse symbols
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.LiquidETFUniverse.#ctor">
+            <summary>
+            Initializes a new instance of the LiquidETFUniverse class
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Selection.LiquidETFUniverse.Grouping">
+            <summary>
+            Represent a collection of ETF symbols that is grouped according to a given criteria
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Algorithm.Framework.Selection.LiquidETFUniverse.Grouping.Long">
+            <summary>
+            List of Symbols that follow the components direction
+            </summary>
+        </member>
+        <member name="F:QuantConnect.Algorithm.Framework.Selection.LiquidETFUniverse.Grouping.Inverse">
+            <summary>
+            List of Symbols that follow the components inverse direction
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.LiquidETFUniverse.Grouping.#ctor(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Selection.LiquidETFUniverse.Grouping"/>.
+            </summary>
+            <param name="longTickers">List of tickers of ETFs that follows the components direction</param>
+            <param name="inverseTickers">List of tickers of ETFs that follows the components inverse direction</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.LiquidETFUniverse.Grouping.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>
+            A string that represents the current object.
+            </returns>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Selection.MetalsETFUniverse">
+            <summary>
+            Universe Selection Model that adds the following Metals ETFs at their inception date
+            2004-11-18   GLD    SPDR Gold Trust
+            2005-01-28   IAU    iShares Gold Trust
+            2006-04-28   SLV    iShares Silver Trust
+            2006-05-22   GDX    VanEck Vectors Gold Miners ETF
+            2008-12-04   AGQ    ProShares Ultra Silver
+            2009-11-11   GDXJ   VanEck Vectors Junior Gold Miners ETF
+            2010-01-08   PPLT   Aberdeen Standard Platinum Shares ETF
+            2010-12-08   NUGT   Direxion Daily Gold Miners Bull 3X Shares
+            2010-12-08   DUST   Direxion Daily Gold Miners Bear 3X Shares
+            2011-10-17   USLV   VelocityShares 3x Long Silver ETN
+            2011-10-17   UGLD   VelocityShares 3x Long Gold ETN
+            2013-10-03   JNUG   Direxion Daily Junior Gold Miners Index Bull 3x Shares
+            2013-10-03   JDST   Direxion Daily Junior Gold Miners Index Bear 3X Shares
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.MetalsETFUniverse.#ctor">
+            <summary>
+            Initializes a new instance of the MetalsETFUniverse class
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Selection.OpenInterestFutureUniverseSelectionModel">
+            <summary>
+                Selects contracts in a futures universe, sorted by open interest.  This allows the selection to identifiy current
+                active contract.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.OpenInterestFutureUniverseSelectionModel.#ctor(QuantConnect.Interfaces.IAlgorithm,System.Func{System.DateTime,System.Collections.Generic.IEnumerable{QuantConnect.Symbol}},System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+                Creates a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Selection.OpenInterestFutureUniverseSelectionModel" />
+            </summary>
+            <param name="algorithm">Algorithm</param>
+            <param name="futureChainSymbolSelector">Selects symbols from the provided future chain</param>
+            <param name="chainContractsLookupLimit">Limit on how many contracts to query for open interest</param>
+            <param name="resultsLimit">Limit on how many contracts will be part of the universe</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.OpenInterestFutureUniverseSelectionModel.Filter(QuantConnect.Securities.FutureFilterUniverse)">
+            <summary>
+                Defines the future chain universe filter
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.OpenInterestFutureUniverseSelectionModel.FilterByOpenInterest(System.Collections.Generic.IReadOnlyDictionary{QuantConnect.Symbol,QuantConnect.Securities.MarketHoursDatabase.Entry})">
+            <summary>
+                Filters a set of contracts based on open interest.
+            </summary>
+            <param name="contracts">Contracts to filter</param>
+            <returns>Filtered set</returns>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Selection.OptionUniverseSelectionModel">
+            <summary>
+            Provides an implementation of <see cref="T:QuantConnect.Algorithm.Framework.Selection.IUniverseSelectionModel"/> that subscribes to option chains
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.OptionUniverseSelectionModel.GetNextRefreshTimeUtc">
+            <summary>
+            Gets the next time the framework should invoke the `CreateUniverses` method to refresh the set of universes.
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.OptionUniverseSelectionModel.#ctor(System.TimeSpan,System.Func{System.DateTime,System.Collections.Generic.IEnumerable{QuantConnect.Symbol}})">
+            <summary>
+            Creates a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Selection.OptionUniverseSelectionModel"/>
+            </summary>
+            <param name="refreshInterval">Time interval between universe refreshes</param>
+            <param name="optionChainSymbolSelector">Selects symbols from the provided option chain</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.OptionUniverseSelectionModel.#ctor(System.TimeSpan,System.Func{System.DateTime,System.Collections.Generic.IEnumerable{QuantConnect.Symbol}},QuantConnect.Data.UniverseSelection.UniverseSettings,QuantConnect.Securities.ISecurityInitializer)">
+            <summary>
+            Creates a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Selection.OptionUniverseSelectionModel"/>
+            </summary>
+            <param name="refreshInterval">Time interval between universe refreshes</param>
+            <param name="optionChainSymbolSelector">Selects symbols from the provided option chain</param>
+            <param name="universeSettings">Universe settings define attributes of created subscriptions, such as their resolution and the minimum time in universe before they can be removed</param>
+            <param name="securityInitializer">Performs extra initialization (such as setting models) after we create a new security object</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.OptionUniverseSelectionModel.#ctor(System.TimeSpan,System.Func{System.DateTime,System.Collections.Generic.IEnumerable{QuantConnect.Symbol}},QuantConnect.Data.UniverseSelection.UniverseSettings)">
+            <summary>
+            Creates a new instance of <see cref="T:QuantConnect.Algorithm.Framework.Selection.OptionUniverseSelectionModel"/>
+            </summary>
+            <param name="refreshInterval">Time interval between universe refreshes</param>
+            <param name="optionChainSymbolSelector">Selects symbols from the provided option chain</param>
+            <param name="universeSettings">Universe settings define attributes of created subscriptions, such as their resolution and the minimum time in universe before they can be removed</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.OptionUniverseSelectionModel.CreateUniverses(QuantConnect.Algorithm.QCAlgorithm)">
+            <summary>
+            Creates the universes for this algorithm. Called once after <see cref="M:QuantConnect.Interfaces.IAlgorithm.Initialize"/>
+            </summary>
+            <param name="algorithm">The algorithm instance to create universes for</param>
+            <returns>The universes to be used by the algorithm</returns>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.OptionUniverseSelectionModel.Filter(QuantConnect.Securities.OptionFilterUniverse)">
+            <summary>
+            Defines the option chain universe filter
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Selection.QC500UniverseSelectionModel">
+            <summary>
+            Defines the QC500 universe as a universe selection model for framework algorithm
+            For details: https://github.com/QuantConnect/Lean/pull/1663
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.QC500UniverseSelectionModel.#ctor">
+            <summary>
+            Initializes a new default instance of the <see cref="T:QuantConnect.Algorithm.Framework.Selection.QC500UniverseSelectionModel"/>
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.QC500UniverseSelectionModel.#ctor(QuantConnect.Data.UniverseSelection.UniverseSettings,QuantConnect.Securities.ISecurityInitializer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Selection.QC500UniverseSelectionModel"/>
+            </summary>
+            <param name="universeSettings">Universe settings defines what subscription properties will be applied to selected securities</param>
+            <param name="securityInitializer">Security initializer initializes newly selected securities</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.QC500UniverseSelectionModel.SelectCoarse(QuantConnect.Algorithm.QCAlgorithm,System.Collections.Generic.IEnumerable{QuantConnect.Data.UniverseSelection.CoarseFundamental})">
+            <summary>
+            Performs coarse selection for the QC500 constituents.
+            The stocks must have fundamental data
+            The stock must have positive previous-day close price
+            The stock must have positive volume on the previous trading day
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.QC500UniverseSelectionModel.SelectFine(QuantConnect.Algorithm.QCAlgorithm,System.Collections.Generic.IEnumerable{QuantConnect.Data.Fundamental.FineFundamental})">
+            <summary>
+            Performs fine selection for the QC500 constituents
+            The company's headquarter must in the U.S.
+            The stock must be traded on either the NYSE or NASDAQ
+            At least half a year since its initial public offering
+            The stock's market cap must be greater than 500 million
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Selection.ScheduledUniverseSelectionModel">
+            <summary>
+            Defines a universe selection model that invokes a selector function on a specific scheduled given by an <see cref="T:QuantConnect.Scheduling.IDateRule"/> and an <see cref="T:QuantConnect.Scheduling.ITimeRule"/>
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.ScheduledUniverseSelectionModel.#ctor(QuantConnect.Scheduling.IDateRule,QuantConnect.Scheduling.ITimeRule,System.Func{System.DateTime,System.Collections.Generic.IEnumerable{QuantConnect.Symbol}},QuantConnect.Data.UniverseSelection.UniverseSettings,QuantConnect.Securities.ISecurityInitializer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Selection.ScheduledUniverseSelectionModel"/> class using the algorithm's time zone
+            </summary>
+            <param name="dateRule">Date rule defines what days the universe selection function will be invoked</param>
+            <param name="timeRule">Time rule defines what times on each day selected by date rule the universe selection function will be invoked</param>
+            <param name="selector">Selector function accepting the date time firing time and returning the universe selected symbols</param>
+            <param name="settings">Universe settings for subscriptions added via this universe, null will default to algorithm's universe settings</param>
+            <param name="initializer">Security initializer for new securities created via this universe, null will default to algorithm's security initializer</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.ScheduledUniverseSelectionModel.#ctor(NodaTime.DateTimeZone,QuantConnect.Scheduling.IDateRule,QuantConnect.Scheduling.ITimeRule,System.Func{System.DateTime,System.Collections.Generic.IEnumerable{QuantConnect.Symbol}},QuantConnect.Data.UniverseSelection.UniverseSettings,QuantConnect.Securities.ISecurityInitializer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Selection.ScheduledUniverseSelectionModel"/> class
+            </summary>
+            <param name="timeZone">The time zone the date/time rules are in</param>
+            <param name="dateRule">Date rule defines what days the universe selection function will be invoked</param>
+            <param name="timeRule">Time rule defines what times on each day selected by date rule the universe selection function will be invoked</param>
+            <param name="selector">Selector function accepting the date time firing time and returning the universe selected symbols</param>
+            <param name="settings">Universe settings for subscriptions added via this universe, null will default to algorithm's universe settings</param>
+            <param name="initializer">Security initializer for new securities created via this universe, null will default to algorithm's security initializer</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.ScheduledUniverseSelectionModel.#ctor(QuantConnect.Scheduling.IDateRule,QuantConnect.Scheduling.ITimeRule,Python.Runtime.PyObject,QuantConnect.Data.UniverseSelection.UniverseSettings,QuantConnect.Securities.ISecurityInitializer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Selection.ScheduledUniverseSelectionModel"/> class using the algorithm's time zone
+            </summary>
+            <param name="dateRule">Date rule defines what days the universe selection function will be invoked</param>
+            <param name="timeRule">Time rule defines what times on each day selected by date rule the universe selection function will be invoked</param>
+            <param name="selector">Selector function accepting the date time firing time and returning the universe selected symbols</param>
+            <param name="settings">Universe settings for subscriptions added via this universe, null will default to algorithm's universe settings</param>
+            <param name="initializer">Security initializer for new securities created via this universe, null will default to algorithm's security initializer</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.ScheduledUniverseSelectionModel.#ctor(NodaTime.DateTimeZone,QuantConnect.Scheduling.IDateRule,QuantConnect.Scheduling.ITimeRule,Python.Runtime.PyObject,QuantConnect.Data.UniverseSelection.UniverseSettings,QuantConnect.Securities.ISecurityInitializer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuantConnect.Algorithm.Framework.Selection.ScheduledUniverseSelectionModel"/> class
+            </summary>
+            <param name="timeZone">The time zone the date/time rules are in</param>
+            <param name="dateRule">Date rule defines what days the universe selection function will be invoked</param>
+            <param name="timeRule">Time rule defines what times on each day selected by date rule the universe selection function will be invoked</param>
+            <param name="selector">Selector function accepting the date time firing time and returning the universe selected symbols</param>
+            <param name="settings">Universe settings for subscriptions added via this universe, null will default to algorithm's universe settings</param>
+            <param name="initializer">Security initializer for new securities created via this universe, null will default to algorithm's security initializer</param>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.ScheduledUniverseSelectionModel.CreateUniverses(QuantConnect.Algorithm.QCAlgorithm)">
+            <summary>
+            Creates the universes for this algorithm. Called once after <see cref="M:QuantConnect.Interfaces.IAlgorithm.Initialize"/>
+            </summary>
+            <param name="algorithm">The algorithm instance to create universes for</param>
+            <returns>The universes to be used by the algorithm</returns>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Selection.SP500SectorsETFUniverse">
+            <summary>
+            Universe Selection Model that adds the following SP500 Sectors ETFs at their inception date
+            1998-12-22   XLB   Materials Select Sector SPDR ETF
+            1998-12-22   XLE   Energy Select Sector SPDR Fund
+            1998-12-22   XLF   Financial Select Sector SPDR Fund
+            1998-12-22   XLI   Industrial Select Sector SPDR Fund
+            1998-12-22   XLK   Technology Select Sector SPDR Fund
+            1998-12-22   XLP   Consumer Staples Select Sector SPDR Fund
+            1998-12-22   XLU   Utilities Select Sector SPDR Fund
+            1998-12-22   XLV   Health Care Select Sector SPDR Fund
+            1998-12-22   XLY   Consumer Discretionary Select Sector SPDR Fund
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.SP500SectorsETFUniverse.#ctor">
+            <summary>
+            Initializes a new instance of the SP500SectorsETFUniverse class
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Selection.TechnologyETFUniverse">
+            <summary>
+            Universe Selection Model that adds the following Technology ETFs at their inception date
+            1998-12-22   XLK    Technology Select Sector SPDR Fund
+            1999-03-10   QQQ    Invesco QQQ
+            2001-07-13   SOXX   iShares PHLX Semiconductor ETF
+            2001-07-13   IGV    iShares Expanded Tech-Software Sector ETF
+            2004-01-30   VGT    Vanguard Information Technology ETF
+            2006-04-25   QTEC   First Trust NASDAQ 100 Technology
+            2006-06-23   FDN    First Trust Dow Jones Internet Index
+            2007-05-10   FXL    First Trust Technology AlphaDEX Fund
+            2008-12-17   TECL   Direxion Daily Technology Bull 3X Shares
+            2008-12-17   TECS   Direxion Daily Technology Bear 3X Shares
+            2010-03-11   SOXL   Direxion Daily Semiconductor Bull 3x Shares
+            2010-03-11   SOXS   Direxion Daily Semiconductor Bear 3x Shares
+            2011-07-06   SKYY   First Trust ISE Cloud Computing Index Fund
+            2011-12-21   SMH    VanEck Vectors Semiconductor ETF
+            2013-08-01   KWEB   KraneShares CSI China Internet ETF
+            2013-10-24   FTEC   Fidelity MSCI Information Technology Index ETF
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.TechnologyETFUniverse.#ctor">
+            <summary>
+            Initializes a new instance of the TechnologyETFUniverse class
+            </summary>
+        </member>
+        <member name="T:QuantConnect.Algorithm.Framework.Selection.USTreasuriesETFUniverse">
+            <summary>
+            Universe Selection Model that adds the following US Treasuries ETFs at their inception date
+            2002-07-26   IEF    iShares 7-10 Year Treasury Bond ETF
+            2002-07-26   SHY    iShares 1-3 Year Treasury Bond ETF
+            2002-07-26   TLT    iShares 20+ Year Treasury Bond ETF
+            2007-01-11   SHV    iShares Short Treasury Bond ETF
+            2007-01-11   IEI    iShares 3-7 Year Treasury Bond ETF
+            2007-01-11   TLH    iShares 10-20 Year Treasury Bond ETF
+            2007-12-10   EDV    Vanguard Ext Duration Treasury ETF
+            2007-05-30   BIL    SPDR Barclays 1-3 Month T-Bill ETF
+            2007-05-30   SPTL   SPDR Portfolio Long Term Treasury ETF
+            2008-05-01   TBT    UltraShort Barclays 20+ Year Treasury
+            2009-04-16   TMF    Direxion Daily 20-Year Treasury Bull 3X
+            2009-04-16   TMV    Direxion Daily 20-Year Treasury Bear 3X
+            2009-08-20   TBF    ProShares Short 20+ Year Treasury
+            2009-11-23   VGSH   Vanguard Short-Term Treasury ETF
+            2009-11-23   VGIT   Vanguard Intermediate-Term Treasury ETF
+            2009-11-24   VGLT   Vanguard Long-Term Treasury ETF
+            2010-08-06   SCHO   Schwab Short-Term U.S. Treasury ETF
+            2010-08-06   SCHR   Schwab Intermediate-Term U.S. Treasury ETF
+            2011-12-01   SPTS   SPDR Portfolio Short Term Treasury ETF
+            2012-02-24   GOVT   iShares U.S. Treasury Bond ETF
+            </summary>
+        </member>
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.USTreasuriesETFUniverse.#ctor">
+            <summary>
+            Initializes a new instance of the USTreasuriesETFUniverse class
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:QuantConnect.Algorithm.Framework.Selection.VolatilityETFUniverse" -->
+        <member name="M:QuantConnect.Algorithm.Framework.Selection.VolatilityETFUniverse.#ctor">
+            <summary>
+            Initializes a new instance of the VolatilityETFUniverse class
+            </summary>
+        </member>
+    </members>
+</doc>

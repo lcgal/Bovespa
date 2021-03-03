@@ -1,0 +1,917 @@
+2021-02-15T07:18:28.7708679Z TRACE:: Config.Get(): Configuration key not found. Key: data-directory - Using default value: ../../../Data/
+2021-02-15T07:18:28.7708679Z TRACE:: Config.Get(): Configuration key not found. Key: version-id - Using default value: 
+2021-02-15T07:18:28.7718685Z TRACE:: Config.Get(): Configuration key not found. Key: cache-location - Using default value: ../../../Data/
+2021-02-15T07:18:28.7718685Z TRACE:: Engine.Main(): LEAN ALGORITHMIC TRADING ENGINE v2.4.0.0 Mode: DEBUG (64bit)
+2021-02-15T07:18:28.7718685Z TRACE:: Engine.Main(): Started 4:18 AM
+2021-02-15T07:18:28.7728685Z TRACE:: Config.GetValue(): job-project-id - Using default value: 0
+2021-02-15T07:18:28.7738683Z TRACE:: Config.GetValue(): regression-update-statistics - Using default value: False
+2021-02-15T07:18:28.7738683Z TRACE:: Config.Get(): Configuration key not found. Key: lean-manager-type - Using default value: LocalLeanManager
+2021-02-15T07:18:28.8073865Z TRACE:: JobQueue.NextJob(): Selected QuantConnect.Algorithm.CSharp.dll
+2021-02-15T07:18:28.8994001Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-capacity - Using default value: 120
+2021-02-15T07:18:28.8994001Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-time-interval-minutes - Using default value: 1440
+2021-02-15T07:18:28.8994001Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-refill-amount - Using default value: 18
+2021-02-15T07:18:28.9014011Z TRACE:: Config.Get(): Configuration key not found. Key: algorithm-id - Using default value: BasicTemplateFrameworkAlgorithm
+2021-02-15T07:18:28.9024012Z TRACE:: Config.Get(): Configuration key not found. Key: data-permission-manager - Using default value: DataPermissionManager
+2021-02-15T07:18:28.9034015Z TRACE:: Config.Get(): Configuration key not found. Key: results-destination-folder - Using default value: C:\Repositorios\Bovespa\Lean\Launcher\bin\Debug
+2021-02-15T07:18:28.9084023Z TRACE:: Config.Get(): Configuration key not found. Key: object-store-root - Using default value: ./storage
+2021-02-15T07:18:28.9094028Z TRACE:: Config.GetValue(): ignore-version-checks - Using default value: False
+2021-02-15T07:18:28.9104033Z TRACE:: AlgorithmManager.CreateTokenBucket(): Initializing LeakyBucket: Capacity: 120 RefillAmount: 18 TimeInterval: 1440
+2021-02-15T07:18:28.9114036Z TRACE:: Config.GetValue(): algorithm-manager-time-loop-maximum - Using default value: 20
+2021-02-15T07:18:28.9174045Z TRACE:: TextSubscriptionDataSourceReader.SetCacheSize(): Setting cache size to 71582788 items
+2021-02-15T07:18:29.1169909Z TRACE:: Loader.TryCreateILAlgorithm(): Loading only the algorithm assembly
+2021-02-15T07:18:29.1559993Z TRACE:: Loader.TryCreateILAlgorithm(): Loaded BasicTemplateFrameworkAlgorithm
+2021-02-15T07:18:29.1950079Z TRACE:: Config.Get(): Configuration key not found. Key: results-destination-folder - Using default value: C:\Repositorios\Bovespa\Lean\Launcher\bin\Debug
+2021-02-15T07:18:29.1980087Z TRACE:: LocalObjectStore.Initialize(): Storage Root: C:\Repositorios\Bovespa\Lean\Launcher\bin\Debug\storage\BasicTemplateFrameworkAlgorithm
+2021-02-15T07:18:29.2110115Z TRACE:: Config.Get(): Configuration key not found. Key: security-data-feeds - Using default value: 
+2021-02-15T07:18:29.3210367Z TRACE:: BaseSetupHandler.SetupCurrencyConversions():
+Symbol      Quantity    Conversion = Value in USD
+USD: $      100000.00 @       1.00 = $100000.0
+-------------------------------------------------
+CashBook Total Value:                $100000.0
+
+2021-02-15T07:18:29.3240370Z TRACE:: BacktestingResultHandler(): Sample Period Set: 04.00
+2021-02-15T07:18:29.3260375Z TRACE:: Config.GetValue(): forward-console-messages - Using default value: True
+2021-02-15T07:18:29.3280379Z TRACE:: JOB HANDLERS: 
+2021-02-15T07:18:29.3280379Z TRACE::          DataFeed:     QuantConnect.Lean.Engine.DataFeeds.FileSystemDataFeed
+2021-02-15T07:18:29.3290381Z TRACE::          Setup:        QuantConnect.Lean.Engine.Setup.ConsoleSetupHandler
+2021-02-15T07:18:29.3290381Z TRACE::          RealTime:     QuantConnect.Lean.Engine.RealTime.BacktestingRealTimeHandler
+2021-02-15T07:18:29.3290381Z TRACE::          Results:      QuantConnect.Lean.Engine.Results.BacktestingResultHandler
+2021-02-15T07:18:29.3290381Z TRACE::          Transactions: QuantConnect.Lean.Engine.TransactionHandlers.BacktestingTransactionHandler
+2021-02-15T07:18:29.3290381Z TRACE::          Alpha:        QuantConnect.Lean.Engine.Alphas.DefaultAlphaHandler
+2021-02-15T07:18:29.3300383Z TRACE::          ObjectStore:  QuantConnect.Lean.Engine.Storage.LocalObjectStore
+2021-02-15T07:18:29.3300383Z TRACE::          History Provider:     QuantConnect.Lean.Engine.HistoricalData.SubscriptionDataReaderHistoryProvider
+2021-02-15T07:18:29.3510430Z TRACE:: AlgorithmManager.Run(): Begin DataStream - Start: 10/7/2013 12:00:00 AM Stop: 10/11/2013 11:59:59 PM
+2021-02-15T07:18:29.3610453Z TRACE:: Debug: Launching analysis for BasicTemplateFrameworkAlgorithm with LEAN Engine v2.4.0.0
+2021-02-15T07:18:29.4040550Z TRACE:: Config.GetValue(): data-feed-workers-count - Using default value: 16
+2021-02-15T07:18:29.4040550Z TRACE:: Config.GetValue(): data-feed-max-work-weight - Using default value: 400
+2021-02-15T07:18:29.4050553Z TRACE:: Config.Get(): Configuration key not found. Key: data-feed-queue-type - Using default value: QuantConnect.Lean.Engine.DataFeeds.WorkScheduling.WorkQueue, QuantConnect.Lean.Engine
+2021-02-15T07:18:29.4050553Z TRACE:: WeightedWorkScheduler(): will use 16 workers and MaxWorkWeight is 400. Queue type: WorkQueue
+2021-02-15T07:18:29.4380627Z TRACE:: Config.GetValue(): show-missing-data-logs - Using default value: False
+2021-02-15T07:18:29.4910745Z TRACE:: UniverseSelection.AddPendingInternalDataFeeds(): Adding internal benchmark data feed SPY,SPY,Hour,TradeBar,Trade,Adjusted,Internal
+2021-02-15T07:18:29.7021234Z TRACE:: Debug: Purchased Stock: SPY
+2021-02-15T07:18:29.7731396Z TRACE:: Synchronizer.GetEnumerator(): Exited thread.
+2021-02-15T07:18:29.7741397Z TRACE:: AlgorithmManager.Run(): Firing On End Of Algorithm...
+2021-02-15T07:18:29.7741397Z TRACE:: Engine.Run(): Exiting Algorithm Manager
+2021-02-15T07:18:29.7887365Z TRACE:: FileSystemDataFeed.Exit(): Start. Setting cancellation token...
+2021-02-15T07:18:29.7897365Z TRACE:: FileSystemDataFeed.Exit(): Exit Finished.
+2021-02-15T07:18:29.7897365Z TRACE:: DefaultAlphaHandler.Exit(): Exiting...
+2021-02-15T07:18:29.8097403Z TRACE:: Debug: Algorithm Id:(BasicTemplateFrameworkAlgorithm) completed in 0.44 seconds at 9k data points per second. Processing total of 3,943 data points.
+2021-02-15T07:18:29.8277444Z TRACE:: DefaultAlphaHandler.Exit(): Ended
+2021-02-15T07:18:29.8277444Z TRACE:: BacktestingResultHandler.Exit(): starting...
+2021-02-15T07:18:29.8287446Z TRACE:: BacktestingResultHandler.Exit(): Saving logs...
+2021-02-15T07:18:29.8317452Z TRACE:: Debug: Your log was successfully created and can be retrieved from: C:\Repositorios\Bovespa\Lean\Launcher\bin\Debug\BasicTemplateFrameworkAlgorithm-log.txt
+2021-02-15T07:18:29.8317452Z TRACE:: BacktestingResultHandler.Run(): Ending Thread...
+2021-02-15T07:18:29.8327455Z TRACE:: StopSafely(): waiting for 'Result Thread' thread to stop...
+2021-02-15T07:18:29.9887810Z TRACE:: 
+STATISTICS:: Total Trades 3
+STATISTICS:: Average Win 0%
+STATISTICS:: Average Loss -1.01%
+STATISTICS:: Compounding Annual Return 254.782%
+STATISTICS:: Drawdown 2.200%
+STATISTICS:: Expectancy -1
+STATISTICS:: Net Profit 1.632%
+STATISTICS:: Sharpe Ratio 8.371
+STATISTICS:: Probabilistic Sharpe Ratio 66.555%
+STATISTICS:: Loss Rate 100%
+STATISTICS:: Win Rate 0%
+STATISTICS:: Profit-Loss Ratio 0
+STATISTICS:: Alpha -0.088
+STATISTICS:: Beta 1.006
+STATISTICS:: Annual Standard Deviation 0.221
+STATISTICS:: Annual Variance 0.049
+STATISTICS:: Information Ratio -32.586
+STATISTICS:: Tracking Error 0.002
+STATISTICS:: Treynor Ratio 1.839
+STATISTICS:: Total Fees $9.77
+STATISTICS:: Fitness Score 0.747
+STATISTICS:: Kelly Criterion Estimate 38.64
+STATISTICS:: Kelly Criterion Probability Value 0.229
+STATISTICS:: Sortino Ratio 79228162514264337593543950335
+STATISTICS:: Return Over Maximum Drawdown 85.209
+STATISTICS:: Portfolio Turnover 0.747
+STATISTICS:: Total Insights Generated 100
+STATISTICS:: Total Insights Closed 99
+STATISTICS:: Total Insights Analysis Completed 99
+STATISTICS:: Long Insight Count 100
+STATISTICS:: Short Insight Count 0
+STATISTICS:: Long/Short Ratio 100%
+STATISTICS:: Estimated Monthly Alpha Value $126657.6305
+STATISTICS:: Total Accumulated Estimated Alpha Value $20405.9516
+STATISTICS:: Mean Population Estimated Insight Value $206.1207
+STATISTICS:: Mean Population Direction 54.5455%
+STATISTICS:: Mean Population Magnitude 54.5455%
+STATISTICS:: Rolling Averaged Population Direction 59.8056%
+STATISTICS:: Rolling Averaged Population Magnitude 59.8056%
+STATISTICS:: OrderListHash 17e29d58e5dabd93569da752c4552c70
+2021-02-15T07:18:29.9887810Z TRACE:: BacktestingResultHandler.SendAnalysisResult(): Processed final packet
+2021-02-15T07:18:29.9887810Z TRACE:: Engine.Run(): Disconnecting from brokerage...
+2021-02-15T07:18:29.9897810Z TRACE:: Engine.Run(): Disposing of setup handler...
+2021-02-15T07:18:29.9897810Z TRACE:: Engine.Main(): Analysis Completed and Results Posted.
+2021-02-15T07:18:29.9907821Z TRACE:: Config.GetValue(): close-automatically - Using default value: False
+2021-02-15T07:18:30.2107122Z TRACE:: Python for .NET Assembly: Python.Runtime, Version=1.0.5.30, Culture=neutral, PublicKeyToken=null
+2021-02-15T07:18:31.8611216Z TRACE:: Python for .NET Assembly: nPython, Version=1.0.5.30, Culture=neutral, PublicKeyToken=null
+2021-02-15T08:10:43.0418641Z TRACE:: Config.Get(): Configuration key not found. Key: data-directory - Using default value: ../../../Data/
+2021-02-15T08:10:43.0438646Z TRACE:: Config.Get(): Configuration key not found. Key: version-id - Using default value: 
+2021-02-15T08:10:43.0438646Z TRACE:: Config.Get(): Configuration key not found. Key: cache-location - Using default value: ../../../Data/
+2021-02-15T08:10:43.0438646Z TRACE:: Engine.Main(): LEAN ALGORITHMIC TRADING ENGINE v2.4.0.0 Mode: DEBUG (64bit)
+2021-02-15T08:10:43.0448655Z TRACE:: Engine.Main(): Started 5:10 AM
+2021-02-15T08:10:43.0498668Z TRACE:: Config.GetValue(): job-project-id - Using default value: 0
+2021-02-15T08:10:43.0508674Z TRACE:: Config.GetValue(): regression-update-statistics - Using default value: False
+2021-02-15T08:10:43.0518670Z TRACE:: Config.Get(): Configuration key not found. Key: lean-manager-type - Using default value: LocalLeanManager
+2021-02-15T08:10:43.0708708Z TRACE:: JobQueue.NextJob(): Selected QuantConnect.Algorithm.CSharp.dll
+2021-02-15T08:10:43.2298589Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-capacity - Using default value: 120
+2021-02-15T08:10:43.2298589Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-time-interval-minutes - Using default value: 1440
+2021-02-15T08:10:43.2298589Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-refill-amount - Using default value: 18
+2021-02-15T08:10:43.2328600Z TRACE:: Config.Get(): Configuration key not found. Key: algorithm-id - Using default value: BasicTemplateAlgorithm
+2021-02-15T08:10:43.2338599Z TRACE:: Config.Get(): Configuration key not found. Key: data-permission-manager - Using default value: DataPermissionManager
+2021-02-15T08:10:43.2378608Z TRACE:: Config.Get(): Configuration key not found. Key: results-destination-folder - Using default value: C:\Repositorios\Bovespa\Lean\Launcher\bin\Debug
+2021-02-15T08:10:43.2508634Z TRACE:: Config.Get(): Configuration key not found. Key: object-store-root - Using default value: ./storage
+2021-02-15T08:10:43.2508634Z TRACE:: Config.GetValue(): ignore-version-checks - Using default value: False
+2021-02-15T08:10:43.2528636Z TRACE:: AlgorithmManager.CreateTokenBucket(): Initializing LeakyBucket: Capacity: 120 RefillAmount: 18 TimeInterval: 1440
+2021-02-15T08:10:43.2548641Z TRACE:: Config.GetValue(): algorithm-manager-time-loop-maximum - Using default value: 20
+2021-02-15T08:10:43.2658671Z TRACE:: TextSubscriptionDataSourceReader.SetCacheSize(): Setting cache size to 71582788 items
+2021-02-15T08:10:43.4119002Z TRACE:: Python for .NET Assembly: nPython, Version=1.0.5.30, Culture=neutral, PublicKeyToken=null
+2021-02-15T08:10:43.5553357Z TRACE:: Loader.TryCreateILAlgorithm(): Loading only the algorithm assembly
+2021-02-15T08:10:43.6163264Z TRACE:: Loader.TryCreateILAlgorithm(): Loaded BasicTemplateAlgorithm
+2021-02-15T08:10:43.6273298Z TRACE:: Config.Get(): Configuration key not found. Key: results-destination-folder - Using default value: C:\Repositorios\Bovespa\Lean\Launcher\bin\Debug
+2021-02-15T08:10:43.6283289Z TRACE:: LocalObjectStore.Initialize(): Storage Root: C:\Repositorios\Bovespa\Lean\Launcher\bin\Debug\storage\BasicTemplateAlgorithm
+2021-02-15T08:10:43.6423327Z TRACE:: Config.Get(): Configuration key not found. Key: security-data-feeds - Using default value: 
+2021-02-15T08:10:43.7263282Z TRACE:: BaseSetupHandler.SetupCurrencyConversions():
+Symbol      Quantity    Conversion = Value in USD
+USD: $      100000.00 @       1.00 = $100000.0
+-------------------------------------------------
+CashBook Total Value:                $100000.0
+
+2021-02-15T08:10:43.7293302Z TRACE:: BacktestingResultHandler(): Sample Period Set: 04.00
+2021-02-15T08:10:43.7303305Z TRACE:: Time.TradeableDates(): Security Count: 1
+2021-02-15T08:10:43.7323296Z TRACE:: Config.GetValue(): forward-console-messages - Using default value: True
+2021-02-15T08:10:43.7333305Z TRACE:: JOB HANDLERS: 
+2021-02-15T08:10:43.7333305Z TRACE::          DataFeed:     QuantConnect.Lean.Engine.DataFeeds.FileSystemDataFeed
+2021-02-15T08:10:43.7343311Z TRACE::          Setup:        QuantConnect.Lean.Engine.Setup.ConsoleSetupHandler
+2021-02-15T08:10:43.7343311Z TRACE::          RealTime:     QuantConnect.Lean.Engine.RealTime.BacktestingRealTimeHandler
+2021-02-15T08:10:43.7343311Z TRACE::          Results:      QuantConnect.Lean.Engine.Results.BacktestingResultHandler
+2021-02-15T08:10:43.7343311Z TRACE::          Transactions: QuantConnect.Lean.Engine.TransactionHandlers.BacktestingTransactionHandler
+2021-02-15T08:10:43.7353315Z TRACE::          Alpha:        QuantConnect.Lean.Engine.Alphas.DefaultAlphaHandler
+2021-02-15T08:10:43.7353315Z TRACE::          ObjectStore:  QuantConnect.Lean.Engine.Storage.LocalObjectStore
+2021-02-15T08:10:43.7353315Z TRACE::          History Provider:     QuantConnect.Lean.Engine.HistoricalData.SubscriptionDataReaderHistoryProvider
+2021-02-15T08:10:43.7573358Z TRACE:: AlgorithmManager.Run(): Begin DataStream - Start: 10/7/2013 12:00:00 AM Stop: 10/11/2013 11:59:59 PM
+2021-02-15T08:10:43.7873421Z TRACE:: Debug: Launching analysis for BasicTemplateAlgorithm with LEAN Engine v2.4.0.0
+2021-02-15T08:10:43.7965890Z TRACE:: Config.GetValue(): data-feed-workers-count - Using default value: 16
+2021-02-15T08:10:43.7965890Z TRACE:: Config.GetValue(): data-feed-max-work-weight - Using default value: 400
+2021-02-15T08:10:43.7965890Z TRACE:: Config.Get(): Configuration key not found. Key: data-feed-queue-type - Using default value: QuantConnect.Lean.Engine.DataFeeds.WorkScheduling.WorkQueue, QuantConnect.Lean.Engine
+2021-02-15T08:10:43.7975897Z TRACE:: WeightedWorkScheduler(): will use 16 workers and MaxWorkWeight is 400. Queue type: WorkQueue
+2021-02-15T08:10:43.8291528Z TRACE:: Config.GetValue(): show-missing-data-logs - Using default value: False
+2021-02-15T08:10:43.8751637Z TRACE:: UniverseSelection.AddPendingInternalDataFeeds(): Adding internal benchmark data feed SPY,SPY,Hour,TradeBar,Trade,Adjusted,Internal
+2021-02-15T08:10:44.0823646Z TRACE:: Synchronizer.GetEnumerator(): Exited thread.
+2021-02-15T08:10:44.0833651Z TRACE:: AlgorithmManager.Run(): Firing On End Of Algorithm...
+2021-02-15T08:10:44.0833651Z TRACE:: Engine.Run(): Exiting Algorithm Manager
+2021-02-15T08:10:44.0843648Z TRACE:: Debug: Purchased Stock
+2021-02-15T08:10:44.0843648Z TRACE:: Debug: Algorithm Id:(BasicTemplateAlgorithm) completed in 0.35 seconds at 11k data points per second. Processing total of 3,943 data points.
+2021-02-15T08:10:44.0923665Z TRACE:: FileSystemDataFeed.Exit(): Start. Setting cancellation token...
+2021-02-15T08:10:44.0933672Z TRACE:: FileSystemDataFeed.Exit(): Exit Finished.
+2021-02-15T08:10:44.0943670Z TRACE:: DefaultAlphaHandler.Exit(): Exiting...
+2021-02-15T08:10:44.0973672Z TRACE:: DefaultAlphaHandler.Exit(): Ended
+2021-02-15T08:10:44.0973672Z TRACE:: BacktestingResultHandler.Exit(): starting...
+2021-02-15T08:10:44.0973672Z TRACE:: BacktestingResultHandler.Exit(): Saving logs...
+2021-02-15T08:10:44.1033245Z TRACE:: Debug: Your log was successfully created and can be retrieved from: C:\Repositorios\Bovespa\Lean\Launcher\bin\Debug\BasicTemplateAlgorithm-log.txt
+2021-02-15T08:10:44.1033245Z TRACE:: BacktestingResultHandler.Run(): Ending Thread...
+2021-02-15T08:10:44.1043239Z TRACE:: StopSafely(): waiting for 'Result Thread' thread to stop...
+2021-02-15T08:10:44.2283523Z TRACE:: 
+STATISTICS:: Total Trades 1
+STATISTICS:: Average Win 0%
+STATISTICS:: Average Loss 0%
+STATISTICS:: Compounding Annual Return 264.819%
+STATISTICS:: Drawdown 2.200%
+STATISTICS:: Expectancy 0
+STATISTICS:: Net Profit 1.668%
+STATISTICS:: Sharpe Ratio 8.749
+STATISTICS:: Probabilistic Sharpe Ratio 67.311%
+STATISTICS:: Loss Rate 0%
+STATISTICS:: Win Rate 0%
+STATISTICS:: Profit-Loss Ratio 0
+STATISTICS:: Alpha -0.005
+STATISTICS:: Beta 0.996
+STATISTICS:: Annual Standard Deviation 0.219
+STATISTICS:: Annual Variance 0.048
+STATISTICS:: Information Ratio -14.189
+STATISTICS:: Tracking Error 0.001
+STATISTICS:: Treynor Ratio 1.922
+STATISTICS:: Total Fees $3.26
+STATISTICS:: Fitness Score 0.248
+STATISTICS:: Kelly Criterion Estimate 0
+STATISTICS:: Kelly Criterion Probability Value 0
+STATISTICS:: Sortino Ratio 79228162514264337593543950335
+STATISTICS:: Return Over Maximum Drawdown 93.761
+STATISTICS:: Portfolio Turnover 0.248
+STATISTICS:: Total Insights Generated 0
+STATISTICS:: Total Insights Closed 0
+STATISTICS:: Total Insights Analysis Completed 0
+STATISTICS:: Long Insight Count 0
+STATISTICS:: Short Insight Count 0
+STATISTICS:: Long/Short Ratio 100%
+STATISTICS:: Estimated Monthly Alpha Value $0
+STATISTICS:: Total Accumulated Estimated Alpha Value $0
+STATISTICS:: Mean Population Estimated Insight Value $0
+STATISTICS:: Mean Population Direction 0%
+STATISTICS:: Mean Population Magnitude 0%
+STATISTICS:: Rolling Averaged Population Direction 0%
+STATISTICS:: Rolling Averaged Population Magnitude 0%
+STATISTICS:: OrderListHash 25885f979ca8c7b44f5d0f7daf00b241
+2021-02-15T08:10:44.2283523Z TRACE:: BacktestingResultHandler.SendAnalysisResult(): Processed final packet
+2021-02-15T08:10:44.2283523Z TRACE:: Engine.Run(): Disconnecting from brokerage...
+2021-02-15T08:10:44.2293525Z TRACE:: Engine.Run(): Disposing of setup handler...
+2021-02-15T08:10:44.2293525Z TRACE:: Engine.Main(): Analysis Completed and Results Posted.
+2021-02-15T08:10:44.2293525Z TRACE:: Config.GetValue(): close-automatically - Using default value: False
+2021-02-15T08:10:58.4666616Z TRACE:: Engine.Main(): Packet removed from queue: BasicTemplateAlgorithm
+2021-02-15T08:10:58.4676619Z TRACE:: LeanEngineSystemHandlers.Dispose(): start...
+2021-02-15T08:10:58.4676619Z TRACE:: LeanEngineSystemHandlers.Dispose(): Disposed of system handlers.
+2021-02-15T08:10:58.4676619Z TRACE:: LeanEngineAlgorithmHandlers.Dispose(): start...
+2021-02-15T08:10:58.4686620Z TRACE:: LeanEngineAlgorithmHandlers.Dispose(): Disposed of algorithm handlers.
+2021-02-15T08:13:23.8503966Z TRACE:: Config.Get(): Configuration key not found. Key: data-directory - Using default value: ../../../Data/
+2021-02-15T08:13:23.8513969Z TRACE:: Config.Get(): Configuration key not found. Key: version-id - Using default value: 
+2021-02-15T08:13:23.8513969Z TRACE:: Config.Get(): Configuration key not found. Key: cache-location - Using default value: ../../../Data/
+2021-02-15T08:13:23.8523980Z TRACE:: Engine.Main(): LEAN ALGORITHMIC TRADING ENGINE v2.4.0.0 Mode: DEBUG (64bit)
+2021-02-15T08:13:23.8533985Z TRACE:: Engine.Main(): Started 5:13 AM
+2021-02-15T08:13:23.8553989Z TRACE:: Config.GetValue(): job-project-id - Using default value: 0
+2021-02-15T08:13:23.8563982Z TRACE:: Config.GetValue(): regression-update-statistics - Using default value: False
+2021-02-15T08:13:23.8563982Z TRACE:: Config.Get(): Configuration key not found. Key: lean-manager-type - Using default value: LocalLeanManager
+2021-02-15T08:13:24.2666762Z TRACE:: JobQueue.NextJob(): Selected ../../../Algorithm.Python/BasicTemplateAlgorithm.py
+2021-02-15T08:13:24.2737822Z TRACE:: Python for .NET Assembly: nPython, Version=1.0.5.30, Culture=neutral, PublicKeyToken=null
+2021-02-15T08:13:24.3598767Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-capacity - Using default value: 120
+2021-02-15T08:13:24.3598767Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-time-interval-minutes - Using default value: 1440
+2021-02-15T08:13:24.3598767Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-refill-amount - Using default value: 18
+2021-02-15T08:13:24.3618779Z TRACE:: Config.Get(): Configuration key not found. Key: algorithm-id - Using default value: BasicTemplateAlgorithm
+2021-02-15T08:13:24.3628773Z TRACE:: Config.Get(): Configuration key not found. Key: data-permission-manager - Using default value: DataPermissionManager
+2021-02-15T08:13:24.3638778Z TRACE:: Config.Get(): Configuration key not found. Key: results-destination-folder - Using default value: C:\Repositorios\Bovespa\Lean\Launcher\bin\Debug
+2021-02-15T08:13:24.3708794Z TRACE:: Config.Get(): Configuration key not found. Key: object-store-root - Using default value: ./storage
+2021-02-15T08:13:24.3718796Z TRACE:: Config.GetValue(): ignore-version-checks - Using default value: False
+2021-02-15T08:13:24.3728795Z TRACE:: AlgorithmManager.CreateTokenBucket(): Initializing LeakyBucket: Capacity: 120 RefillAmount: 18 TimeInterval: 1440
+2021-02-15T08:13:24.3738797Z TRACE:: Config.GetValue(): algorithm-manager-time-loop-maximum - Using default value: 20
+2021-02-15T08:13:24.3798811Z TRACE:: TextSubscriptionDataSourceReader.SetCacheSize(): Setting cache size to 71582788 items
+2021-02-15T08:13:24.5792044Z TRACE:: PythonInitializer.Initialize(): start...
+2021-02-15T08:13:24.6192160Z ERROR:: Loader.TryCreatePythonAlgorithm():  System.DllNotFoundException: Unable to load DLL 'python36': The specified module could not be found. (Exception from HRESULT: 0x8007007E)
+   at Python.Runtime.Runtime.Py_IsInitialized()
+   at Python.Runtime.Runtime.Initialize()
+   at Python.Runtime.PythonEngine.Initialize(IEnumerable`1 args, Boolean setSysArgv)
+   at Python.Runtime.PythonEngine.Initialize()
+   at QuantConnect.Python.PythonInitializer.Initialize() in C:\Repositorios\Bovespa\Lean\Common\Python\PythonInitializer.cs:line 42
+   at QuantConnect.AlgorithmFactory.Loader.TryCreatePythonAlgorithm(String assemblyPath, IAlgorithm& algorithmInstance, String& errorMessage) in C:\Repositorios\Bovespa\Lean\AlgorithmFactory\Loader.cs:line 171
+2021-02-15T08:13:24.6367632Z ERROR:: Engine.Run():  QuantConnect.Lean.Engine.Setup.AlgorithmSetupException: During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. Unable to load DLL 'python36': The specified module could not be found. (Exception from HRESULT: 0x8007007E)
+   at QuantConnect.Lean.Engine.Setup.ConsoleSetupHandler.CreateAlgorithmInstance(AlgorithmNodePacket algorithmNodePacket, String assemblyPath) in C:\Repositorios\Bovespa\Lean\Engine\Setup\ConsoleSetupHandler.cs:line 105
+   at QuantConnect.Lean.Engine.Engine.Run(AlgorithmNodePacket job, AlgorithmManager manager, String assemblyPath, WorkerThread workerThread) in C:\Repositorios\Bovespa\Lean\Engine\Engine.cs:line 119
+2021-02-15T08:13:24.6367632Z TRACE:: JOB HANDLERS: 
+2021-02-15T08:13:24.6367632Z TRACE::          DataFeed:     QuantConnect.Lean.Engine.DataFeeds.FileSystemDataFeed
+2021-02-15T08:13:24.6377635Z TRACE::          Setup:        QuantConnect.Lean.Engine.Setup.ConsoleSetupHandler
+2021-02-15T08:13:24.6377635Z TRACE::          RealTime:     QuantConnect.Lean.Engine.RealTime.BacktestingRealTimeHandler
+2021-02-15T08:13:24.6377635Z TRACE::          Results:      QuantConnect.Lean.Engine.Results.BacktestingResultHandler
+2021-02-15T08:13:24.6377635Z TRACE::          Transactions: QuantConnect.Lean.Engine.TransactionHandlers.BacktestingTransactionHandler
+2021-02-15T08:13:24.6387636Z TRACE::          Alpha:        QuantConnect.Lean.Engine.Alphas.DefaultAlphaHandler
+2021-02-15T08:13:24.6387636Z TRACE::          ObjectStore:  QuantConnect.Lean.Engine.Storage.LocalObjectStore
+2021-02-15T08:13:24.6387636Z TRACE:: DefaultAlphaHandler.Exit(): Exiting...
+2021-02-15T08:13:24.6397639Z TRACE:: DefaultAlphaHandler.Exit(): Ended
+2021-02-15T08:13:24.6397639Z TRACE:: BacktestingResultHandler.Exit(): starting...
+2021-02-15T08:13:24.6407641Z TRACE:: BacktestingResultHandler.Exit(): Saving logs...
+2021-02-15T08:13:24.6417644Z TRACE:: StopSafely(): waiting for 'Result Thread' thread to stop...
+2021-02-15T08:13:24.6437648Z ERROR:: Algorithm.Initialize() Error: During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. Unable to load DLL 'python36': The specified module could not be found. (Exception from HRESULT: 0x8007007E) Stack Trace: During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. Unable to load DLL 'python36': The specified module could not be found. (Exception from HRESULT: 0x8007007E)
+ During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. Unable to load DLL 'python36': The specified module could not be found. (Exception from HRESULT: 0x8007007E)
+2021-02-15T08:13:24.6437648Z TRACE:: Debug: Your log was successfully created and can be retrieved from: C:\Repositorios\Bovespa\Lean\Launcher\bin\Debug\BasicTemplateAlgorithm-log.txt
+2021-02-15T08:13:24.6437648Z TRACE:: BacktestingResultHandler.Run(): Ending Thread...
+2021-02-15T08:13:24.7197820Z TRACE:: 
+STATISTICS:: Fitness Score 0
+STATISTICS:: Kelly Criterion Estimate 0
+STATISTICS:: Kelly Criterion Probability Value 0
+STATISTICS:: Sortino Ratio 0
+STATISTICS:: Return Over Maximum Drawdown 0
+STATISTICS:: Portfolio Turnover 0
+STATISTICS:: Total Insights Generated 0
+STATISTICS:: Total Insights Closed 0
+STATISTICS:: Total Insights Analysis Completed 0
+STATISTICS:: Long Insight Count 0
+STATISTICS:: Short Insight Count 0
+STATISTICS:: Long/Short Ratio 100%
+STATISTICS:: Estimated Monthly Alpha Value $0
+STATISTICS:: Total Accumulated Estimated Alpha Value $0
+STATISTICS:: Mean Population Estimated Insight Value $0
+STATISTICS:: Mean Population Direction 0%
+STATISTICS:: Mean Population Magnitude 0%
+STATISTICS:: Rolling Averaged Population Direction 0%
+STATISTICS:: Rolling Averaged Population Magnitude 0%
+STATISTICS:: OrderListHash d41d8cd98f00b204e9800998ecf8427e
+2021-02-15T08:13:24.7197820Z TRACE:: BacktestingResultHandler.SendAnalysisResult(): Processed final packet
+2021-02-15T08:13:24.7197820Z TRACE:: Engine.Run(): Disposing of setup handler...
+2021-02-15T08:13:24.7197820Z TRACE:: Engine.Main(): Analysis Completed and Results Posted.
+2021-02-15T08:13:24.7207821Z TRACE:: Config.GetValue(): close-automatically - Using default value: False
+2021-02-15T08:20:04.4118691Z TRACE:: Config.Get(): Configuration key not found. Key: data-directory - Using default value: ../../../Data/
+2021-02-15T08:20:04.4128685Z TRACE:: Config.Get(): Configuration key not found. Key: version-id - Using default value: 
+2021-02-15T08:20:04.4128685Z TRACE:: Config.Get(): Configuration key not found. Key: cache-location - Using default value: ../../../Data/
+2021-02-15T08:20:04.4128685Z TRACE:: Engine.Main(): LEAN ALGORITHMIC TRADING ENGINE v2.4.0.0 Mode: DEBUG (64bit)
+2021-02-15T08:20:04.4128685Z TRACE:: Engine.Main(): Started 5:20 AM
+2021-02-15T08:20:04.4158691Z TRACE:: Config.GetValue(): job-project-id - Using default value: 0
+2021-02-15T08:20:04.4178702Z TRACE:: Config.GetValue(): regression-update-statistics - Using default value: False
+2021-02-15T08:20:04.4178702Z TRACE:: Config.Get(): Configuration key not found. Key: lean-manager-type - Using default value: LocalLeanManager
+2021-02-15T08:20:04.4378742Z TRACE:: JobQueue.NextJob(): Selected ../../../Algorithm.Python/BasicTemplateAlgorithm.py
+2021-02-15T08:20:04.5909086Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-capacity - Using default value: 120
+2021-02-15T08:20:04.5909086Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-time-interval-minutes - Using default value: 1440
+2021-02-15T08:20:04.5909086Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-refill-amount - Using default value: 18
+2021-02-15T08:20:04.5939092Z TRACE:: Config.Get(): Configuration key not found. Key: algorithm-id - Using default value: BasicTemplateAlgorithm
+2021-02-15T08:20:04.5969099Z TRACE:: Config.Get(): Configuration key not found. Key: data-permission-manager - Using default value: DataPermissionManager
+2021-02-15T08:20:04.5999108Z TRACE:: Config.Get(): Configuration key not found. Key: results-destination-folder - Using default value: C:\Repositorios\Bovespa\Lean\Launcher\bin\Debug
+2021-02-15T08:20:04.6129143Z TRACE:: Config.Get(): Configuration key not found. Key: object-store-root - Using default value: ./storage
+2021-02-15T08:20:04.6139138Z TRACE:: Config.GetValue(): ignore-version-checks - Using default value: False
+2021-02-15T08:20:04.6149141Z TRACE:: AlgorithmManager.CreateTokenBucket(): Initializing LeakyBucket: Capacity: 120 RefillAmount: 18 TimeInterval: 1440
+2021-02-15T08:20:04.6179147Z TRACE:: Config.GetValue(): algorithm-manager-time-loop-maximum - Using default value: 20
+2021-02-15T08:20:04.6259164Z TRACE:: TextSubscriptionDataSourceReader.SetCacheSize(): Setting cache size to 71582788 items
+2021-02-15T08:20:04.7699491Z TRACE:: Python for .NET Assembly: nPython, Version=1.0.5.30, Culture=neutral, PublicKeyToken=null
+2021-02-15T08:20:04.9109813Z TRACE:: PythonInitializer.Initialize(): start...
+2021-02-15T08:20:04.9339863Z ERROR:: Loader.TryCreatePythonAlgorithm():  System.DllNotFoundException: Unable to load DLL 'python36': The specified module could not be found. (Exception from HRESULT: 0x8007007E)
+   at Python.Runtime.Runtime.Py_IsInitialized()
+   at Python.Runtime.Runtime.Initialize()
+   at Python.Runtime.PythonEngine.Initialize(IEnumerable`1 args, Boolean setSysArgv)
+   at Python.Runtime.PythonEngine.Initialize()
+   at QuantConnect.Python.PythonInitializer.Initialize() in C:\Repositorios\Bovespa\Lean\Common\Python\PythonInitializer.cs:line 42
+   at QuantConnect.AlgorithmFactory.Loader.TryCreatePythonAlgorithm(String assemblyPath, IAlgorithm& algorithmInstance, String& errorMessage) in C:\Repositorios\Bovespa\Lean\AlgorithmFactory\Loader.cs:line 171
+2021-02-15T08:20:04.9469893Z ERROR:: Engine.Run():  QuantConnect.Lean.Engine.Setup.AlgorithmSetupException: During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. Unable to load DLL 'python36': The specified module could not be found. (Exception from HRESULT: 0x8007007E)
+   at QuantConnect.Lean.Engine.Setup.ConsoleSetupHandler.CreateAlgorithmInstance(AlgorithmNodePacket algorithmNodePacket, String assemblyPath) in C:\Repositorios\Bovespa\Lean\Engine\Setup\ConsoleSetupHandler.cs:line 105
+   at QuantConnect.Lean.Engine.Engine.Run(AlgorithmNodePacket job, AlgorithmManager manager, String assemblyPath, WorkerThread workerThread) in C:\Repositorios\Bovespa\Lean\Engine\Engine.cs:line 119
+2021-02-15T08:20:04.9469893Z TRACE:: JOB HANDLERS: 
+2021-02-15T08:20:04.9479897Z TRACE::          DataFeed:     QuantConnect.Lean.Engine.DataFeeds.FileSystemDataFeed
+2021-02-15T08:20:04.9479897Z TRACE::          Setup:        QuantConnect.Lean.Engine.Setup.ConsoleSetupHandler
+2021-02-15T08:20:04.9479897Z TRACE::          RealTime:     QuantConnect.Lean.Engine.RealTime.BacktestingRealTimeHandler
+2021-02-15T08:20:04.9489900Z TRACE::          Results:      QuantConnect.Lean.Engine.Results.BacktestingResultHandler
+2021-02-15T08:20:04.9499901Z TRACE::          Transactions: QuantConnect.Lean.Engine.TransactionHandlers.BacktestingTransactionHandler
+2021-02-15T08:20:04.9499901Z TRACE::          Alpha:        QuantConnect.Lean.Engine.Alphas.DefaultAlphaHandler
+2021-02-15T08:20:04.9509896Z TRACE::          ObjectStore:  QuantConnect.Lean.Engine.Storage.LocalObjectStore
+2021-02-15T08:20:04.9509896Z TRACE:: DefaultAlphaHandler.Exit(): Exiting...
+2021-02-15T08:20:04.9519902Z TRACE:: DefaultAlphaHandler.Exit(): Ended
+2021-02-15T08:20:04.9529904Z TRACE:: BacktestingResultHandler.Exit(): starting...
+2021-02-15T08:20:04.9539904Z TRACE:: BacktestingResultHandler.Exit(): Saving logs...
+2021-02-15T08:20:04.9549907Z TRACE:: StopSafely(): waiting for 'Result Thread' thread to stop...
+2021-02-15T08:20:04.9569915Z ERROR:: Algorithm.Initialize() Error: During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. Unable to load DLL 'python36': The specified module could not be found. (Exception from HRESULT: 0x8007007E) Stack Trace: During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. Unable to load DLL 'python36': The specified module could not be found. (Exception from HRESULT: 0x8007007E)
+ During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. Unable to load DLL 'python36': The specified module could not be found. (Exception from HRESULT: 0x8007007E)
+2021-02-15T08:20:04.9569915Z TRACE:: Debug: Your log was successfully created and can be retrieved from: C:\Repositorios\Bovespa\Lean\Launcher\bin\Debug\BasicTemplateAlgorithm-log.txt
+2021-02-15T08:20:04.9569915Z TRACE:: BacktestingResultHandler.Run(): Ending Thread...
+2021-02-15T08:20:05.0180050Z TRACE:: 
+STATISTICS:: Fitness Score 0
+STATISTICS:: Kelly Criterion Estimate 0
+STATISTICS:: Kelly Criterion Probability Value 0
+STATISTICS:: Sortino Ratio 0
+STATISTICS:: Return Over Maximum Drawdown 0
+STATISTICS:: Portfolio Turnover 0
+STATISTICS:: Total Insights Generated 0
+STATISTICS:: Total Insights Closed 0
+STATISTICS:: Total Insights Analysis Completed 0
+STATISTICS:: Long Insight Count 0
+STATISTICS:: Short Insight Count 0
+STATISTICS:: Long/Short Ratio 100%
+STATISTICS:: Estimated Monthly Alpha Value $0
+STATISTICS:: Total Accumulated Estimated Alpha Value $0
+STATISTICS:: Mean Population Estimated Insight Value $0
+STATISTICS:: Mean Population Direction 0%
+STATISTICS:: Mean Population Magnitude 0%
+STATISTICS:: Rolling Averaged Population Direction 0%
+STATISTICS:: Rolling Averaged Population Magnitude 0%
+STATISTICS:: OrderListHash d41d8cd98f00b204e9800998ecf8427e
+2021-02-15T08:20:05.0180050Z TRACE:: BacktestingResultHandler.SendAnalysisResult(): Processed final packet
+2021-02-15T08:20:05.0190051Z TRACE:: Engine.Run(): Disposing of setup handler...
+2021-02-15T08:20:05.0190051Z TRACE:: Engine.Main(): Analysis Completed and Results Posted.
+2021-02-15T08:20:05.0200053Z TRACE:: Config.GetValue(): close-automatically - Using default value: False
+2021-02-28T23:17:50.0123439Z TRACE:: Config.Get(): Configuration key not found. Key: data-directory - Using default value: ../../../Data/
+2021-02-28T23:17:50.0133442Z TRACE:: Config.Get(): Configuration key not found. Key: version-id - Using default value: 
+2021-02-28T23:17:50.0133442Z TRACE:: Config.Get(): Configuration key not found. Key: cache-location - Using default value: ../../../Data/
+2021-02-28T23:17:50.0133442Z TRACE:: Engine.Main(): LEAN ALGORITHMIC TRADING ENGINE v2.4.0.0 Mode: DEBUG (64bit)
+2021-02-28T23:17:50.0143446Z TRACE:: Engine.Main(): Started 8:17 PM
+2021-02-28T23:17:50.0153446Z TRACE:: Config.GetValue(): job-project-id - Using default value: 0
+2021-02-28T23:17:50.0163448Z TRACE:: Config.GetValue(): regression-update-statistics - Using default value: False
+2021-02-28T23:17:50.0163448Z TRACE:: Config.Get(): Configuration key not found. Key: lean-manager-type - Using default value: LocalLeanManager
+2021-02-28T23:17:50.0473519Z TRACE:: JobQueue.NextJob(): Selected ../../../Algorithm.Python/BasicTemplateAlgorithm.py
+2021-02-28T23:17:50.1423727Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-capacity - Using default value: 120
+2021-02-28T23:17:50.1423727Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-time-interval-minutes - Using default value: 1440
+2021-02-28T23:17:50.1423727Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-refill-amount - Using default value: 18
+2021-02-28T23:17:50.1443731Z TRACE:: Config.Get(): Configuration key not found. Key: algorithm-id - Using default value: BasicTemplateAlgorithm
+2021-02-28T23:17:50.1453735Z TRACE:: Config.Get(): Configuration key not found. Key: data-permission-manager - Using default value: DataPermissionManager
+2021-02-28T23:17:50.1463737Z TRACE:: Config.Get(): Configuration key not found. Key: results-destination-folder - Using default value: C:\Repositorios\Bovespa\Lean\Launcher\bin\Debug
+2021-02-28T23:17:50.1503746Z TRACE:: Config.Get(): Configuration key not found. Key: object-store-root - Using default value: ./storage
+2021-02-28T23:17:50.1513748Z TRACE:: Config.GetValue(): ignore-version-checks - Using default value: False
+2021-02-28T23:17:50.1523750Z TRACE:: AlgorithmManager.CreateTokenBucket(): Initializing LeakyBucket: Capacity: 120 RefillAmount: 18 TimeInterval: 1440
+2021-02-28T23:17:50.1533755Z TRACE:: Config.GetValue(): algorithm-manager-time-loop-maximum - Using default value: 20
+2021-02-28T23:17:50.1593763Z TRACE:: TextSubscriptionDataSourceReader.SetCacheSize(): Setting cache size to 71582788 items
+2021-02-28T23:17:50.4194357Z TRACE:: Python for .NET Assembly: Python.Runtime, Version=1.0.5.30, Culture=neutral, PublicKeyToken=null
+2021-02-28T23:17:50.4204355Z TRACE:: PythonInitializer.Initialize(): start...
+2021-02-28T23:17:51.8167485Z TRACE:: PythonInitializer.Initialize(): ended
+2021-02-28T23:17:51.8217493Z TRACE:: AlgorithmPythonWrapper(): Python version 3.6.8 |Anaconda, Inc.| (default, Feb 21 2019, 18:30:04) [MSC v.1916 64 bit (AMD64)]: Importing python module BasicTemplateAlgorithm
+2021-02-28T23:17:52.1988353Z ERROR:: Loader.TryCreatePythonAlgorithm():  System.Exception: AlgorithmPythonWrapper(): ModuleNotFoundError : No module named 'quantconnect'
+  at <module> in BasicTemplateAlgorithm.py:line 20 :: from quantconnect import *
+ ModuleNotFoundError : No module named 'quantconnect'
+   at QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper..ctor(String moduleName) in C:\Repositorios\Bovespa\Lean\AlgorithmFactory\Python\Wrappers\AlgorithmPythonWrapper.cs:line 119
+   at QuantConnect.AlgorithmFactory.Loader.TryCreatePythonAlgorithm(String assemblyPath, IAlgorithm& algorithmInstance, String& errorMessage) in C:\Repositorios\Bovespa\Lean\AlgorithmFactory\Loader.cs:line 173
+2021-02-28T23:17:52.2138379Z ERROR:: Engine.Run():  QuantConnect.Lean.Engine.Setup.AlgorithmSetupException: During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. AlgorithmPythonWrapper(): ModuleNotFoundError : No module named 'quantconnect'
+  at <module> in BasicTemplateAlgorithm.py:line 20 :: from quantconnect import *
+ ModuleNotFoundError : No module named 'quantconnect'
+   at QuantConnect.Lean.Engine.Setup.ConsoleSetupHandler.CreateAlgorithmInstance(AlgorithmNodePacket algorithmNodePacket, String assemblyPath) in C:\Repositorios\Bovespa\Lean\Engine\Setup\ConsoleSetupHandler.cs:line 105
+   at QuantConnect.Lean.Engine.Engine.Run(AlgorithmNodePacket job, AlgorithmManager manager, String assemblyPath, WorkerThread workerThread) in C:\Repositorios\Bovespa\Lean\Engine\Engine.cs:line 119
+2021-02-28T23:17:52.2148380Z TRACE:: JOB HANDLERS: 
+2021-02-28T23:17:52.2148380Z TRACE::          DataFeed:     QuantConnect.Lean.Engine.DataFeeds.FileSystemDataFeed
+2021-02-28T23:17:52.2148380Z TRACE::          Setup:        QuantConnect.Lean.Engine.Setup.ConsoleSetupHandler
+2021-02-28T23:17:52.2158382Z TRACE::          RealTime:     QuantConnect.Lean.Engine.RealTime.BacktestingRealTimeHandler
+2021-02-28T23:17:52.2158382Z TRACE::          Results:      QuantConnect.Lean.Engine.Results.BacktestingResultHandler
+2021-02-28T23:17:52.2158382Z TRACE::          Transactions: QuantConnect.Lean.Engine.TransactionHandlers.BacktestingTransactionHandler
+2021-02-28T23:17:52.2158382Z TRACE::          Alpha:        QuantConnect.Lean.Engine.Alphas.DefaultAlphaHandler
+2021-02-28T23:17:52.2168388Z TRACE::          ObjectStore:  QuantConnect.Lean.Engine.Storage.LocalObjectStore
+2021-02-28T23:17:52.2168388Z TRACE:: DefaultAlphaHandler.Exit(): Exiting...
+2021-02-28T23:17:52.2178390Z TRACE:: DefaultAlphaHandler.Exit(): Ended
+2021-02-28T23:17:52.2178390Z TRACE:: BacktestingResultHandler.Exit(): starting...
+2021-02-28T23:17:52.2188391Z TRACE:: BacktestingResultHandler.Exit(): Saving logs...
+2021-02-28T23:17:52.2208392Z TRACE:: StopSafely(): waiting for 'Result Thread' thread to stop...
+2021-02-28T23:17:52.2228402Z ERROR:: Algorithm.Initialize() Error: During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. AlgorithmPythonWrapper(): ModuleNotFoundError : No module named 'quantconnect'
+  at <module> in BasicTemplateAlgorithm.py:line 20 :: from quantconnect import *
+ ModuleNotFoundError : No module named 'quantconnect' Stack Trace: During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. AlgorithmPythonWrapper(): ModuleNotFoundError : No module named 'quantconnect'
+  at <module> in BasicTemplateAlgorithm.py:line 20 :: from quantconnect import *
+ ModuleNotFoundError : No module named 'quantconnect'
+ During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. AlgorithmPythonWrapper(): ModuleNotFoundError : No module named 'quantconnect'
+  at <module> in BasicTemplateAlgorithm.py:line 20 :: from quantconnect import *
+ ModuleNotFoundError : No module named 'quantconnect'
+2021-02-28T23:17:52.2228402Z TRACE:: Debug: Your log was successfully created and can be retrieved from: C:\Repositorios\Bovespa\Lean\Launcher\bin\Debug\BasicTemplateAlgorithm-log.txt
+2021-02-28T23:17:52.2238404Z TRACE:: BacktestingResultHandler.Run(): Ending Thread...
+2021-02-28T23:17:52.3078585Z TRACE:: 
+STATISTICS:: Fitness Score 0
+STATISTICS:: Kelly Criterion Estimate 0
+STATISTICS:: Kelly Criterion Probability Value 0
+STATISTICS:: Sortino Ratio 0
+STATISTICS:: Return Over Maximum Drawdown 0
+STATISTICS:: Portfolio Turnover 0
+STATISTICS:: Total Insights Generated 0
+STATISTICS:: Total Insights Closed 0
+STATISTICS:: Total Insights Analysis Completed 0
+STATISTICS:: Long Insight Count 0
+STATISTICS:: Short Insight Count 0
+STATISTICS:: Long/Short Ratio 100%
+STATISTICS:: Estimated Monthly Alpha Value $0
+STATISTICS:: Total Accumulated Estimated Alpha Value $0
+STATISTICS:: Mean Population Estimated Insight Value $0
+STATISTICS:: Mean Population Direction 0%
+STATISTICS:: Mean Population Magnitude 0%
+STATISTICS:: Rolling Averaged Population Direction 0%
+STATISTICS:: Rolling Averaged Population Magnitude 0%
+STATISTICS:: OrderListHash d41d8cd98f00b204e9800998ecf8427e
+2021-02-28T23:17:52.3088589Z TRACE:: BacktestingResultHandler.SendAnalysisResult(): Processed final packet
+2021-02-28T23:17:52.3088589Z TRACE:: Engine.Run(): Disposing of setup handler...
+2021-02-28T23:17:52.3088589Z TRACE:: Engine.Main(): Analysis Completed and Results Posted.
+2021-02-28T23:17:52.3098590Z TRACE:: Config.GetValue(): close-automatically - Using default value: False
+2021-02-28T23:17:53.0620277Z TRACE:: Python for .NET Assembly: nPython, Version=1.0.5.30, Culture=neutral, PublicKeyToken=null
+2021-03-02T02:50:00.5476828Z TRACE:: Config.Get(): Configuration key not found. Key: data-directory - Using default value: ../../../Data/
+2021-03-02T02:50:00.5486829Z TRACE:: Config.Get(): Configuration key not found. Key: version-id - Using default value: 
+2021-03-02T02:50:00.5486829Z TRACE:: Config.Get(): Configuration key not found. Key: cache-location - Using default value: ../../../Data/
+2021-03-02T02:50:00.5486829Z TRACE:: Engine.Main(): LEAN ALGORITHMIC TRADING ENGINE v2.4.0.0 Mode: DEBUG (64bit)
+2021-03-02T02:50:00.5486829Z TRACE:: Engine.Main(): Started 11:50 PM
+2021-03-02T02:50:00.5496832Z TRACE:: Config.GetValue(): job-project-id - Using default value: 0
+2021-03-02T02:50:00.5506833Z TRACE:: Config.GetValue(): regression-update-statistics - Using default value: False
+2021-03-02T02:50:00.5506833Z TRACE:: Config.Get(): Configuration key not found. Key: lean-manager-type - Using default value: LocalLeanManager
+2021-03-02T02:50:00.5816913Z TRACE:: JobQueue.NextJob(): Selected ../../../Algorithm.Python/BasicTemplateAlgorithm.py
+2021-03-02T02:50:00.6727106Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-capacity - Using default value: 120
+2021-03-02T02:50:00.6727106Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-time-interval-minutes - Using default value: 1440
+2021-03-02T02:50:00.6727106Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-refill-amount - Using default value: 18
+2021-03-02T02:50:00.6747109Z TRACE:: Config.Get(): Configuration key not found. Key: algorithm-id - Using default value: BasicTemplateAlgorithm
+2021-03-02T02:50:00.6757114Z TRACE:: Config.Get(): Configuration key not found. Key: data-permission-manager - Using default value: DataPermissionManager
+2021-03-02T02:50:00.6767116Z TRACE:: Config.Get(): Configuration key not found. Key: results-destination-folder - Using default value: C:\Repositorios\Bovespa\Lean\Launcher\bin\Debug
+2021-03-02T02:50:00.6817126Z TRACE:: Config.Get(): Configuration key not found. Key: object-store-root - Using default value: ./storage
+2021-03-02T02:50:00.6817126Z TRACE:: Config.GetValue(): ignore-version-checks - Using default value: False
+2021-03-02T02:50:00.6827130Z TRACE:: AlgorithmManager.CreateTokenBucket(): Initializing LeakyBucket: Capacity: 120 RefillAmount: 18 TimeInterval: 1440
+2021-03-02T02:50:00.6837132Z TRACE:: Config.GetValue(): algorithm-manager-time-loop-maximum - Using default value: 20
+2021-03-02T02:50:00.6897152Z TRACE:: TextSubscriptionDataSourceReader.SetCacheSize(): Setting cache size to 71582788 items
+2021-03-02T02:50:00.9537732Z TRACE:: Python for .NET Assembly: Python.Runtime, Version=1.0.5.30, Culture=neutral, PublicKeyToken=null
+2021-03-02T02:50:00.9547734Z TRACE:: PythonInitializer.Initialize(): start...
+2021-03-02T02:50:02.2511583Z TRACE:: PythonInitializer.Initialize(): ended
+2021-03-02T02:50:02.2511583Z TRACE:: AlgorithmPythonWrapper(): Python version 3.6.8 |Anaconda, Inc.| (default, Feb 21 2019, 18:30:04) [MSC v.1916 64 bit (AMD64)]: Importing python module BasicTemplateAlgorithm
+2021-03-02T02:50:02.6418091Z ERROR:: Loader.TryCreatePythonAlgorithm():  System.Exception: AlgorithmPythonWrapper(): ModuleNotFoundError : No module named 'quantconnect'
+  at <module> in BasicTemplateAlgorithm.py:line 20 :: from quantconnect import *
+ ModuleNotFoundError : No module named 'quantconnect'
+   at QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper..ctor(String moduleName) in C:\Repositorios\Bovespa\Lean\AlgorithmFactory\Python\Wrappers\AlgorithmPythonWrapper.cs:line 119
+   at QuantConnect.AlgorithmFactory.Loader.TryCreatePythonAlgorithm(String assemblyPath, IAlgorithm& algorithmInstance, String& errorMessage) in C:\Repositorios\Bovespa\Lean\AlgorithmFactory\Loader.cs:line 173
+2021-03-02T02:50:02.6574352Z ERROR:: Engine.Run():  QuantConnect.Lean.Engine.Setup.AlgorithmSetupException: During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. AlgorithmPythonWrapper(): ModuleNotFoundError : No module named 'quantconnect'
+  at <module> in BasicTemplateAlgorithm.py:line 20 :: from quantconnect import *
+ ModuleNotFoundError : No module named 'quantconnect'
+   at QuantConnect.Lean.Engine.Setup.ConsoleSetupHandler.CreateAlgorithmInstance(AlgorithmNodePacket algorithmNodePacket, String assemblyPath) in C:\Repositorios\Bovespa\Lean\Engine\Setup\ConsoleSetupHandler.cs:line 105
+   at QuantConnect.Lean.Engine.Engine.Run(AlgorithmNodePacket job, AlgorithmManager manager, String assemblyPath, WorkerThread workerThread) in C:\Repositorios\Bovespa\Lean\Engine\Engine.cs:line 119
+2021-03-02T02:50:02.6574352Z TRACE:: JOB HANDLERS: 
+2021-03-02T02:50:02.6574352Z TRACE::          DataFeed:     QuantConnect.Lean.Engine.DataFeeds.FileSystemDataFeed
+2021-03-02T02:50:02.6574352Z TRACE::          Setup:        QuantConnect.Lean.Engine.Setup.ConsoleSetupHandler
+2021-03-02T02:50:02.6574352Z TRACE::          RealTime:     QuantConnect.Lean.Engine.RealTime.BacktestingRealTimeHandler
+2021-03-02T02:50:02.6574352Z TRACE::          Results:      QuantConnect.Lean.Engine.Results.BacktestingResultHandler
+2021-03-02T02:50:02.6574352Z TRACE::          Transactions: QuantConnect.Lean.Engine.TransactionHandlers.BacktestingTransactionHandler
+2021-03-02T02:50:02.6574352Z TRACE::          Alpha:        QuantConnect.Lean.Engine.Alphas.DefaultAlphaHandler
+2021-03-02T02:50:02.6574352Z TRACE::          ObjectStore:  QuantConnect.Lean.Engine.Storage.LocalObjectStore
+2021-03-02T02:50:02.6574352Z TRACE:: DefaultAlphaHandler.Exit(): Exiting...
+2021-03-02T02:50:02.6574352Z TRACE:: DefaultAlphaHandler.Exit(): Ended
+2021-03-02T02:50:02.6574352Z TRACE:: BacktestingResultHandler.Exit(): starting...
+2021-03-02T02:50:02.6574352Z TRACE:: BacktestingResultHandler.Exit(): Saving logs...
+2021-03-02T02:50:02.6574352Z TRACE:: StopSafely(): waiting for 'Result Thread' thread to stop...
+2021-03-02T02:50:02.6574352Z ERROR:: Algorithm.Initialize() Error: During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. AlgorithmPythonWrapper(): ModuleNotFoundError : No module named 'quantconnect'
+  at <module> in BasicTemplateAlgorithm.py:line 20 :: from quantconnect import *
+ ModuleNotFoundError : No module named 'quantconnect' Stack Trace: During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. AlgorithmPythonWrapper(): ModuleNotFoundError : No module named 'quantconnect'
+  at <module> in BasicTemplateAlgorithm.py:line 20 :: from quantconnect import *
+ ModuleNotFoundError : No module named 'quantconnect'
+ During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. AlgorithmPythonWrapper(): ModuleNotFoundError : No module named 'quantconnect'
+  at <module> in BasicTemplateAlgorithm.py:line 20 :: from quantconnect import *
+ ModuleNotFoundError : No module named 'quantconnect'
+2021-03-02T02:50:02.6574352Z TRACE:: Debug: Your log was successfully created and can be retrieved from: C:\Repositorios\Bovespa\Lean\Launcher\bin\Debug\BasicTemplateAlgorithm-log.txt
+2021-03-02T02:50:02.6574352Z TRACE:: BacktestingResultHandler.Run(): Ending Thread...
+2021-03-02T02:50:02.7355648Z TRACE:: 
+STATISTICS:: Fitness Score 0
+STATISTICS:: Kelly Criterion Estimate 0
+STATISTICS:: Kelly Criterion Probability Value 0
+STATISTICS:: Sortino Ratio 0
+STATISTICS:: Return Over Maximum Drawdown 0
+STATISTICS:: Portfolio Turnover 0
+STATISTICS:: Total Insights Generated 0
+STATISTICS:: Total Insights Closed 0
+STATISTICS:: Total Insights Analysis Completed 0
+STATISTICS:: Long Insight Count 0
+STATISTICS:: Short Insight Count 0
+STATISTICS:: Long/Short Ratio 100%
+STATISTICS:: Estimated Monthly Alpha Value $0
+STATISTICS:: Total Accumulated Estimated Alpha Value $0
+STATISTICS:: Mean Population Estimated Insight Value $0
+STATISTICS:: Mean Population Direction 0%
+STATISTICS:: Mean Population Magnitude 0%
+STATISTICS:: Rolling Averaged Population Direction 0%
+STATISTICS:: Rolling Averaged Population Magnitude 0%
+STATISTICS:: OrderListHash d41d8cd98f00b204e9800998ecf8427e
+2021-03-02T02:50:02.7355648Z TRACE:: BacktestingResultHandler.SendAnalysisResult(): Processed final packet
+2021-03-02T02:50:02.7355648Z TRACE:: Engine.Run(): Disposing of setup handler...
+2021-03-02T02:50:02.7355648Z TRACE:: Engine.Main(): Analysis Completed and Results Posted.
+2021-03-02T02:50:02.7355648Z TRACE:: Config.GetValue(): close-automatically - Using default value: False
+2021-03-02T02:50:03.3606051Z TRACE:: Python for .NET Assembly: nPython, Version=1.0.5.30, Culture=neutral, PublicKeyToken=null
+2021-03-02T02:50:27.7471506Z TRACE:: Engine.Main(): Packet removed from queue: BasicTemplateAlgorithm
+2021-03-02T02:50:27.7471506Z TRACE:: LeanEngineSystemHandlers.Dispose(): start...
+2021-03-02T02:50:27.7471506Z TRACE:: LeanEngineSystemHandlers.Dispose(): Disposed of system handlers.
+2021-03-02T02:50:27.7471506Z TRACE:: LeanEngineAlgorithmHandlers.Dispose(): start...
+2021-03-02T02:50:27.7471506Z TRACE:: LeanEngineAlgorithmHandlers.Dispose(): Disposed of algorithm handlers.
+2021-03-02T02:55:44.0595946Z TRACE:: Config.Get(): Configuration key not found. Key: data-directory - Using default value: ../../../Data/
+2021-03-02T02:55:44.0595946Z TRACE:: Config.Get(): Configuration key not found. Key: version-id - Using default value: 
+2021-03-02T02:55:44.0595946Z TRACE:: Config.Get(): Configuration key not found. Key: cache-location - Using default value: ../../../Data/
+2021-03-02T02:55:44.0595946Z TRACE:: Engine.Main(): LEAN ALGORITHMIC TRADING ENGINE v2.4.0.0 Mode: DEBUG (64bit)
+2021-03-02T02:55:44.0605949Z TRACE:: Engine.Main(): Started 11:55 PM
+2021-03-02T02:55:44.0615952Z TRACE:: Config.GetValue(): job-project-id - Using default value: 0
+2021-03-02T02:55:44.0615952Z TRACE:: Config.GetValue(): regression-update-statistics - Using default value: False
+2021-03-02T02:55:44.0625952Z TRACE:: Config.Get(): Configuration key not found. Key: lean-manager-type - Using default value: LocalLeanManager
+2021-03-02T02:55:44.0916014Z TRACE:: JobQueue.NextJob(): Selected ../../../Algorithm.Python/BasicTemplateAlgorithm.py
+2021-03-02T02:55:44.1656189Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-capacity - Using default value: 120
+2021-03-02T02:55:44.1656189Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-time-interval-minutes - Using default value: 1440
+2021-03-02T02:55:44.1656189Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-refill-amount - Using default value: 18
+2021-03-02T02:55:44.1666194Z TRACE:: Config.Get(): Configuration key not found. Key: algorithm-id - Using default value: BasicTemplateAlgorithm
+2021-03-02T02:55:44.1736211Z TRACE:: Config.Get(): Configuration key not found. Key: data-permission-manager - Using default value: DataPermissionManager
+2021-03-02T02:55:44.1746212Z TRACE:: Config.Get(): Configuration key not found. Key: results-destination-folder - Using default value: C:\Repositorios\Bovespa\Lean\Launcher\bin\Debug
+2021-03-02T02:55:44.1786212Z TRACE:: Config.Get(): Configuration key not found. Key: object-store-root - Using default value: ./storage
+2021-03-02T02:55:44.1796215Z TRACE:: Config.GetValue(): ignore-version-checks - Using default value: False
+2021-03-02T02:55:44.1806226Z TRACE:: AlgorithmManager.CreateTokenBucket(): Initializing LeakyBucket: Capacity: 120 RefillAmount: 18 TimeInterval: 1440
+2021-03-02T02:55:44.1816227Z TRACE:: Config.GetValue(): algorithm-manager-time-loop-maximum - Using default value: 20
+2021-03-02T02:55:44.1866230Z TRACE:: TextSubscriptionDataSourceReader.SetCacheSize(): Setting cache size to 71582788 items
+2021-03-02T02:55:44.4196749Z TRACE:: Python for .NET Assembly: Python.Runtime, Version=1.0.5.30, Culture=neutral, PublicKeyToken=null
+2021-03-02T02:55:44.4206751Z TRACE:: PythonInitializer.Initialize(): start...
+2021-03-02T02:55:45.5499284Z TRACE:: PythonInitializer.Initialize(): ended
+2021-03-02T02:55:45.5579303Z TRACE:: AlgorithmPythonWrapper(): Python version 3.6.8 |Anaconda, Inc.| (default, Feb 21 2019, 18:30:04) [MSC v.1916 64 bit (AMD64)]: Importing python module BasicTemplateAlgorithm
+2021-03-02T02:55:45.9704073Z TRACE:: Python for .NET Assembly: nPython, Version=1.0.5.30, Culture=neutral, PublicKeyToken=null
+2021-03-02T02:55:46.0804297Z ERROR:: Loader.TryCreatePythonAlgorithm():  System.Exception: AlgorithmPythonWrapper(): ModuleNotFoundError : No module named 'quantconnect'
+  at <module> in BasicTemplateAlgorithm.py:line 20 :: from quantconnect import *
+ ModuleNotFoundError : No module named 'quantconnect'
+   at QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper..ctor(String moduleName) in C:\Repositorios\Bovespa\Lean\AlgorithmFactory\Python\Wrappers\AlgorithmPythonWrapper.cs:line 119
+   at QuantConnect.AlgorithmFactory.Loader.TryCreatePythonAlgorithm(String assemblyPath, IAlgorithm& algorithmInstance, String& errorMessage) in C:\Repositorios\Bovespa\Lean\AlgorithmFactory\Loader.cs:line 173
+2021-03-02T02:55:46.0944328Z ERROR:: Engine.Run():  QuantConnect.Lean.Engine.Setup.AlgorithmSetupException: During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. AlgorithmPythonWrapper(): ModuleNotFoundError : No module named 'quantconnect'
+  at <module> in BasicTemplateAlgorithm.py:line 20 :: from quantconnect import *
+ ModuleNotFoundError : No module named 'quantconnect'
+   at QuantConnect.Lean.Engine.Setup.ConsoleSetupHandler.CreateAlgorithmInstance(AlgorithmNodePacket algorithmNodePacket, String assemblyPath) in C:\Repositorios\Bovespa\Lean\Engine\Setup\ConsoleSetupHandler.cs:line 105
+   at QuantConnect.Lean.Engine.Engine.Run(AlgorithmNodePacket job, AlgorithmManager manager, String assemblyPath, WorkerThread workerThread) in C:\Repositorios\Bovespa\Lean\Engine\Engine.cs:line 119
+2021-03-02T02:55:46.0954328Z TRACE:: JOB HANDLERS: 
+2021-03-02T02:55:46.0954328Z TRACE::          DataFeed:     QuantConnect.Lean.Engine.DataFeeds.FileSystemDataFeed
+2021-03-02T02:55:46.0954328Z TRACE::          Setup:        QuantConnect.Lean.Engine.Setup.ConsoleSetupHandler
+2021-03-02T02:55:46.0954328Z TRACE::          RealTime:     QuantConnect.Lean.Engine.RealTime.BacktestingRealTimeHandler
+2021-03-02T02:55:46.0964335Z TRACE::          Results:      QuantConnect.Lean.Engine.Results.BacktestingResultHandler
+2021-03-02T02:55:46.0964335Z TRACE::          Transactions: QuantConnect.Lean.Engine.TransactionHandlers.BacktestingTransactionHandler
+2021-03-02T02:55:46.0964335Z TRACE::          Alpha:        QuantConnect.Lean.Engine.Alphas.DefaultAlphaHandler
+2021-03-02T02:55:46.0964335Z TRACE::          ObjectStore:  QuantConnect.Lean.Engine.Storage.LocalObjectStore
+2021-03-02T02:55:46.0974334Z TRACE:: DefaultAlphaHandler.Exit(): Exiting...
+2021-03-02T02:55:46.0984338Z TRACE:: DefaultAlphaHandler.Exit(): Ended
+2021-03-02T02:55:46.0984338Z TRACE:: BacktestingResultHandler.Exit(): starting...
+2021-03-02T02:55:46.0984338Z TRACE:: BacktestingResultHandler.Exit(): Saving logs...
+2021-03-02T02:55:46.1004339Z TRACE:: StopSafely(): waiting for 'Result Thread' thread to stop...
+2021-03-02T02:55:46.1024343Z ERROR:: Algorithm.Initialize() Error: During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. AlgorithmPythonWrapper(): ModuleNotFoundError : No module named 'quantconnect'
+  at <module> in BasicTemplateAlgorithm.py:line 20 :: from quantconnect import *
+ ModuleNotFoundError : No module named 'quantconnect' Stack Trace: During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. AlgorithmPythonWrapper(): ModuleNotFoundError : No module named 'quantconnect'
+  at <module> in BasicTemplateAlgorithm.py:line 20 :: from quantconnect import *
+ ModuleNotFoundError : No module named 'quantconnect'
+ During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. AlgorithmPythonWrapper(): ModuleNotFoundError : No module named 'quantconnect'
+  at <module> in BasicTemplateAlgorithm.py:line 20 :: from quantconnect import *
+ ModuleNotFoundError : No module named 'quantconnect'
+2021-03-02T02:55:46.1024343Z TRACE:: Debug: Your log was successfully created and can be retrieved from: C:\Repositorios\Bovespa\Lean\Launcher\bin\Debug\BasicTemplateAlgorithm-log.txt
+2021-03-02T02:55:46.1024343Z TRACE:: BacktestingResultHandler.Run(): Ending Thread...
+2021-03-02T02:55:46.1624479Z TRACE:: 
+STATISTICS:: Fitness Score 0
+STATISTICS:: Kelly Criterion Estimate 0
+STATISTICS:: Kelly Criterion Probability Value 0
+STATISTICS:: Sortino Ratio 0
+STATISTICS:: Return Over Maximum Drawdown 0
+STATISTICS:: Portfolio Turnover 0
+STATISTICS:: Total Insights Generated 0
+STATISTICS:: Total Insights Closed 0
+STATISTICS:: Total Insights Analysis Completed 0
+STATISTICS:: Long Insight Count 0
+STATISTICS:: Short Insight Count 0
+STATISTICS:: Long/Short Ratio 100%
+STATISTICS:: Estimated Monthly Alpha Value $0
+STATISTICS:: Total Accumulated Estimated Alpha Value $0
+STATISTICS:: Mean Population Estimated Insight Value $0
+STATISTICS:: Mean Population Direction 0%
+STATISTICS:: Mean Population Magnitude 0%
+STATISTICS:: Rolling Averaged Population Direction 0%
+STATISTICS:: Rolling Averaged Population Magnitude 0%
+STATISTICS:: OrderListHash d41d8cd98f00b204e9800998ecf8427e
+2021-03-02T02:55:46.1624479Z TRACE:: BacktestingResultHandler.SendAnalysisResult(): Processed final packet
+2021-03-02T02:55:46.1624479Z TRACE:: Engine.Run(): Disposing of setup handler...
+2021-03-02T02:55:46.1634474Z TRACE:: Engine.Main(): Analysis Completed and Results Posted.
+2021-03-02T02:55:46.1644482Z TRACE:: Config.GetValue(): close-automatically - Using default value: False
+2021-03-02T02:58:25.3391644Z TRACE:: Config.Get(): Configuration key not found. Key: data-directory - Using default value: ../../../Data/
+2021-03-02T02:58:25.3391644Z TRACE:: Config.Get(): Configuration key not found. Key: version-id - Using default value: 
+2021-03-02T02:58:25.3391644Z TRACE:: Config.Get(): Configuration key not found. Key: cache-location - Using default value: ../../../Data/
+2021-03-02T02:58:25.3401647Z TRACE:: Engine.Main(): LEAN ALGORITHMIC TRADING ENGINE v2.4.0.0 Mode: DEBUG (64bit)
+2021-03-02T02:58:25.3401647Z TRACE:: Engine.Main(): Started 11:58 PM
+2021-03-02T02:58:25.3431657Z TRACE:: Config.GetValue(): job-project-id - Using default value: 0
+2021-03-02T02:58:25.3441661Z TRACE:: Config.GetValue(): regression-update-statistics - Using default value: False
+2021-03-02T02:58:25.3441661Z TRACE:: Config.Get(): Configuration key not found. Key: lean-manager-type - Using default value: LocalLeanManager
+2021-03-02T02:58:25.3651702Z TRACE:: JobQueue.NextJob(): Selected ../../../Algorithm.Python/BasicTemplateAlgorithm.py
+2021-03-02T02:58:25.5152034Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-capacity - Using default value: 120
+2021-03-02T02:58:25.5162038Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-time-interval-minutes - Using default value: 1440
+2021-03-02T02:58:25.5162038Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-refill-amount - Using default value: 18
+2021-03-02T02:58:25.5192044Z TRACE:: Config.Get(): Configuration key not found. Key: algorithm-id - Using default value: BasicTemplateAlgorithm
+2021-03-02T02:58:25.5222052Z TRACE:: Config.Get(): Configuration key not found. Key: data-permission-manager - Using default value: DataPermissionManager
+2021-03-02T02:58:25.5252052Z TRACE:: Config.Get(): Configuration key not found. Key: results-destination-folder - Using default value: C:\Repositorios\Bovespa\Lean\Launcher\bin\Debug
+2021-03-02T02:58:25.5372082Z TRACE:: Config.Get(): Configuration key not found. Key: object-store-root - Using default value: ./storage
+2021-03-02T02:58:25.5382088Z TRACE:: Config.GetValue(): ignore-version-checks - Using default value: False
+2021-03-02T02:58:25.5402091Z TRACE:: AlgorithmManager.CreateTokenBucket(): Initializing LeakyBucket: Capacity: 120 RefillAmount: 18 TimeInterval: 1440
+2021-03-02T02:58:25.5422094Z TRACE:: Config.GetValue(): algorithm-manager-time-loop-maximum - Using default value: 20
+2021-03-02T02:58:25.5512116Z TRACE:: TextSubscriptionDataSourceReader.SetCacheSize(): Setting cache size to 71582788 items
+2021-03-02T02:58:25.6332297Z TRACE:: Python for .NET Assembly: nPython, Version=1.0.5.30, Culture=neutral, PublicKeyToken=null
+2021-03-02T02:58:25.8012670Z TRACE:: PythonInitializer.Initialize(): start...
+2021-03-02T02:58:26.8034904Z TRACE:: PythonInitializer.Initialize(): ended
+2021-03-02T02:58:26.8086053Z TRACE:: AlgorithmPythonWrapper(): Python version 3.6.8 |Anaconda, Inc.| (default, Feb 21 2019, 18:30:04) [MSC v.1916 64 bit (AMD64)]: Importing python module BasicTemplateAlgorithm
+2021-03-02T02:58:27.0636620Z ERROR:: Loader.TryCreatePythonAlgorithm():  System.Exception: AlgorithmPythonWrapper(): ModuleNotFoundError : No module named 'quantconnect'
+  at <module> in BasicTemplateAlgorithm.py:line 20 :: from quantconnect import *
+ ModuleNotFoundError : No module named 'quantconnect'
+   at QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper..ctor(String moduleName) in C:\Repositorios\Bovespa\Lean\AlgorithmFactory\Python\Wrappers\AlgorithmPythonWrapper.cs:line 119
+   at QuantConnect.AlgorithmFactory.Loader.TryCreatePythonAlgorithm(String assemblyPath, IAlgorithm& algorithmInstance, String& errorMessage) in C:\Repositorios\Bovespa\Lean\AlgorithmFactory\Loader.cs:line 173
+2021-03-02T02:58:27.0746651Z ERROR:: Engine.Run():  QuantConnect.Lean.Engine.Setup.AlgorithmSetupException: During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. AlgorithmPythonWrapper(): ModuleNotFoundError : No module named 'quantconnect'
+  at <module> in BasicTemplateAlgorithm.py:line 20 :: from quantconnect import *
+ ModuleNotFoundError : No module named 'quantconnect'
+   at QuantConnect.Lean.Engine.Setup.ConsoleSetupHandler.CreateAlgorithmInstance(AlgorithmNodePacket algorithmNodePacket, String assemblyPath) in C:\Repositorios\Bovespa\Lean\Engine\Setup\ConsoleSetupHandler.cs:line 105
+   at QuantConnect.Lean.Engine.Engine.Run(AlgorithmNodePacket job, AlgorithmManager manager, String assemblyPath, WorkerThread workerThread) in C:\Repositorios\Bovespa\Lean\Engine\Engine.cs:line 119
+2021-03-02T02:58:27.0756652Z TRACE:: JOB HANDLERS: 
+2021-03-02T02:58:27.0756652Z TRACE::          DataFeed:     QuantConnect.Lean.Engine.DataFeeds.FileSystemDataFeed
+2021-03-02T02:58:27.0756652Z TRACE::          Setup:        QuantConnect.Lean.Engine.Setup.ConsoleSetupHandler
+2021-03-02T02:58:27.0756652Z TRACE::          RealTime:     QuantConnect.Lean.Engine.RealTime.BacktestingRealTimeHandler
+2021-03-02T02:58:27.0766659Z TRACE::          Results:      QuantConnect.Lean.Engine.Results.BacktestingResultHandler
+2021-03-02T02:58:27.0766659Z TRACE::          Transactions: QuantConnect.Lean.Engine.TransactionHandlers.BacktestingTransactionHandler
+2021-03-02T02:58:27.0766659Z TRACE::          Alpha:        QuantConnect.Lean.Engine.Alphas.DefaultAlphaHandler
+2021-03-02T02:58:27.0766659Z TRACE::          ObjectStore:  QuantConnect.Lean.Engine.Storage.LocalObjectStore
+2021-03-02T02:58:27.0776656Z TRACE:: DefaultAlphaHandler.Exit(): Exiting...
+2021-03-02T02:58:27.0776656Z TRACE:: DefaultAlphaHandler.Exit(): Ended
+2021-03-02T02:58:27.0796662Z TRACE:: BacktestingResultHandler.Exit(): starting...
+2021-03-02T02:58:27.0796662Z TRACE:: BacktestingResultHandler.Exit(): Saving logs...
+2021-03-02T02:58:27.0816668Z TRACE:: StopSafely(): waiting for 'Result Thread' thread to stop...
+2021-03-02T02:58:27.0836671Z ERROR:: Algorithm.Initialize() Error: During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. AlgorithmPythonWrapper(): ModuleNotFoundError : No module named 'quantconnect'
+  at <module> in BasicTemplateAlgorithm.py:line 20 :: from quantconnect import *
+ ModuleNotFoundError : No module named 'quantconnect' Stack Trace: During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. AlgorithmPythonWrapper(): ModuleNotFoundError : No module named 'quantconnect'
+  at <module> in BasicTemplateAlgorithm.py:line 20 :: from quantconnect import *
+ ModuleNotFoundError : No module named 'quantconnect'
+ During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. AlgorithmPythonWrapper(): ModuleNotFoundError : No module named 'quantconnect'
+  at <module> in BasicTemplateAlgorithm.py:line 20 :: from quantconnect import *
+ ModuleNotFoundError : No module named 'quantconnect'
+2021-03-02T02:58:27.0836671Z TRACE:: Debug: Your log was successfully created and can be retrieved from: C:\Repositorios\Bovespa\Lean\Launcher\bin\Debug\BasicTemplateAlgorithm-log.txt
+2021-03-02T02:58:27.0836671Z TRACE:: BacktestingResultHandler.Run(): Ending Thread...
+2021-03-02T02:58:27.1426803Z TRACE:: 
+STATISTICS:: Fitness Score 0
+STATISTICS:: Kelly Criterion Estimate 0
+STATISTICS:: Kelly Criterion Probability Value 0
+STATISTICS:: Sortino Ratio 0
+STATISTICS:: Return Over Maximum Drawdown 0
+STATISTICS:: Portfolio Turnover 0
+STATISTICS:: Total Insights Generated 0
+STATISTICS:: Total Insights Closed 0
+STATISTICS:: Total Insights Analysis Completed 0
+STATISTICS:: Long Insight Count 0
+STATISTICS:: Short Insight Count 0
+STATISTICS:: Long/Short Ratio 100%
+STATISTICS:: Estimated Monthly Alpha Value $0
+STATISTICS:: Total Accumulated Estimated Alpha Value $0
+STATISTICS:: Mean Population Estimated Insight Value $0
+STATISTICS:: Mean Population Direction 0%
+STATISTICS:: Mean Population Magnitude 0%
+STATISTICS:: Rolling Averaged Population Direction 0%
+STATISTICS:: Rolling Averaged Population Magnitude 0%
+STATISTICS:: OrderListHash d41d8cd98f00b204e9800998ecf8427e
+2021-03-02T02:58:27.1426803Z TRACE:: BacktestingResultHandler.SendAnalysisResult(): Processed final packet
+2021-03-02T02:58:27.1426803Z TRACE:: Engine.Run(): Disposing of setup handler...
+2021-03-02T02:58:27.1436800Z TRACE:: Engine.Main(): Analysis Completed and Results Posted.
+2021-03-02T02:58:27.1436800Z TRACE:: Config.GetValue(): close-automatically - Using default value: False
+2021-03-02T02:58:38.2624862Z TRACE:: Engine.Main(): Packet removed from queue: BasicTemplateAlgorithm
+2021-03-02T02:58:38.2624862Z TRACE:: LeanEngineSystemHandlers.Dispose(): start...
+2021-03-02T02:58:38.2624862Z TRACE:: LeanEngineSystemHandlers.Dispose(): Disposed of system handlers.
+2021-03-02T02:58:38.2624862Z TRACE:: LeanEngineAlgorithmHandlers.Dispose(): start...
+2021-03-02T02:58:38.2624862Z TRACE:: LeanEngineAlgorithmHandlers.Dispose(): Disposed of algorithm handlers.
+2021-03-02T03:02:03.7153386Z TRACE:: Config.Get(): Configuration key not found. Key: data-directory - Using default value: ../../../Data/
+2021-03-02T03:02:03.7163386Z TRACE:: Config.Get(): Configuration key not found. Key: version-id - Using default value: 
+2021-03-02T03:02:03.7163386Z TRACE:: Config.Get(): Configuration key not found. Key: cache-location - Using default value: ../../../Data/
+2021-03-02T03:02:03.7163386Z TRACE:: Engine.Main(): LEAN ALGORITHMIC TRADING ENGINE v2.4.0.0 Mode: DEBUG (64bit)
+2021-03-02T03:02:03.7173391Z TRACE:: Engine.Main(): Started 12:02 AM
+2021-03-02T03:02:03.7183391Z TRACE:: Config.GetValue(): job-project-id - Using default value: 0
+2021-03-02T03:02:03.7193393Z TRACE:: Config.GetValue(): regression-update-statistics - Using default value: False
+2021-03-02T03:02:03.7193393Z TRACE:: Config.Get(): Configuration key not found. Key: lean-manager-type - Using default value: LocalLeanManager
+2021-03-02T03:02:03.7523466Z TRACE:: JobQueue.NextJob(): Selected ../../../Algorithm.Python/BasicTemplateAlgorithm.py
+2021-03-02T03:02:03.8353658Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-capacity - Using default value: 120
+2021-03-02T03:02:03.8353658Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-time-interval-minutes - Using default value: 1440
+2021-03-02T03:02:03.8353658Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-refill-amount - Using default value: 18
+2021-03-02T03:02:03.8373663Z TRACE:: Config.Get(): Configuration key not found. Key: algorithm-id - Using default value: BasicTemplateAlgorithm
+2021-03-02T03:02:03.8383658Z TRACE:: Config.Get(): Configuration key not found. Key: data-permission-manager - Using default value: DataPermissionManager
+2021-03-02T03:02:03.8393669Z TRACE:: Config.Get(): Configuration key not found. Key: results-destination-folder - Using default value: C:\Repositorios\Bovespa\Lean\Launcher\bin\Debug
+2021-03-02T03:02:03.8443681Z TRACE:: Config.Get(): Configuration key not found. Key: object-store-root - Using default value: ./storage
+2021-03-02T03:02:03.8443681Z TRACE:: Config.GetValue(): ignore-version-checks - Using default value: False
+2021-03-02T03:02:03.8453673Z TRACE:: AlgorithmManager.CreateTokenBucket(): Initializing LeakyBucket: Capacity: 120 RefillAmount: 18 TimeInterval: 1440
+2021-03-02T03:02:03.8473679Z TRACE:: Config.GetValue(): algorithm-manager-time-loop-maximum - Using default value: 20
+2021-03-02T03:02:03.8523689Z TRACE:: TextSubscriptionDataSourceReader.SetCacheSize(): Setting cache size to 71582788 items
+2021-03-02T03:02:04.0944237Z TRACE:: Python for .NET Assembly: Python.Runtime, Version=1.0.5.30, Culture=neutral, PublicKeyToken=null
+2021-03-02T03:02:04.0954238Z TRACE:: PythonInitializer.Initialize(): start...
+2021-03-02T03:02:05.1086491Z TRACE:: PythonInitializer.Initialize(): ended
+2021-03-02T03:02:05.1136503Z TRACE:: AlgorithmPythonWrapper(): Python version 3.6.8 |Anaconda, Inc.| (default, Feb 21 2019, 18:30:04) [MSC v.1916 64 bit (AMD64)]: Importing python module BasicTemplateAlgorithm
+2021-03-02T03:02:05.3847108Z ERROR:: Loader.TryCreatePythonAlgorithm():  System.Exception: AlgorithmPythonWrapper(): ModuleNotFoundError : No module named 'quantconnect'
+  at <module> in BasicTemplateAlgorithm.py:line 20 :: from quantconnect import *
+ ModuleNotFoundError : No module named 'quantconnect'
+   at QuantConnect.AlgorithmFactory.Python.Wrappers.AlgorithmPythonWrapper..ctor(String moduleName) in C:\Repositorios\Bovespa\Lean\AlgorithmFactory\Python\Wrappers\AlgorithmPythonWrapper.cs:line 119
+   at QuantConnect.AlgorithmFactory.Loader.TryCreatePythonAlgorithm(String assemblyPath, IAlgorithm& algorithmInstance, String& errorMessage) in C:\Repositorios\Bovespa\Lean\AlgorithmFactory\Loader.cs:line 173
+2021-03-02T03:02:05.3997143Z ERROR:: Engine.Run():  QuantConnect.Lean.Engine.Setup.AlgorithmSetupException: During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. AlgorithmPythonWrapper(): ModuleNotFoundError : No module named 'quantconnect'
+  at <module> in BasicTemplateAlgorithm.py:line 20 :: from quantconnect import *
+ ModuleNotFoundError : No module named 'quantconnect'
+   at QuantConnect.Lean.Engine.Setup.ConsoleSetupHandler.CreateAlgorithmInstance(AlgorithmNodePacket algorithmNodePacket, String assemblyPath) in C:\Repositorios\Bovespa\Lean\Engine\Setup\ConsoleSetupHandler.cs:line 105
+   at QuantConnect.Lean.Engine.Engine.Run(AlgorithmNodePacket job, AlgorithmManager manager, String assemblyPath, WorkerThread workerThread) in C:\Repositorios\Bovespa\Lean\Engine\Engine.cs:line 119
+2021-03-02T03:02:05.4007145Z TRACE:: JOB HANDLERS: 
+2021-03-02T03:02:05.4007145Z TRACE::          DataFeed:     QuantConnect.Lean.Engine.DataFeeds.FileSystemDataFeed
+2021-03-02T03:02:05.4007145Z TRACE::          Setup:        QuantConnect.Lean.Engine.Setup.ConsoleSetupHandler
+2021-03-02T03:02:05.4017147Z TRACE::          RealTime:     QuantConnect.Lean.Engine.RealTime.BacktestingRealTimeHandler
+2021-03-02T03:02:05.4017147Z TRACE::          Results:      QuantConnect.Lean.Engine.Results.BacktestingResultHandler
+2021-03-02T03:02:05.4017147Z TRACE::          Transactions: QuantConnect.Lean.Engine.TransactionHandlers.BacktestingTransactionHandler
+2021-03-02T03:02:05.4017147Z TRACE::          Alpha:        QuantConnect.Lean.Engine.Alphas.DefaultAlphaHandler
+2021-03-02T03:02:05.4017147Z TRACE::          ObjectStore:  QuantConnect.Lean.Engine.Storage.LocalObjectStore
+2021-03-02T03:02:05.4027149Z TRACE:: DefaultAlphaHandler.Exit(): Exiting...
+2021-03-02T03:02:05.4037154Z TRACE:: DefaultAlphaHandler.Exit(): Ended
+2021-03-02T03:02:05.4037154Z TRACE:: BacktestingResultHandler.Exit(): starting...
+2021-03-02T03:02:05.4047158Z TRACE:: BacktestingResultHandler.Exit(): Saving logs...
+2021-03-02T03:02:05.4057153Z TRACE:: StopSafely(): waiting for 'Result Thread' thread to stop...
+2021-03-02T03:02:05.4087162Z ERROR:: Algorithm.Initialize() Error: During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. AlgorithmPythonWrapper(): ModuleNotFoundError : No module named 'quantconnect'
+  at <module> in BasicTemplateAlgorithm.py:line 20 :: from quantconnect import *
+ ModuleNotFoundError : No module named 'quantconnect' Stack Trace: During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. AlgorithmPythonWrapper(): ModuleNotFoundError : No module named 'quantconnect'
+  at <module> in BasicTemplateAlgorithm.py:line 20 :: from quantconnect import *
+ ModuleNotFoundError : No module named 'quantconnect'
+ During the algorithm initialization, the following exception has occurred: Loader.TryCreatePythonAlgorithm(): Unable to import python module ../../../Algorithm.Python/BasicTemplateAlgorithm.py. AlgorithmPythonWrapper(): ModuleNotFoundError : No module named 'quantconnect'
+  at <module> in BasicTemplateAlgorithm.py:line 20 :: from quantconnect import *
+ ModuleNotFoundError : No module named 'quantconnect'
+2021-03-02T03:02:05.4087162Z TRACE:: Debug: Your log was successfully created and can be retrieved from: C:\Repositorios\Bovespa\Lean\Launcher\bin\Debug\BasicTemplateAlgorithm-log.txt
+2021-03-02T03:02:05.4097166Z TRACE:: BacktestingResultHandler.Run(): Ending Thread...
+2021-03-02T03:02:05.4847330Z TRACE:: 
+STATISTICS:: Fitness Score 0
+STATISTICS:: Kelly Criterion Estimate 0
+STATISTICS:: Kelly Criterion Probability Value 0
+STATISTICS:: Sortino Ratio 0
+STATISTICS:: Return Over Maximum Drawdown 0
+STATISTICS:: Portfolio Turnover 0
+STATISTICS:: Total Insights Generated 0
+STATISTICS:: Total Insights Closed 0
+STATISTICS:: Total Insights Analysis Completed 0
+STATISTICS:: Long Insight Count 0
+STATISTICS:: Short Insight Count 0
+STATISTICS:: Long/Short Ratio 100%
+STATISTICS:: Estimated Monthly Alpha Value $0
+STATISTICS:: Total Accumulated Estimated Alpha Value $0
+STATISTICS:: Mean Population Estimated Insight Value $0
+STATISTICS:: Mean Population Direction 0%
+STATISTICS:: Mean Population Magnitude 0%
+STATISTICS:: Rolling Averaged Population Direction 0%
+STATISTICS:: Rolling Averaged Population Magnitude 0%
+STATISTICS:: OrderListHash d41d8cd98f00b204e9800998ecf8427e
+2021-03-02T03:02:05.4857339Z TRACE:: BacktestingResultHandler.SendAnalysisResult(): Processed final packet
+2021-03-02T03:02:05.4857339Z TRACE:: Engine.Run(): Disposing of setup handler...
+2021-03-02T03:02:05.4857339Z TRACE:: Engine.Main(): Analysis Completed and Results Posted.
+2021-03-02T03:02:05.4867339Z TRACE:: Config.GetValue(): close-automatically - Using default value: False
+2021-03-02T03:02:06.6950038Z TRACE:: Python for .NET Assembly: nPython, Version=1.0.5.30, Culture=neutral, PublicKeyToken=null
+2021-03-02T03:03:57.8287744Z TRACE:: Config.Get(): Configuration key not found. Key: data-directory - Using default value: ../../../Data/
+2021-03-02T03:03:57.8297746Z TRACE:: Config.Get(): Configuration key not found. Key: version-id - Using default value: 
+2021-03-02T03:03:57.8297746Z TRACE:: Config.Get(): Configuration key not found. Key: cache-location - Using default value: ../../../Data/
+2021-03-02T03:03:57.8297746Z TRACE:: Engine.Main(): LEAN ALGORITHMIC TRADING ENGINE v2.4.0.0 Mode: DEBUG (64bit)
+2021-03-02T03:03:57.8307748Z TRACE:: Engine.Main(): Started 12:03 AM
+2021-03-02T03:03:57.8317751Z TRACE:: Config.GetValue(): job-project-id - Using default value: 0
+2021-03-02T03:03:57.8317751Z TRACE:: Config.GetValue(): regression-update-statistics - Using default value: False
+2021-03-02T03:03:57.8317751Z TRACE:: Config.Get(): Configuration key not found. Key: lean-manager-type - Using default value: LocalLeanManager
+2021-03-02T03:03:57.8617827Z TRACE:: JobQueue.NextJob(): Selected ../../../Algorithm.Python/BasicTemplateAlgorithm.py
+2021-03-02T03:03:57.9357980Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-capacity - Using default value: 120
+2021-03-02T03:03:57.9357980Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-time-interval-minutes - Using default value: 1440
+2021-03-02T03:03:57.9357980Z TRACE:: Config.GetValue(): scheduled-event-leaky-bucket-refill-amount - Using default value: 18
+2021-03-02T03:03:57.9367982Z TRACE:: Config.Get(): Configuration key not found. Key: algorithm-id - Using default value: BasicTemplateAlgorithm
+2021-03-02T03:03:57.9377989Z TRACE:: Config.Get(): Configuration key not found. Key: data-permission-manager - Using default value: DataPermissionManager
+2021-03-02T03:03:57.9387990Z TRACE:: Config.Get(): Configuration key not found. Key: results-destination-folder - Using default value: C:\Repositorios\Bovespa\Lean\Launcher\bin\Debug
+2021-03-02T03:03:57.9438000Z TRACE:: Config.Get(): Configuration key not found. Key: object-store-root - Using default value: ./storage
+2021-03-02T03:03:57.9448001Z TRACE:: Config.GetValue(): ignore-version-checks - Using default value: False
+2021-03-02T03:03:57.9458010Z TRACE:: AlgorithmManager.CreateTokenBucket(): Initializing LeakyBucket: Capacity: 120 RefillAmount: 18 TimeInterval: 1440
+2021-03-02T03:03:57.9468004Z TRACE:: Config.GetValue(): algorithm-manager-time-loop-maximum - Using default value: 20
+2021-03-02T03:03:57.9518018Z TRACE:: TextSubscriptionDataSourceReader.SetCacheSize(): Setting cache size to 71582788 items
+2021-03-02T03:03:58.1798526Z TRACE:: Python for .NET Assembly: Python.Runtime, Version=1.0.5.30, Culture=neutral, PublicKeyToken=null
+2021-03-02T03:03:58.1808530Z TRACE:: PythonInitializer.Initialize(): start...
+2021-03-02T03:03:59.2090816Z TRACE:: PythonInitializer.Initialize(): ended
+2021-03-02T03:03:59.2130825Z TRACE:: AlgorithmPythonWrapper(): Python version 3.6.8 |Anaconda, Inc.| (default, Feb 21 2019, 18:30:04) [MSC v.1916 64 bit (AMD64)]: Importing python module BasicTemplateAlgorithm
+2021-03-02T03:04:00.4192634Z TRACE:: AlgorithmPythonWrapper(): Creating IAlgorithm instance.
+2021-03-02T03:04:01.1584283Z TRACE:: Python for .NET Assembly: nPython, Version=1.0.5.30, Culture=neutral, PublicKeyToken=null
+2021-03-02T03:04:02.0046169Z TRACE:: Config.GetValue(): mute-python-library-logging - Using default value: True
+2021-03-02T03:04:02.0166200Z TRACE:: Config.Get(): Configuration key not found. Key: results-destination-folder - Using default value: C:\Repositorios\Bovespa\Lean\Launcher\bin\Debug
+2021-03-02T03:04:02.0176200Z TRACE:: LocalObjectStore.Initialize(): Storage Root: C:\Repositorios\Bovespa\Lean\Launcher\bin\Debug\storage\QCAlgorithm
+2021-03-02T03:04:02.0316226Z TRACE:: Config.Get(): Configuration key not found. Key: security-data-feeds - Using default value: 
+2021-03-02T03:04:02.1576506Z TRACE:: BaseSetupHandler.SetupCurrencyConversions():
+Symbol      Quantity    Conversion = Value in USD
+USD: $      100000.00 @       1.00 = $100000.0
+-------------------------------------------------
+CashBook Total Value:                $100000.0
+
+2021-03-02T03:04:02.1616528Z TRACE:: BacktestingResultHandler(): Sample Period Set: 04.00
+2021-03-02T03:04:02.1626527Z TRACE:: Time.TradeableDates(): Security Count: 1
+2021-03-02T03:04:02.1636532Z TRACE:: Config.GetValue(): forward-console-messages - Using default value: True
+2021-03-02T03:04:02.1656532Z TRACE:: JOB HANDLERS: 
+2021-03-02T03:04:02.1656532Z TRACE::          DataFeed:     QuantConnect.Lean.Engine.DataFeeds.FileSystemDataFeed
+2021-03-02T03:04:02.1656532Z TRACE::          Setup:        QuantConnect.Lean.Engine.Setup.ConsoleSetupHandler
+2021-03-02T03:04:02.1656532Z TRACE::          RealTime:     QuantConnect.Lean.Engine.RealTime.BacktestingRealTimeHandler
+2021-03-02T03:04:02.1666536Z TRACE::          Results:      QuantConnect.Lean.Engine.Results.BacktestingResultHandler
+2021-03-02T03:04:02.1666536Z TRACE::          Transactions: QuantConnect.Lean.Engine.TransactionHandlers.BacktestingTransactionHandler
+2021-03-02T03:04:02.1666536Z TRACE::          Alpha:        QuantConnect.Lean.Engine.Alphas.DefaultAlphaHandler
+2021-03-02T03:04:02.1666536Z TRACE::          ObjectStore:  QuantConnect.Lean.Engine.Storage.LocalObjectStore
+2021-03-02T03:04:02.1676537Z TRACE::          History Provider:     QuantConnect.Lean.Engine.HistoricalData.SubscriptionDataReaderHistoryProvider
+2021-03-02T03:04:02.1893755Z TRACE:: AlgorithmManager.Run(): Begin DataStream - Start: 10/7/2013 12:00:00 AM Stop: 10/11/2013 11:59:59 PM
+2021-03-02T03:04:02.2073798Z TRACE:: Debug: Launching analysis for BasicTemplateAlgorithm with LEAN Engine v2.4.0.0
+2021-03-02T03:04:02.2283849Z TRACE:: Config.GetValue(): data-feed-workers-count - Using default value: 16
+2021-03-02T03:04:02.2293847Z TRACE:: Config.GetValue(): data-feed-max-work-weight - Using default value: 400
+2021-03-02T03:04:02.2293847Z TRACE:: Config.Get(): Configuration key not found. Key: data-feed-queue-type - Using default value: QuantConnect.Lean.Engine.DataFeeds.WorkScheduling.WorkQueue, QuantConnect.Lean.Engine
+2021-03-02T03:04:02.2293847Z TRACE:: WeightedWorkScheduler(): will use 16 workers and MaxWorkWeight is 400. Queue type: WorkQueue
+2021-03-02T03:04:02.2623920Z TRACE:: Config.GetValue(): show-missing-data-logs - Using default value: False
+2021-03-02T03:04:02.3092066Z TRACE:: UniverseSelection.AddPendingInternalDataFeeds(): Adding internal benchmark data feed SPY,SPY,Hour,TradeBar,Trade,Adjusted,Internal
+2021-03-02T03:04:02.4506674Z TRACE:: Debug: numpy test >>> print numpy.pi: 3.141592653589793
+2021-03-02T03:04:02.5339884Z TRACE:: Synchronizer.GetEnumerator(): Exited thread.
+2021-03-02T03:04:02.5339884Z TRACE:: AlgorithmManager.Run(): Firing On End Of Algorithm...
+2021-03-02T03:04:02.5362775Z TRACE:: Engine.Run(): Exiting Algorithm Manager
+2021-03-02T03:04:02.5504330Z TRACE:: FileSystemDataFeed.Exit(): Start. Setting cancellation token...
+2021-03-02T03:04:02.5514324Z TRACE:: FileSystemDataFeed.Exit(): Exit Finished.
+2021-03-02T03:04:02.5524325Z TRACE:: DefaultAlphaHandler.Exit(): Exiting...
+2021-03-02T03:04:02.5554332Z TRACE:: DefaultAlphaHandler.Exit(): Ended
+2021-03-02T03:04:02.5554332Z TRACE:: BacktestingResultHandler.Exit(): starting...
+2021-03-02T03:04:02.5554332Z TRACE:: BacktestingResultHandler.Exit(): Saving logs...
+2021-03-02T03:04:02.5594340Z TRACE:: Debug: Algorithm Id:(BasicTemplateAlgorithm) completed in 0.37 seconds at 11k data points per second. Processing total of 3,943 data points.
+2021-03-02T03:04:02.5594340Z TRACE:: Debug: Your log was successfully created and can be retrieved from: C:\Repositorios\Bovespa\Lean\Launcher\bin\Debug\BasicTemplateAlgorithm-log.txt
+2021-03-02T03:04:02.5604347Z TRACE:: BacktestingResultHandler.Run(): Ending Thread...
+2021-03-02T03:04:02.5614344Z TRACE:: StopSafely(): waiting for 'Result Thread' thread to stop...
+2021-03-02T03:04:02.6802224Z TRACE:: 
+STATISTICS:: Total Trades 1
+STATISTICS:: Average Win 0%
+STATISTICS:: Average Loss 0%
+STATISTICS:: Compounding Annual Return 264.819%
+STATISTICS:: Drawdown 2.200%
+STATISTICS:: Expectancy 0
+STATISTICS:: Net Profit 1.668%
+STATISTICS:: Sharpe Ratio 8.749
+STATISTICS:: Probabilistic Sharpe Ratio 67.311%
+STATISTICS:: Loss Rate 0%
+STATISTICS:: Win Rate 0%
+STATISTICS:: Profit-Loss Ratio 0
+STATISTICS:: Alpha -0.005
+STATISTICS:: Beta 0.996
+STATISTICS:: Annual Standard Deviation 0.219
+STATISTICS:: Annual Variance 0.048
+STATISTICS:: Information Ratio -14.189
+STATISTICS:: Tracking Error 0.001
+STATISTICS:: Treynor Ratio 1.922
+STATISTICS:: Total Fees $3.26
+STATISTICS:: Fitness Score 0.248
+STATISTICS:: Kelly Criterion Estimate 0
+STATISTICS:: Kelly Criterion Probability Value 0
+STATISTICS:: Sortino Ratio 79228162514264337593543950335
+STATISTICS:: Return Over Maximum Drawdown 93.761
+STATISTICS:: Portfolio Turnover 0.248
+STATISTICS:: Total Insights Generated 0
+STATISTICS:: Total Insights Closed 0
+STATISTICS:: Total Insights Analysis Completed 0
+STATISTICS:: Long Insight Count 0
+STATISTICS:: Short Insight Count 0
+STATISTICS:: Long/Short Ratio 100%
+STATISTICS:: Estimated Monthly Alpha Value $0
+STATISTICS:: Total Accumulated Estimated Alpha Value $0
+STATISTICS:: Mean Population Estimated Insight Value $0
+STATISTICS:: Mean Population Direction 0%
+STATISTICS:: Mean Population Magnitude 0%
+STATISTICS:: Rolling Averaged Population Direction 0%
+STATISTICS:: Rolling Averaged Population Magnitude 0%
+STATISTICS:: OrderListHash 25885f979ca8c7b44f5d0f7daf00b241
+2021-03-02T03:04:02.6802224Z TRACE:: BacktestingResultHandler.SendAnalysisResult(): Processed final packet
+2021-03-02T03:04:02.6802224Z TRACE:: Engine.Run(): Disconnecting from brokerage...
+2021-03-02T03:04:02.6812226Z TRACE:: Engine.Run(): Disposing of setup handler...
+2021-03-02T03:04:02.6812226Z TRACE:: Engine.Main(): Analysis Completed and Results Posted.
+2021-03-02T03:04:02.6812226Z TRACE:: Config.GetValue(): close-automatically - Using default value: False
